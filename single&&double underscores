@@ -1,4 +1,9 @@
-Single Underscore
+https://stackoverflow.com/questions/1301346/what-is-the-meaning-of-single-and-double-underscore-before-an-object-name
+
+
+*****************************************
+************Single Underscore************
+*****************************************
 In a class, names with a leading underscore indicate to other programmers that 
 the attribute or method is intended to be be used inside that class. However, 
 privacy is not enforced in any way. Using leading underscores for functions in 
@@ -9,7 +14,10 @@ From the PEP-8 style guide:
 _single_leading_underscore: weak "internal use" indicator. E.g. from M import * 
 does not import objects whose name starts with an underscore.
 
-Double Underscore (Name Mangling)
+
+****************************************
+***Double Underscore (Name Mangling)****
+****************************************
 From the Python docs:
 
 Any identifier of the form __spam (at least two leading underscores, at most one 
