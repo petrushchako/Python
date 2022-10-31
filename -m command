@@ -1,0 +1,86 @@
+Introduction (TLDR)
+The -m flag does a lot of things, not all of which will be needed all the time. In short it can be used to: 
+(1) execute python code from the command line via modulename rather than filename (2) add a directory to 
+sys.path for use in import resolution and (3) execute python code that contains relative imports from the command line.
+
+Preliminaries
+To explain the -m flag we first need to explain a little terminology.
+
+Python's primary organizational unit is known as a module. Module's come in one of two flavors: code modules 
+and package modules. A code module is any file that contains python executable code. A package module is a 
+directory that contains other modules (either code modules or package modules). The most common type of code 
+modules are *.py files while the most common type of package modules are directories containing an __init__.py file.
+
+Python allows modules to be uniquely identified in two distinct ways: modulename and filename. In general, modules 
+are identified by modulename in Python code (e.g., import <modulename>) and by filename on the command line 
+(e.g., python <filename>). All python interpreters are able to convert modulenames to filenames by following 
+the same few, well-defined rules. These rules hinge on the sys.path variable. By altering this variable one can 
+change how Python resolves modulenames into filenames (for more on how this is done see PEP 302).
+
+All modules (both code and package) can be executed (i.e., code associated with the module will be evaluated by 
+the Python interpreter). Depending on the execution method (and module type) what code gets evaluated, and when, 
+can change quite a bit. For example, if one executes a package module via python <filename> then <filename>/__main__.py 
+will be executed. On the other hand, if one executes that same package module via import <modulename> then only the 
+package's __init__.py will be executed.
+
+Historical Development of -m
+The -m flag was first introduced in Python 2.4.1. Initially its only purpose was to provide an alternative means 
+of identifying the python module to execute from the command line. That is, if we knew both the <filename> and 
+<modulename> for a module then the following two commands were equivalent: python <filename> <args> and 
+python -m <modulename> <args>. One constraint with this iteration, according to PEP 338, was that -m only 
+worked with top level modulenames (i.e., modules that could be found directly on sys.path without any intervening package modules).
+
+With the completion of PEP 338 the -m feature was extended to support <modulename> representations beyond the 
+top level. This meant names such as http.server were now fully supported. This extension also meant that each 
+parent package in modulename was now evaluated (i.e., all parent package __init__.py files were evaluated) in 
+addition to the module referenced by the modulename itself.
+
+The final major feature enhancement for -m came with PEP 366. With this upgrade -m gained the ability to support 
+not only absolute imports but also explicit relative imports when executing modules. This was achieved by changing 
+-m so that it set the __package__ variable to the parent module of the given modulename (in addition to everything else it already did).
+
+Use Cases
+There are two notable use cases for the -m flag:
+
+To execute modules from the command line for which one may not know their filename. This use case takes advantage of 
+the fact that the Python interpreter knows how to convert modulenames to filenames. This is particularly advantageous 
+when one wants to run stdlib modules or 3rd-party module from the command line. For example, very few people know the 
+filename for the http.server module but most people do know its modulename so we can execute it from the command line 
+using python -m http.server.
+
+To execute a local package containing absolute or relative imports without needing to install it. This use case is 
+detailed in PEP 338 and leverages the fact that the current working directory is added to sys.path rather than the 
+module's directory. This use case is very similar to using pip install -e . to install a package in develop/edit mode.
+
+Shortcomings
+With all the enhancements made to -m over the years it still has one major shortcoming -- it can only execute modules 
+written in Python (i.e., *.py). For example, if -m is used to execute a C compiled code module the following error will 
+be produced, No code object available for <modulename> (see here for more details).
+
+Detailed Comparisons
+Module execution via import statement (i.e., import <modulename>):
+
+sys.path is not modified in any way
+__name__ is set to the absolute form of <modulename>
+__package__ is set to the immediate parent package in <modulename>
+__init__.py is evaluated for all packages (including its own for package modules)
+__main__.py is not evaluated for package modules; the code is evaluated for code modules
+Module execution via command line with filename (i.e., python <filename>):
+
+sys.path is modified to include the final directory in <filename>
+__name__ is set to '__main__'
+__package__ is set to None
+__init__.py is not evaluated for any package (including its own for package modules)
+__main__.py is evaluated for package modules; the code is evaluated for code modules.
+Module execution via command line with modulename (i.e., python -m <modulename>):
+
+sys.path is modified to include the current directory
+__name__ is set to '__main__'
+__package__ is set to the immediate parent package in <modulename>
+__init__.py is evaluated for all packages (including its own for package modules)
+__main__.py is evaluated for package modules; the code is evaluated for code modules
+Conclusion
+The -m flag is, at its simplest, a means to execute python scripts from the command line by using 
+modulenames rather than filenames. The real power of -m, however, is in its ability to combine the 
+power of import statements (e.g., support for explicit relative imports and automatic package 
+__init__ evaluation) with the convenience of the command line.
