@@ -1,0 +1,12 @@
+{
+    "name": "Alice",
+    "age": 25,
+    "city": "New York",
+    "skills": ["Python", "JavaScript", "SQL"],
+    "is_student": true,
+    "grades": {
+        "math": 95,
+        "history": 85,
+        "science": 90
+    }
+}
