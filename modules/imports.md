@@ -49,6 +49,7 @@ result = my_function(my_data)
 #### Note: this import's variant is not recommended due to the same reasons as previously (the threat of a naming conflict is even more dangerous here).
 
 <br>
+
 5. You can change the name of the imported entity "on the fly" by using the **as** phrase of the import For example:
 
 ```python
