@@ -282,7 +282,7 @@ print(list2)
 for i in list2:
     print(type(i))
 
-
+############ Exception handling ###############
 
 try:
     print(variable)
