@@ -1,6 +1,6 @@
 import sys
 
-#sys.path.append(.......... 
+sys.path.append('../packages')
 #Above, append the address of where you have stored the world_cup package on your computer. 
 
 from world_cup.stadia.stadium_manager import *
