@@ -1,11 +1,7 @@
+import copy
+list1 = [1, [2, 3], 4]
+list2 = copy.deepcopy(list1)
+list3 = copy.copy(list1)
+list3[1][1]='x'
 
-mixed_list = ["Nissan Sentra", 1, 2.5, True]
-
-for i in mixed_list:
-    print(type(i))
-
-mixed_list[0] = "Ford Mondeo"
-mixed_list.insert(7, "Audi")
-mixed_list.insert(6, "BMW")
-
-print(mixed_list)
+print("List 1 : ",list1, "\nList 2 : ", list2, "\nList 3 : ", list3)
