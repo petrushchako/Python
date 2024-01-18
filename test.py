@@ -51,3 +51,10 @@ print(my_car_list[::-1])
 print("Ford Focus" in my_car_list)
 print(my_car_list.pop(-2))
 print("Ford Focus" in my_car_list)
+
+
+#### String as a list of characters
+x = "World"
+print(x[::2])
+
+x[0]="G"
