@@ -41,3 +41,13 @@ sliced_cars = cars[0:-1:2] # ['Audi', 'Mercedes-Benz']
 sliced_cars= cars[0::2] # ['Audi', 'Mercedes-Benz', 'Volvo']
 reversed_cars=cars[6::-1]
 print(reversed_cars)
+
+
+my_car_list = ['Toyota Corolla', 'Toyota Camry', 'Nissan Altima', 'Kia Soul', 'Kia Optima', 'Honda Civic']
+my_car_list[6:-1] = ['Ford Focus', 'Dodge Charger'] #Assign values to indexes 6 and 7/-1
+print(my_car_list)
+print(my_car_list[::-1])
+
+print("Ford Focus" in my_car_list)
+print(my_car_list.pop(-2))
+print("Ford Focus" in my_car_list)
