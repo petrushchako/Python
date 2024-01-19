@@ -66,3 +66,11 @@ print(x.startswith("h")) #False
 
 print(x.endswith("o")) #True
 print(x.endswith("O")) #False
+
+print(x.count('l'))
+print("-"*30)
+print(x.count('l')) # 2
+print(x.find("H")) # 0
+print(x.find("h")) # -1
+print(x.index("H"))
+print(x.index("h")) # ValueError: substring not found
