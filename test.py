@@ -57,4 +57,12 @@ print("Ford Focus" in my_car_list)
 x = "World"
 print(x[::2])
 
-x[0]="G"
+#x[0]="G"
+
+
+x = "Hello"
+print(x.startswith("H")) #True
+print(x.startswith("h")) #False
+
+print(x.endswith("o")) #True
+print(x.endswith("O")) #False
