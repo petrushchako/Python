@@ -73,4 +73,19 @@ print(x.count('l')) # 2
 print(x.find("H")) # 0
 print(x.find("h")) # -1
 print(x.index("H"))
-print(x.index("h")) # ValueError: substring not found
+#print(x.index("h")) # ValueError: substring not found
+
+
+
+x = "New York City"
+y = []
+z = ""
+
+if(x.count(" ")> 0):
+    y = x.split(" ")
+    z = " ".join(y)
+    print(y, "\n", z)
+
+
+x1 = x[0:3]
+print(x[1:3].islower())
