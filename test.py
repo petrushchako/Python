@@ -89,3 +89,24 @@ if(x.count(" ")> 0):
 
 x1 = x[0:3]
 print(x[1:3].islower())
+
+print("-"*10, "TUPLES", "-"*10)
+my_tuple = ()
+print(my_tuple) # <class 'tuple'>
+
+int_tuple = (1, 2, 3)
+str_tuple = ("Hello", "Python")
+print(int_tuple, str_tuple)
+
+combinet_tuple = int_tuple + str_tuple
+print(combinet_tuple * 2)
+
+tuple1 = 1, "Hello", 3.14
+print(tuple1) # <class 'tuple'>
+
+a, b, c = tuple1
+print(a, b, c)
+
+
+print("Hello" in tuple1) #True
+print(not("hello" not in tuple1))
