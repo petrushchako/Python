@@ -110,3 +110,29 @@ print(a, b, c)
 
 print("Hello" in tuple1) #True
 print(not("hello" not in tuple1))
+
+x = (1, 2, 3, [4, 5])
+x[3][1] = 100
+
+print(x)
+
+tuple_a = (1, 2, 3, 4, 5)
+tuple_b = ( 'a', 'b', 'c' , 'd', 'e')
+
+zipped = zip(tuple_a, tuple_b)
+print(zipped) # ‹zip object at 0x10eb20b08>
+
+result = tuple(zipped)
+print(result)
+
+t1, t2 = zip(*result)
+print("t1: ", t1, "\nt2:", t2)
+
+
+a =(" John", "Charles", "Mike")
+b = ("Manager", "Supervisor", "Engineer")
+x = zip(a, b)
+
+c = dict(x)
+
+print(c)
