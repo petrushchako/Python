@@ -136,3 +136,7 @@ x = zip(a, b)
 c = dict(x)
 
 print(c)
+
+
+some_string = "Python"
+a, b, c, d = some_string
