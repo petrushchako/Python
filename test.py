@@ -229,8 +229,14 @@ for i,j in fruits.items():
 #Copy
 copy_fruits = fruits.copy()
 
-# Concatenate dicts
-new_fruits = {"Cherry": (1, 2, 3)}
-fruits.update(new_fruits)
 
+
+fruits = {
+    'Banana': (50, 60, 40, 55),
+    'Avocado': (30, 50, 40, 45)
+    }
+
+# Concatenate dicts
+new_fruits = {"Cherry": (1, 2), "Banana": (1,2)}
+fruits.update(new_fruits)
 print(fruits)
