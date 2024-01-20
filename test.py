@@ -197,3 +197,40 @@ fruit_qty_consumed = {
 }
 
 print(fruit_qty_consumed["Plum"]["Fri"])
+
+print(fruit_qty_consumed.pop("Plum"))
+
+print(fruit_qty_consumed.items())
+
+for i,j in fruits.items():
+    print(f"{i} : {j}")
+    
+    
+fruits = {
+    'Banana': (50, 60, 40, 55),
+    'Apple': (78, 86, 80, 60),
+    'Apricot': (40, 70, 30, 55),
+    'Orange': (70, 80, 60, 65),
+    'Avocado': (30, 50, 40, 45)}
+
+# Remove item by key. Returns the value (i.e fruits.pop("Banana") -> (50, 60, 40, 55))
+fruits.pop("Banana") 
+fruits.popitem() # Removes random value from dict
+
+# Sorting
+sorted(fruits, reverse = True) # Returns the list of sorted keys
+sorted(fruits.values()) # sort comparable values
+
+# .items()
+fruits.items() # Returns a list of tuples (key, value)
+for i,j in fruits.items():
+    print(f"{i} : {j}")
+
+#Copy
+copy_fruits = fruits.copy()
+
+# Concatenate dicts
+new_fruits = {"Cherry": (1, 2, 3)}
+fruits.update(new_fruits)
+
+print(fruits)
