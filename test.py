@@ -138,5 +138,38 @@ c = dict(x)
 print(c)
 
 
-some_string = "Python"
-a, b, c, d = some_string
+print("-"*50)
+
+bike_owners = {
+    "James":"Ducati Monster 1200", 
+    "Jacob":"Ducati Scrambler 1100", 
+    "William":"BMW S 1000 RR", 
+    "Aiden":"Harley Davidson"
+    }
+
+print(bike_owners)
+print(bike_owners.keys())
+print(bike_owners.values())
+
+for i in bike_owners:
+    print(f" {i} : {bike_owners[i]}")
+    
+for i in bike_owners: print(i)
+
+int_dict = {
+    1 : "ONE",
+    2 : "TWO",
+    3 : "Three",
+    3 : "THREE"
+}
+
+print("Aiden" in bike_owners)
+
+bike_owners["Alex"] = "No bike"
+bike_owners["Alex"] = "Lastochka"
+print(bike_owners)
+
+
+
+print(bike_owners.get("Kristina"))
+print(bike_owners["Kristina"])
