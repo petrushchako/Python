@@ -171,5 +171,29 @@ print(bike_owners)
 
 
 
-print(bike_owners.get("Kristina"))
-print(bike_owners["Kristina"])
+fruits = {
+    'Banana': (50, 60, 40, 55),
+    'Apple': (78, 86, 80, 60),
+    'Apricot': [40, 70, 30, 55]}
+
+print(fruits["Banana"][3])
+
+for i in fruits:
+    #print(i)
+    for j in range(len(fruits[i])):
+        print(fruits[i][j], end = ", ", sep = "-")
+print("\n")
+for i in fruits: 
+    fruits["Apricot"][3] = 0.5
+    
+    for j in range(len(fruits[i])):
+        print(fruits[i][j], end = ", ")
+
+print("\n")
+
+fruit_qty_consumed = {
+    "Plum" : {'Fri': 70, 'Sat': 80},
+    'Apple': {'Fri': 90, 'Sat': 95}
+}
+
+print(fruit_qty_consumed["Plum"]["Fri"])
