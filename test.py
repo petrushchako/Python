@@ -248,3 +248,19 @@ print(set_string)
 
 empty_set = set()
 print(f"{empty_set} of type {type(empty_set)}")
+
+
+a1 = {-1,0,1,2,3}
+a2 = {1,2,3,4}
+
+b1 = a1.intersection(a2)
+print(b1)
+b1 = a1.union(a2)
+print(b1)
+print(a1.difference(a2))
+print(a2.symmetric_difference(a1))
+
+a3 = {2,3}
+
+print(a2.issuperset(a3))
+
