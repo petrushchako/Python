@@ -264,3 +264,7 @@ a3 = {2,3}
 
 print(a2.issuperset(a3))
 
+set1 = {"Abc", "Bcd", "Cde"}
+
+print(min(set1)) # Abc
+print(max(set1)) # Cde
