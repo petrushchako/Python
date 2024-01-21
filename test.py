@@ -240,3 +240,11 @@ fruits = {
 new_fruits = {"Cherry": (1, 2), "Banana": (1,2)}
 fruits.update(new_fruits)
 print(fruits)
+
+print("-"*50)
+
+set_string = {"Emma", "Olivia", "Ava", "Mia"}
+print(set_string)
+
+empty_set = set()
+print(f"{empty_set} of type {type(empty_set)}")
