@@ -281,3 +281,17 @@ list2 = list(dict1.items())
 print(list2)
 for i in list2:
     print(type(i))
+
+
+
+try:
+    print(variable)
+
+except Exception:
+    print("Something went wrong")
+
+except NameError:
+    print("Variable is not defined")
+
+except:
+    print("Something went wrong")
