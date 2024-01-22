@@ -270,9 +270,14 @@ print(min(set1)) # Abc
 print(max(set1)) # Cde
 
 
-list1 = [[1,2],[3,4],[5,6]]
-tuple1 = tuple(list1) # ([1,2],[3,4],[5,6])
+list1 = [[1,[2.0 , 2.1]],[3,4],[5,6]]
+dict1 = dict(list1)
 
-print(tuple1)
+print(dict1) # {1: [2.0, 2.1], 3: 4, 5: 6}
 
-set1 = set(tuple1)
+
+
+list2 = list(dict1.items())
+print(list2)
+for i in list2:
+    print(type(i))
