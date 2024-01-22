@@ -268,3 +268,11 @@ set1 = {"Abc", "Bcd", "Cde"}
 
 print(min(set1)) # Abc
 print(max(set1)) # Cde
+
+
+list1 = [[1,2],[3,4],[5,6]]
+tuple1 = tuple(list1) # ([1,2],[3,4],[5,6])
+
+print(tuple1)
+
+set1 = set(tuple1)
