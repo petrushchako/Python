@@ -295,3 +295,16 @@ except NameError:
 
 except:
     print("Something went wrong")
+
+
+
+import time, datetime
+
+try:
+    print(datetime.datetime.now())
+    time.sleep(5)
+    print(datetime.datetime.now())
+except KeyboardInterrupt:
+    print("Process has been manually canceled")
+
+print(dir(time))
