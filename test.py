@@ -300,11 +300,38 @@ except:
 
 import time, datetime
 
-try:
-    print(datetime.datetime.now())
-    time.sleep(5)
-    print(datetime.datetime.now())
-except KeyboardInterrupt:
-    print("Process has been manually canceled")
+# try:
+#     print(datetime.datetime.now())
+#     time.sleep(2)
+#     print(datetime.datetime.now())
+# except KeyboardInterrupt:
+#     print("Process has been manually canceled")
 
-print(dir(time))
+# print(dir(time))
+
+print()
+
+
+try:
+    file = open("non_existen_file", "r")
+except OSError:
+    print("OSError occured") # Superset of FileNotFoundError
+except FileNotFoundError:
+    print("File does not exist") # Subset of OSError
+
+print()
+
+try:
+    print(var)
+except NameError:
+    print("Variable with requested name does not exist")
+finally:
+    print("Gracefully exiting the try-except-finally block")
+
+var = "Hello there"
+
+try:
+    with open('../TEST/Linux/test.py', "r") as file:
+        print(file.read())
+finally:
+    print("Gracefully exiting the try-except-finally block")
