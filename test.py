@@ -335,3 +335,13 @@ try:
         print(file.read())
 finally:
     print("Gracefully exiting the try-except-finally block")
+
+
+
+try:
+    file = open('../TEST/Linux/test.py', "r")
+    print(file.read())
+finally:
+    print("Closing the file")
+    file.close()
+    print(f"File closed : {file.closed}")
