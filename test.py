@@ -370,3 +370,4 @@ except PermissionError:
     print(f"Permission error: Unable to delete '{file_path}'.")
 except Exception as e:
     print(f"An error occurred: {str(e)}")
+
