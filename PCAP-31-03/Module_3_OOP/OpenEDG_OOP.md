@@ -196,5 +196,3 @@ for i in range(5):
     print(stack_object.pop())
 ```
 
-
-
