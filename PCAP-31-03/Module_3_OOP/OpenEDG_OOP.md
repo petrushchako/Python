@@ -435,4 +435,13 @@ print(hasattr(example_object, 'a')) # True
 print(hasattr(ExampleClass, 'b')) # True
 print(hasattr(ExampleClass, 'a')) # False
 ```
+<br><br>
+## Methods
 
+As you already know, a method is a function embedded inside a class.
+
+There is one fundamental requirement - a **method is obliged to have at least one parameter** (there are no such thing as parameterless methods - a method may be invoked without an argument, but not declared without parameters).
+
+The first (or only) parameter is usually named `self`. We suggest that you follow the convention - it's commonly used, and you'll cause a few surprises by using other names for it.
+
+The name `self` suggests the parameter's purpose - **it identifies the object for which the method is invoked**.
