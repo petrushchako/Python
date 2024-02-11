@@ -339,3 +339,100 @@ Two important conclusions come from the example:
 
 - class variables **aren't shown in an object's** __dict__ (this is natural as class variables aren't parts of an object) but you can always try to look into the variable of the same name, but at the class level – we'll show you this very soon;
 - a class variable **always presents the same value** in all class instances (objects)
+
+
+<br><br>
+### Check Attribute existence
+
+Python's attitude to object instantiation raises one important issue - in contrast to other programming languages, **you may not expect that all objects of the same class have the same sets of properties**.
+
+```python
+class ExampleClass:
+    def __init__(self, val):
+        if val % 2 != 0:
+            self.a = 1
+        else:
+            self.b = 1
+
+example_object = ExampleClass(1)
+
+print(example_object.a)
+print(example_object.b)
+```
+
+The object created by the constructor can have only one of two possible attributes: `a` or `b`.
+
+Executing the code will produce the following output:
+
+```python
+1
+Traceback (most recent call last):
+  File ".main.py", line 11, in 
+    print(example_object.b)
+AttributeError: 'ExampleClass' object has no attribute 'b'
+```
+
+As you can see, accessing a non-existing object (class) attribute causes an `AttributeError` exception.
+
+
+The try-except instruction gives you the chance to avoid issues with non-existent properties.
+```python
+example_object = ExampleClass(1)
+try:
+    print(example_object.a)
+except AttributeError:
+    print(example_object.b)
+```
+
+
+### `hasattr`
+Fortunately, there is one more way to cope with the issue.
+
+Python provides a function which is able to safely check if any object/class contains a specified property. The function is named hasattr, and expects two arguments to be passed to it:
+- the class or the object being checked;
+- the name of the property whose existence has to be reported (note: it has to be a string containing the attribute name, not the name alone)
+
+The function returns `True` or `False`.
+
+This is how you can utilize it:
+```python
+from random import randint()
+class ExampleClass:
+    def __init__(self, val):
+        if val % 2 != 0:
+            self.a = "Odd number"
+        else:
+            self.b = "Even number"
+
+example_object = ExampleClass(randint(1,2))
+
+if hasattr(example_object, 'a'):
+    print(example_object.a)
+else:
+    print(example_object.b)
+```
+
+Don't forget that the `hasattr()` function can operate on classes, too. You can use it **to find out if a class variable is available**, just like here in the example in the editor.
+
+The function returns `True` if the specified class contains a given attribute, and `False` otherwise.
+
+Can you guess the code's output? Run it to check your guesses.
+
+
+And one more example - look at the code below and try to predict its output:
+
+```python
+class ExampleClass:
+    a = 1
+    def __init__(self):
+        self.b = 2
+
+
+example_object = ExampleClass()
+
+print(hasattr(example_object, 'b')) # True
+print(hasattr(example_object, 'a')) # True
+print(hasattr(ExampleClass, 'b')) # True
+print(hasattr(ExampleClass, 'a')) # False
+```
+
