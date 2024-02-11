@@ -15,14 +15,14 @@ When a class is derived from another class, their relation is named **inheritanc
 - superclasses are always presented **above** their subclasses;
 - relations between classes are shown as arrows directed **from the subclass toward its superclass**.
 
-
+<br><br>
 ### What does an object have?
   The object programming convention assumes that every existing object may be equipped with three groups of attributes:
   - an object has a **name** that uniquely identifies it within its home namespace (although there may be some anonymous objects, too)
   - an object has a **set of individual properties** which make it original, unique, or outstanding (although it's possible that some objects may have no properties at all)
   - an object has a **set of abilities to perform specific activities**, able to change the object itself, or some of the other objects.
 
-<br><br>
+<br>
 There is a hint (although this doesn't always work) which can help you identify any of the three spheres above. Whenever you describe an object and you use:
 
 a noun – you probably define the object's name;
@@ -43,3 +43,51 @@ To create an object of the previously defined class, you need to use the class a
 ```python
 this_is_an_object = This_Is_A_Class()
 ```
+<br><br><br>
+## A short journey from procedural to object approach
+
+### What is a stack?
+**A stack is a structure developed to store data in a very specific way**. Imagine a stack of coins. You aren't able to put a coin anywhere else but on the top of the stack.
+
+Similarly, you can't get a coin off the stack from any place other than the top of the stack. If you want to get the coin that lies on the bottom, you have to remove all the coins from the higher levels.
+
+The alternative name for a stack (but only in IT terminology) is **LIFO**.
+
+It's an abbreviation for a very clear description of the stack's behavior: **Last In - First Out**. The coin that came last onto the stack will leave first.
+
+**A stack is an object** with two elementary operations, conventionally named **push** (when a new element is put on the top) and **pop** (when an existing element is taken away from the top).
+
+Stacks are used very often in many classical algorithms, and it's hard to imagine the implementation of many widely used tools without the use of stacks.
+
+![](../img/M4.5.png)
+
+Let's implement a stack in Python. This will be a very simple stack, and we'll show you how to do it in two independent approaches: procedural and objective.
+
+Let's start with the first one.
+
+**The stack - the procedural approach**
+
+First, you have to decide how to store the values which will arrive onto the stack. We suggest using the simplest of methods, and employing a list for this job. Let's assume that the size of the stack is not limited in any way. Let's also assume that the last element of the list stores the top element.
+
+```python
+stack = []
+
+def push(val):
+    stack.append(val)
+
+def pop():
+    val = stack[-1]
+    del stack[-1]
+    return val
+
+push(3)
+push(2)
+push(1)
+
+print(pop())
+print(pop())
+print(pop())
+```
+
+
+
