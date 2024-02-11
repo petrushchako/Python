@@ -11,9 +11,9 @@
 
 <br><br>
 ### Inheritance
-- Let's define one of the fundamental concepts of object programming, named inheritance. Any object bound to a specific level of a class hierarchy inherits all the traits (as well as the requirements and qualities) defined inside any of the superclasses.
-
-  The object's home class may define new traits (as well as requirements and qualities) which will be inherited by any of its subclasses.
+When a class is derived from another class, their relation is named **inheritance**. The class which derives from the other class is named a **subclass**. The second side of this relation is named **superclass**. A way to present such a relation is an **inheritance diagram**, where:
+- superclasses are always presented **above** their subclasses;
+- relations between classes are shown as arrows directed **from the subclass toward its superclass**.
 
 
 ### What does an object have?
@@ -21,3 +21,25 @@
   - an object has a **name** that uniquely identifies it within its home namespace (although there may be some anonymous objects, too)
   - an object has a **set of individual properties** which make it original, unique, or outstanding (although it's possible that some objects may have no properties at all)
   - an object has a **set of abilities to perform specific activities**, able to change the object itself, or some of the other objects.
+
+<br><br>
+There is a hint (although this doesn't always work) which can help you identify any of the three spheres above. Whenever you describe an object and you use:
+
+a noun – you probably define the object's name;
+an adjective – you probably define the object's property;
+a verb – you probably define the object's activity.
+
+![](../img/M4.4.png)
+
+<br><br>
+### Implementation
+To define a Python class, you need to use the class keyword. For example:
+```python
+class This_Is_A_Class:
+     pass
+```
+
+To create an object of the previously defined class, you need to use the class as if it were a function. For example:
+```python
+this_is_an_object = This_Is_A_Class()
+```
