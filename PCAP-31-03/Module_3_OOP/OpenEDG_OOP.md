@@ -91,3 +91,56 @@ print(pop())
 
 
 
+
+<br><br><br>
+**The stack - the OOP approach**
+
+
+```python
+class Stack:
+    def __init__(self):
+        self.__stack_list = []
+
+stack_object = Stack()
+print(len(stack_object.__stack_list))
+```
+<br>
+
+**Private variables**
+
+When any class component has a **name starting with two underscores (__), it becomes private** - this means that it can be accessed only from within the class.
+
+You cannot see it from the outside world. This is how Python implements the **encapsulation** concept.
+
+Run the program to test our assumptions - an `AttributeError` exception should be raised.
+
+
+**The object approach: a stack from scratch**
+
+```python
+class Stack:
+    def __init__(self):
+        self.__stack_list = []
+
+
+    def push(self, val):
+        self.__stack_list.append(val)
+
+
+    def pop(self):
+        val = self.__stack_list[-1]
+        del self.__stack_list[-1]
+        return val
+
+
+stack_object = Stack()
+
+stack_object.push(3)
+stack_object.push(2)
+stack_object.push(1)
+
+print(stack_object.pop())
+print(stack_object.pop())
+print(stack_object.pop())
+```
+
