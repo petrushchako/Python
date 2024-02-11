@@ -196,3 +196,252 @@ for i in range(5):
     print(stack_object.pop())
 ```
 
+<br><br>
+
+## Propoerties
+
+### Instance variables
+In general, a class can be equipped with two different kinds of data to form a class's properties. You already saw one of them when we were looking at stacks.
+
+This kind of class property exists when and only when it is explicitly created and added to an object. As you already know, this can be done during the object's initialization, performed by the constructor.
+
+Moreover, it can be done in any moment of the object's life. Furthermore, any existing property can be removed at any time.
+
+Such an approach has some important consequences:
+
+- different objects of the same class **may possess different sets of properties**;
+- there must be a way to **safely check if a specific object owns the property** you want to utilize (unless you want to provoke an exception - it's always worth considering)
+- each object c**arries its own set of properties** - they don't interfere with one another in any way.
+
+Such variables (properties) are called **instance variables**.
+
+The word instance suggests that they are closely connected to the objects (which are class instances), not to the classes themselves. Let's take a closer look at them.
+
+Here is an example:
+
+```python
+class ExampleClass:
+    def __init__(self, val = 1):
+        self.first = val
+
+    def set_second(self, val):
+        self.second = val
+
+
+example_object_1 = ExampleClass()
+example_object_2 = ExampleClass(2)
+
+example_object_2.set_second(3)
+
+example_object_3 = ExampleClass(4)
+example_object_3.third = 5
+
+print(example_object_1.__dict__)
+print(example_object_2.__dict__)
+print(example_object_3.__dict__)
+```
+Output:
+```python
+{'first': 1}
+{'second': 3, 'first': 2}
+{'third': 5, 'first': 4}
+```
+
+**Mangling hidden properties**
+
+Take a look at the modified example in the editor.
+
+It's nearly the same as the previous one. The only difference is in the property names. We've **added two underscores (__)** in front of them.
+
+```python
+class ExampleClass:
+    def __init__(self, val = 1):
+        self.__first = val
+
+    def set_second(self, val = 2):
+        self.__second = val
+
+example_object_1 = ExampleClass()
+
+example_object_2 = ExampleClass(2)
+example_object_2.set_second(3)
+
+example_object_3 = ExampleClass(4)
+example_object_3.third = 5
+
+print(example_object_1.__dict__)
+print(example_object_2.__dict__)
+print(example_object_3.__dict__)
+```
+
+As you know, such an addition makes the instance variable **private** - it becomes inaccessible from the outer world.
+
+The actual behavior of these names is a bit more complicated, so let's run the program. This is the output:
+
+```python
+{'_ExampleClass__first': 1}
+{'_ExampleClass__first': 2, '_ExampleClass__second': 3}
+{'_ExampleClass__first': 4, '__third': 5}
+```
+
+When Python sees that you want to add an instance variable to an object and you're going to do it inside any of the object's methods, it **mangles the operation** in the following way:
+
+- it puts a class name before your name;
+- it puts an additional underscore at the beginning.
+
+This is why the `__first` becomes `_ExampleClass__first`.
+
+**The name is now fully accessible from outside the class**. You can run a code like this:
+
+```python
+print(example_object_1._ExampleClass__first)
+```
+
+and you'll get a valid result with no errors or exceptions.
+
+As you can see, making a property private is limited.
+
+**The mangling won't work if you add a private instance variable outside the class code**. In this case, it'll behave like any other ordinary property.
+
+
+<br><br>
+### Class variables
+
+A class variable is **a property which exists in just one copy and is stored outside any object**.
+
+Note: no instance variable exists if there is no object in the class; a class variable exists in one copy even if there are no objects in the class.
+
+Class variables are created differently to their instance siblings. The example will tell you more:
+
+```python
+class ExampleClass:
+    counter = 0
+    def __init__(self, val = 1):
+        self.__first = val
+        ExampleClass.counter += 1
+
+
+example_object_1 = ExampleClass()
+example_object_2 = ExampleClass(2)
+example_object_3 = ExampleClass(4)
+
+print(example_object_1.__dict__, example_object_1.counter)
+print(example_object_2.__dict__, example_object_2.counter)
+print(example_object_3.__dict__, example_object_3.counter)
+```
+Running the code will cause the following output:
+```python
+{'_ExampleClass__first': 1} 3
+{'_ExampleClass__first': 2} 3
+{'_ExampleClass__first': 4} 3
+```
+Two important conclusions come from the example:
+
+- class variables **aren't shown in an object's** __dict__ (this is natural as class variables aren't parts of an object) but you can always try to look into the variable of the same name, but at the class level – we'll show you this very soon;
+- a class variable **always presents the same value** in all class instances (objects)
+
+
+<br><br>
+### Check Attribute existence
+
+Python's attitude to object instantiation raises one important issue - in contrast to other programming languages, **you may not expect that all objects of the same class have the same sets of properties**.
+
+```python
+class ExampleClass:
+    def __init__(self, val):
+        if val % 2 != 0:
+            self.a = 1
+        else:
+            self.b = 1
+
+example_object = ExampleClass(1)
+
+print(example_object.a)
+print(example_object.b)
+```
+
+The object created by the constructor can have only one of two possible attributes: `a` or `b`.
+
+Executing the code will produce the following output:
+
+```python
+1
+Traceback (most recent call last):
+  File ".main.py", line 11, in 
+    print(example_object.b)
+AttributeError: 'ExampleClass' object has no attribute 'b'
+```
+
+As you can see, accessing a non-existing object (class) attribute causes an `AttributeError` exception.
+
+
+The try-except instruction gives you the chance to avoid issues with non-existent properties.
+```python
+example_object = ExampleClass(1)
+try:
+    print(example_object.a)
+except AttributeError:
+    print(example_object.b)
+```
+
+
+### `hasattr`
+Fortunately, there is one more way to cope with the issue.
+
+Python provides a function which is able to safely check if any object/class contains a specified property. The function is named hasattr, and expects two arguments to be passed to it:
+- the class or the object being checked;
+- the name of the property whose existence has to be reported (note: it has to be a string containing the attribute name, not the name alone)
+
+The function returns `True` or `False`.
+
+This is how you can utilize it:
+```python
+from random import randint()
+class ExampleClass:
+    def __init__(self, val):
+        if val % 2 != 0:
+            self.a = "Odd number"
+        else:
+            self.b = "Even number"
+
+example_object = ExampleClass(randint(1,2))
+
+if hasattr(example_object, 'a'):
+    print(example_object.a)
+else:
+    print(example_object.b)
+```
+
+Don't forget that the `hasattr()` function can operate on classes, too. You can use it **to find out if a class variable is available**, just like here in the example in the editor.
+
+The function returns `True` if the specified class contains a given attribute, and `False` otherwise.
+
+Can you guess the code's output? Run it to check your guesses.
+
+
+And one more example - look at the code below and try to predict its output:
+
+```python
+class ExampleClass:
+    a = 1
+    def __init__(self):
+        self.b = 2
+
+
+example_object = ExampleClass()
+
+print(hasattr(example_object, 'b')) # True
+print(hasattr(example_object, 'a')) # True
+print(hasattr(ExampleClass, 'b')) # True
+print(hasattr(ExampleClass, 'a')) # False
+```
+<br><br>
+## Methods
+
+As you already know, a method is a function embedded inside a class.
+
+There is one fundamental requirement - a **method is obliged to have at least one parameter** (there are no such thing as parameterless methods - a method may be invoked without an argument, but not declared without parameters).
+
+The first (or only) parameter is usually named `self`. We suggest that you follow the convention - it's commonly used, and you'll cause a few surprises by using other names for it.
+
+The name `self` suggests the parameter's purpose - **it identifies the object for which the method is invoked**.
