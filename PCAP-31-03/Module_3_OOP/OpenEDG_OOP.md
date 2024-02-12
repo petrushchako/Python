@@ -562,3 +562,62 @@ Each Python class and each Python object is pre-equipped with a set of useful at
     Classy
     Classy
     ```
+<br><br>
+- `__module__`
+
+    __module__ is a string, too - it stores the name of the module which contains the definition of the class.
+    `print(Classy.__module__)`
+
+<br><br>
+- `__bases__`
+
+    `__bases__` is a tuple. The tuple contains classes (not class names) which are direct superclasses for the class.
+
+    The order is the same as that used inside the class definition.
+
+    **Note**:<br> only classes have this attribute - objects don't.
+
+    We've defined a function named `printbases()`, designed to present the tuple's contents clearly.
+
+    Look at the code in the editor. Analyze it and run it. It will output:
+
+    ```python
+    class SuperOne:
+        pass
+
+    class SuperTwo:
+        pass
+
+    class Sub(SuperOne, SuperTwo):
+        pass
+
+    def printBases(cls):
+        print('( ', end='')
+
+        for x in cls.__bases__:
+            print(x.__name__, end=' ')
+        print(')')
+
+    printBases(SuperOne)
+    printBases(SuperTwo)
+    printBases(Sub)
+    ```
+    Output:
+    ```python
+    ( object )
+    ( object )
+    ( SuperOne SuperTwo )
+    ```
+    **Note**:<br> **a class without explicit superclasses points to object** (a predefined Python class) as its direct ancestor.
+
+
+
+<br><br><br>
+### Reflection and introspection
+
+All these means allow the Python programmer to perform two important activities specific to many objective languages. They are:
+
+- **introspection**<br> which is the ability of a program to examine the type or properties of an object at runtime;
+- **reflection**<br> which goes a step further, and is the ability of a program to manipulate the values, properties and/or functions of an object at runtime.
+
+In other words, you don't have to know a complete class/object definition to manipulate the object, as the object and/or its class contain the metadata allowing you to recognize its features during program execution.
