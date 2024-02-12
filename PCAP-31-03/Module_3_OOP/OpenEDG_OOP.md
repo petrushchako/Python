@@ -500,3 +500,65 @@ Note that the constructor:
 
 - **cannot return a value**, as it is designed to return a newly created object and nothing else;
 - **cannot be invoked directly either from the object or from inside the class** (you can invoke a constructor from any of the object's subclasses, but we'll discuss this issue later.)
+
+
+<br><br>
+### The inner life of classes and objects
+Each Python class and each Python object is pre-equipped with a set of useful attributes which can be used to examine its capabilities.
+
+- `__dict__`
+
+    Let's observe how it deals with methods - look at the code in the editor.
+
+    Run it to see what it outputs. Check the output carefully.
+
+    Find all the defined methods and attributes. Locate the context in which they exist: inside the object or inside the class.
+
+    ```python
+    class Classy:
+        varia = 1
+        def __init__(self):
+            self.var = 2
+
+        def method(self):
+            pass
+
+        def __hidden(self):
+            pass
+
+    obj = Classy()
+    print(obj.__dict__)
+    print(Classy.__dict__)
+    ```
+
+    Output:
+    ```python
+    {'var': 2}
+    {'__module__': '__main__', 'varia': 1, '__init__': <function Classy.__init__ at 0x7fa566064320>, 'method': <function Classy.method at 0x7fa5660643b0>, '_Classy__hidden': <function Classy.__hidden at 0x7fa566064440>, '__dict__': <attribute '__dict__' of 'Classy' objects>, '__weakref__': <attribute '__weakref__' of 'Classy' objects>, '__doc__': None}
+    ```
+<br><br>
+- `__name__`
+
+    The property contains the **name of the class**. It's nothing exciting, just a string.
+
+    Note: the `__name__` attribute is absent from the object - **it exists only inside classes**.
+
+
+    If you want to **find the class of a particular object**, you can use a function named type(), which is able (among other things) to find a class which has been used to instantiate any object.
+
+    ```python
+    class Classy:
+        pass
+
+    obj = Classy()
+    print(Classy.__name__)
+    print(type(obj).__name__)
+
+    # Will trown an error
+    # print(obj.__name__)
+    ```
+    Output:
+    ```python
+    Classy
+    Classy
+    ```
