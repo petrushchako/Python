@@ -445,3 +445,45 @@ There is one fundamental requirement - a **method is obliged to have at least on
 The first (or only) parameter is usually named `self`. We suggest that you follow the convention - it's commonly used, and you'll cause a few surprises by using other names for it.
 
 The name `self` suggests the parameter's purpose - **it identifies the object for which the method is invoked**.
+
+
+If you're going to invoke a method, you mustn't pass the argument for the self parameter - Python will set it for you.
+
+If you want the method to accept parameters other than self, you should:
+
+- place them after self in the method's definition;
+- deliver them during invocation without specifying self (as previously)
+
+<br><br>
+The `self` parameter is used **to obtain access to the object's instance and class variables**.
+
+The example shows both ways of utilizing self:
+
+```python
+class Classy:
+    varia = 2
+    def method(self):
+        print(self.varia, self.var)
+
+obj = Classy()
+obj.var = 3
+obj.method()
+```
+
+The `self` parameter is also used **to invoke other object/class methods from inside the class**.
+
+Just like here:
+```python
+class Classy:
+    def other(self):
+        print("other")
+
+    def method(self):
+        print("method")
+        self.other()
+
+obj = Classy()
+obj.method()
+```
+
+### Constructor
