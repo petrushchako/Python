@@ -621,3 +621,143 @@ All these means allow the Python programmer to perform two important activities 
 - **reflection**<br> which goes a step further, and is the ability of a program to manipulate the values, properties and/or functions of an object at runtime.
 
 In other words, you don't have to know a complete class/object definition to manipulate the object, as the object and/or its class contain the metadata allowing you to recognize its features during program execution.
+
+
+<br><br>
+### Inheritance
+
+Inheritance is a common practice (in object programming) of **passing attributes and methods from the superclass (defined and existing) to a newly created class, called the subclass**.
+
+In other words, inheritance is **a way of building a new class, not from scratch, but by using an already defined repertoire of traits**. The new class inherits (and this is the key) all the already existing equipment, but is able to add some new ones if needed.
+
+Thanks to that, it's possible to **build more specialized (more concrete) classes** using some sets of predefined general rules and behaviors.
+
+Two-level inheritance example:
+```python
+class Vehicle:
+    pass
+
+class LandVehicle(Vehicle):
+    pass
+
+class TrackedVehicle(LandVehicle):
+    pass
+```
+
+- `issubclass()`
+
+  Python offers a function which is able to **identify a relationship between two classes**, and although its diagnosis isn't complex, 
+  it can check if a particular class is a subclass of any other class.
+
+  This is how it looks:
+
+  ```python
+  issubclass(Class1, Class2)
+  ```
+  The function returns `True` if `Class1` is a subclass of `Class2`, and `False` otherwise.
+
+  ```python
+  class Vehicle:
+      pass
+  
+  class LandVehicle(Vehicle):
+      pass
+  
+  class TrackedVehicle(LandVehicle):
+      pass
+  
+  for cls1 in [Vehicle, LandVehicle, TrackedVehicle]:
+      for cls2 in [Vehicle, LandVehicle, TrackedVehicle]:
+          print(issubclass(cls1, cls2), end="\t")
+      print()
+  ```
+  Result:
+  
+  |is a subclass of|Vehicle|LandVehicle|TrackedVehicle|
+  |---|---|---|---|
+  |Vehicle|`True`|`False`|`False`|
+  |LandVehicle|`True`|`True`|`False`|
+  |TrackedVehicle|`True`|`True`|`True`|
+
+  > There is one important observation to make: **each class is considered to be a subclass of itself.**
+
+
+- `isinstance()`
+  As you already know, **an object is an incarnation of a class**. This means that the object is like a cake baked using a recipe which is included inside the class.
+  
+  This can generate some important issues.
+  
+  Let's assume that you've got a cake (e.g., as an argument passed to your function). You want to know what recipe has been used to make it. Why? Because you want to know what to expect from it, e.g., whether it contains nuts or not, which is crucial information to some people.
+
+  Similarly, it can be crucial if the object does have (or doesn't have) certain characteristics. In other words, **whether it is an object of a certain class or not**.
+
+  **Being an instance of a class means that the object (the cake) has been prepared using a recipe contained in either the class or one of its superclasses**.
+
+  ```python
+  class Vehicle:
+    pass
+  
+  class LandVehicle(Vehicle):
+      pass
+  
+  class TrackedVehicle(LandVehicle):
+      pass
+  
+  my_vehicle = Vehicle()
+  my_land_vehicle = LandVehicle()
+  my_tracked_vehicle = TrackedVehicle()
+  
+  for obj in [my_vehicle, my_land_vehicle, my_tracked_vehicle]:
+      for cls in [Vehicle, LandVehicle, TrackedVehicle]:
+          print(isinstance(obj, cls), end="\t")
+      print()
+  ```
+  Output:
+  ```python
+  True	False	False	
+  True	True	False	
+  True	True	True
+  ```
+
+
+
+- `__str__`
+  
+  When Python needs any class/object to be presented as a string (putting an object as an argument in the print() function invocation fits this condition) it tries to invoke a method named __str__() from the object and to use the string it returns.
+
+  The default __str__() method returns the previous string - ugly and not very informative. You can change it just by defining your own method of the name.
+
+  ```python
+  class Star:
+    def __init__(self, name, galaxy):
+        self.name = name
+        self.galaxy = galaxy
+
+    def __str__(self):
+        return self.name + ' in ' + self.galaxy
+
+
+  sun = Star("Sun", "Milky Way")
+  print(sun)
+  ```
+  Output:
+  ```python
+  Sun in Milky Way
+  ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
