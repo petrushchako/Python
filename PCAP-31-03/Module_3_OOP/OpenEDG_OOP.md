@@ -621,3 +621,41 @@ All these means allow the Python programmer to perform two important activities 
 - **reflection**<br> which goes a step further, and is the ability of a program to manipulate the values, properties and/or functions of an object at runtime.
 
 In other words, you don't have to know a complete class/object definition to manipulate the object, as the object and/or its class contain the metadata allowing you to recognize its features during program execution.
+
+<br><br>
+### Investigation classes
+
+What can you find out about classes in Python? The answer is simple – everything.
+
+Both reflection and introspection enable a programmer to do anything with any object, no matter where it comes from.
+
+The function named `incIntsI()` gets an object of any class, scans its contents in order to find all integer attributes with names starting with `i`, and increments them by one.
+
+```python
+class MyClass:
+    pass
+
+obj = MyClass()
+obj.a = 1
+obj.b = 2
+obj.i = 3
+obj.ireal = 3.5
+obj.integer = 4
+obj.z = 5
+
+def incIntsI(obj):
+    for name in obj.__dict__.keys():
+        if name.startswith('i'):
+            val = getattr(obj, name)
+            if isinstance(val, int):
+                setattr(obj, name, val + 1)
+
+print(obj.__dict__)
+incIntsI(obj)
+print(obj.__dict__)
+```
+Output:
+```python
+{'a': 1, 'b': 2, 'i': 3, 'ireal': 3.5, 'integer': 4, 'z': 5}
+{'a': 1, 'b': 2, 'i': 4, 'ireal': 3.5, 'integer': 5, 'z': 5}
+```
