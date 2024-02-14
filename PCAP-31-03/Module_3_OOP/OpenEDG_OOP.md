@@ -892,8 +892,108 @@ My name is Andy.
         print(obj.supVar) # 11
         ```
 
+    - **Property and methoda resolution sequence in Python**
+        - It's now possible to formulate a general statement describing Python's behavior.
+
+        - When you try to access any object's entity, Python will try to (in this order):
+            - find it **inside the object itself**;
+            - find it **in all classes** involved in the object's inheritance line from bottom to top;
+            - If both of the above fail, an **exception (`AttributeError`) is raised**.
+
+        ```python
+        class Level1:
+            variable_1 = 100
+            def __init__(self):
+                self.var_1 = 101
+
+            def fun_1(self):
+                return 102
 
 
+        class Level2(Level1):
+            variable_2 = 200
+            def __init__(self):
+                super().__init__()
+                self.var_2 = 201
+            
+            def fun_2(self):
+                return 202
 
 
-  
+        class Level3(Level2):
+            variable_3 = 300
+            def __init__(self):
+                super().__init__()
+                self.var_3 = 301
+
+            def fun_3(self):
+                return 302
+
+
+        obj = Level3()
+
+        print(obj.variable_1, obj.var_1, obj.fun_1())
+        print(obj.variable_2, obj.var_2, obj.fun_2())
+        print(obj.variable_3, obj.var_3, obj.fun_3())
+        ```
+
+- **Inheritance with duplication**
+
+    - **Three-level inheritance**
+      ```python
+      class Level1:
+          var = 100
+          def fun(self):
+              return 101
+
+      class Level2(Level1):
+          var = 200
+          def fun(self):
+              return 201
+
+      class Level3(Level2):
+          pass
+
+      obj = Level3()
+      print(obj.var, obj.fun())
+      ```
+
+
+      Both, `Level1` and `Level2` classes define a method named `fun()` and a property named `var`. Does this mean that the `Level3` class object will be able to access two copies of each entity? **Not at all**.
+
+      **The entity defined later (in the inheritance sense) overrides the same entity defined earlier**. 
+      
+      This is why the code produces the following output:
+      `200 201`   
+
+    - **Multi inheritance**
+
+        ```python
+        class Left:
+            var = "L"
+            var_left = "LL"
+            def fun(self):
+                return "Left"
+
+        class Right:
+            var = "R"
+            var_right = "RR"
+            def fun(self):
+                return "Right"
+
+        class Sub(Left, Right):
+            pass
+
+        obj = Sub()
+        print(obj.var, obj.var_left, obj.var_right, obj.fun())
+        ```
+
+        Python looks for object components in the following order:
+        - **inside the object** itself;
+        - **in its superclasses**, from bottom to top;
+        - if there is more than one class on a particular inheritance path, Python scans them from left to right.
+
+        So the output will be the following:
+
+       - `class Sub(Left, Right):`- >**L LL RR Left**
+       - `class Sub(Right, Left):` -> **R LL RR Right**
