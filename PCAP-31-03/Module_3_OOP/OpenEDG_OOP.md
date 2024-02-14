@@ -827,15 +827,70 @@ class TrackedVehicle(LandVehicle):
   ```
 
 
+<br><br><br>
+### How Python finds properties and methods
+
+Now we're going to look at how Python deals with inheriting methods.
+
+Take a look at the example in the editor. Let's analyze it:
+
+- there is a class named `Super`, which defines its own constructor used to assign the object's property, named `name`.
+- the class defines the `__str__()` method, too, which makes the class able to present its identity in clear text form.
+- the class is next used as a base to create a subclass named `Sub`. The `Sub` class defines its own constructor, which invokes the one from the superclass. Note how we've done it: `Super.__init__(self, name)`.
+- we've explicitly named the superclass, and pointed to the method to invoke `__init__()`, providing all needed arguments.
+- we've instantiated one object of class `Sub` and printed it.
+```python
+class Super:
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f"My name is {self.name}"
+
+class Sub(Super):
+    def __init__(self, name):
+        Super.__init__(self, name)
+
+obj1 = Sub("Andy")
+print(obj1)
+```
+
+The code outputs:
+```python 
+My name is Andy.
+
+```
+
+- `super()`
+
+    In the last example, we explicitly named the superclass. In this example, we make use of the `super()` function, which **accesses the superclass without needing to know its name**:
+    ```python
+    class Sub(Super):
+        def __init__(self,name):
+            super().__init__(name)
+
+    ```
+    The `super()` function creates a context in which you don't have to (moreover, you mustn't) pass the self argument to the method being invoked - this is why it's possible to activate the superclass constructor using only one argument.
+
+    Note: you can use this mechanism not only to **invoke the superclass constructor, but also to get access to any of the resources available inside the superclass**.
 
 
+    - Propagating varaible values via superclass:
+  
+        ```python
+        class Super:
+            def __init__(self):
+                self.supVar = 11
 
+        class Sub(Super):
+            def __init__(self):
+                super().__init__()
+                self.subVar = 12
 
-
-
-
-
-
+        obj = Sub()
+        print(obj.subVar) # 12
+        print(obj.supVar) # 11
+        ```
 
 
 
