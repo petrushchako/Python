@@ -682,6 +682,8 @@ class TrackedVehicle(LandVehicle):
     pass
 ```
 
+
+<br><br>
 - `issubclass()`
 
   Python offers a function which is able to **identify a relationship between two classes**, and although its diagnosis isn't complex, 
@@ -719,7 +721,7 @@ class TrackedVehicle(LandVehicle):
 
   > There is one important observation to make: **each class is considered to be a subclass of itself.**
 
-
+<br><br>
 - `isinstance()`
   As you already know, **an object is an incarnation of a class**. This means that the object is like a cake baked using a recipe which is included inside the class.
   
@@ -756,9 +758,50 @@ class TrackedVehicle(LandVehicle):
   True	True	False	
   True	True	True
   ```
+<br><br>
+- `is`
+  
+  - The `is` operator checks whether two variables (`object_one` and `object_two` here) refer to the same object.
+
+  ```python
+    object_one is object_two
+  ```
+  - Don't forget that variables don't store the objects themselves, but only the handles pointing to the internal Python memory.
+  
+    ```python
+    class SampleClass:
+    def __init__(self, val):
+        self.val = val
+
+    object_1 = SampleClass(0)
+    object_2 = SampleClass(2)
+    object_3 = object_1
+    object_3.val += 1
+
+    print(object_1 is object_2)
+    print(object_2 is object_3)
+    print(object_3 is object_1)
+    print(object_1.val, object_2.val, object_3.val)
+
+    string_1 = "Mary had a little "
+    string_2 = "Mary had a little lamb"
+    string_1 += "lamb"
+
+    print(string_1 == string_2, string_1 is string_2)
+    ```
+    Output:
+    ```python
+    False
+    False
+    True
+    1 2 1
+    True False
+    ```
 
 
 
+
+<br><br>
 - `__str__`
   
   When Python needs any class/object to be presented as a string (putting an object as an argument in the print() function invocation fits this condition) it tries to invoke a method named __str__() from the object and to use the string it returns.
