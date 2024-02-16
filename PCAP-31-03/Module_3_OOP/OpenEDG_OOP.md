@@ -1038,6 +1038,8 @@ wheeled.turn(True)
 tracked.turn(False)
 ```
 
+This program dumps all predefined exception classes in the form of a tree-like printout.
+
 Output:
 ```python
 wheels:  True True
@@ -1085,4 +1087,117 @@ It's time to say good bye
 Division failed
 It's time to say good bye
 None
+```
+
+<br><br>
+**Exceptions are classes**
+
+You probably won't be surprised to learn that **exceptions are classes**. Furthermore, when an exception is raised, an object of the class is instantiated, and goes through all levels of program execution, looking for the except branch that is prepared to deal with it.
+
+```python
+try:
+    i = int("Hello!")
+except Exception as e:
+    print(e)
+    print(e.__str__())
+```
+
+Output:
+```python
+invalid literal for int() with base 10: 'Hello!'
+invalid literal for int() with base 10: 'Hello!'
+```
+
+As you can see, the `except` statement is extended, and contains an additional phrase starting with the `as` keyword, followed by an identifier. The identifier is designed to catch the exception object so you can analyze its nature and draw proper conclusions.
+
+The example presents a very simple way of utilizing the received object - just print it out (as you can see, the output is produced by the object's `__str__()` method) and it contains a brief message describing the reason.
+
+```python
+def print_exception_tree(thisclass, nest = 0):
+    if nest > 1:
+        print("   |" * (nest - 1), end="")
+    if nest > 0:
+        print("   +---", end="")
+
+    print(thisclass.__name__)
+    for subclass in thisclass.__subclasses__():
+        print_exception_tree(subclass, nest + 1)
+
+print_exception_tree(BaseException)
+```
+Output:
+```python
+BaseException
+   +---Exception
+   |   +---TypeError
+   |   +---StopAsyncIteration
+   |   +---StopIteration
+   |   +---ImportError
+   |   |   +---ModuleNotFoundError
+   |   |   +---ZipImportError
+   |   +---OSError
+   |   |   +---ConnectionError
+   |   |   |   +---BrokenPipeError
+   |   |   |   +---ConnectionAbortedError
+   |   |   |   +---ConnectionRefusedError
+   |   |   |   +---ConnectionResetError
+   |   |   +---BlockingIOError
+   |   |   +---ChildProcessError
+   |   |   +---FileExistsError
+   |   |   +---FileNotFoundError
+   |   |   +---IsADirectoryError
+   |   |   +---NotADirectoryError
+   |   |   +---InterruptedError
+   |   |   +---PermissionError
+   |   |   +---ProcessLookupError
+   |   |   +---TimeoutError
+   |   |   +---UnsupportedOperation
+   |   |   +---ItimerError
+   |   +---EOFError
+   |   +---RuntimeError
+   |   |   +---RecursionError
+   |   |   +---NotImplementedError
+   |   |   +---_DeadlockError
+   |   +---NameError
+   |   |   +---UnboundLocalError
+   |   +---AttributeError
+   |   +---SyntaxError
+   |   |   +---IndentationError
+   |   |   |   +---TabError
+   |   +---LookupError
+   |   |   +---IndexError
+   |   |   +---KeyError
+   |   |   +---CodecRegistryError
+   |   +---ValueError
+   |   |   +---UnicodeError
+   |   |   |   +---UnicodeEncodeError
+   |   |   |   +---UnicodeDecodeError
+   |   |   |   +---UnicodeTranslateError
+   |   |   +---UnsupportedOperation
+   |   +---AssertionError
+   |   +---ArithmeticError
+   |   |   +---FloatingPointError
+   |   |   +---OverflowError
+   |   |   +---ZeroDivisionError
+   |   +---SystemError
+   |   |   +---CodecRegistryError
+   |   +---ReferenceError
+   |   +---MemoryError
+   |   +---BufferError
+   |   +---Warning
+   |   |   +---UserWarning
+   |   |   +---DeprecationWarning
+   |   |   +---PendingDeprecationWarning
+   |   |   +---SyntaxWarning
+   |   |   +---RuntimeWarning
+   |   |   +---FutureWarning
+   |   |   +---ImportWarning
+   |   |   +---UnicodeWarning
+   |   |   +---BytesWarning
+   |   |   +---ResourceWarning
+   |   +---Error
+   +---GeneratorExit
+   +---SystemExit
+   +---KeyboardInterrupt
+
 ```
