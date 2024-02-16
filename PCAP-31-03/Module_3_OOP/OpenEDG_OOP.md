@@ -1052,3 +1052,24 @@ In this way, the vehicle's ability to turn is composed using an external object,
 
 
 
+<br><br><br>
+## Exceptions
+
+Discussing object programming offers a very good opportunity to return to exceptions. The object-oriented nature of Python's exceptions makes them a very flexible tool, able to fit to specific needs, even those you don't yet know about.
+
+Before we dive into the **objective face of exceptions**, we want to show you some syntactical and semantic aspects of how Python treats the try-except block, as it offers a little more than what we have presented so far.
+
+```python
+def reciprocal(n):
+    try:
+        n = 1 / n
+    except ZeroDivisionError:
+        print("Division failed")
+        return None
+    else:
+        print("Everything went fine")
+        return n
+
+print(reciprocal(2))
+print(reciprocal(0))
+```
