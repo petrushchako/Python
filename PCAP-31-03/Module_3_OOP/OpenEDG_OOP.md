@@ -1349,3 +1349,11 @@ for (pz,ch) in [('calzone',0), ('margherita',110), ('mafia',20)]:
     except PizzaError as pe:
         print(pe, ':', pe.pizza)
 ```
+
+Output:
+
+```python
+Pizza ready!
+too much cheese : 110
+no such pizza on the menu : mafia
+```
