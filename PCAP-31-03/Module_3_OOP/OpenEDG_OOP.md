@@ -1242,3 +1242,52 @@ Output:
 my exception : my exception : my exception
 ('my', 'exception') : ('my', 'exception') : ('my', 'exception')
 ```
+<br><br>
+### How to create your own Exception
+
+The exceptions hierarchy is neither closed nor finished, and you can always extend it if you want or need to create your own world populated with your own exceptions.
+
+It may be useful when you create a complex module which detects errors and raises exceptions, and you want the exceptions to be easily distinguishable from any others brought by Python.
+
+This is done by **defining your own, new exceptions as subclasses derived from predefined ones**.
+
+```python
+class MyZeroDivisionError(ZeroDivisionError):	
+    pass
+
+def do_the_division(mine):
+    if mine:
+        raise MyZeroDivisionError("1: ","MyZeroDivisionError","some worse news")
+    else:		
+        raise ZeroDivisionError("2: ","some bad news")
+
+for mode in [False, True]:
+    try:
+        do_the_division(mode)
+    except ZeroDivisionError as e:
+        print("3: ","MyZeroDivisionError",'Division by zero', e.args)
+
+for mode in [False, True]:
+    try:
+        do_the_division(mode)
+    except MyZeroDivisionError as e:
+        print("4: ",'My division by zero', e.args)
+    except ZeroDivisionError as e:
+        print("5: ",'Original division by zero', e.args)
+```
+
+Output:
+```python
+3:  MyZeroDivisionError Division by zero ('2: ', 'some bad news')
+3:  MyZeroDivisionError Division by zero ('1: ', 'MyZeroDivisionError', 'some worse news')
+5:  Original division by zero ('2: ', 'some bad news')
+4:  My division by zero ('1: ', 'MyZeroDivisionError', 'some worse news')
+```
+
+  - We've defined our own exception, named `MyZeroDivisionError`, derived from the built-in `ZeroDivisionError`. As you can see, we've decided not to add any new components to the class.
+
+  - In effect, an exception of this class can be - depending on the desired point of view - treated like a plain ZeroDivisionError, or considered separately.
+
+  - The `do_the_division()` function raises either a `MyZeroDivisionError` or `ZeroDivisionError` exception, depending on the argument's value.
+
+The function is invoked four times in total, while the first two invocations are handled using only one `except` branch (the more general one) and the last two ones with two different branches, able to distinguish the exceptions (don't forget: the order of the branches makes a fundamental difference!)
