@@ -1291,3 +1291,34 @@ Output:
   - The `do_the_division()` function raises either a `MyZeroDivisionError` or `ZeroDivisionError` exception, depending on the argument's value.
 
 The function is invoked four times in total, while the first two invocations are handled using only one `except` branch (the more general one) and the last two ones with two different branches, able to distinguish the exceptions (don't forget: the order of the branches makes a fundamental difference!)
+
+<br><br>
+
+When you're going to build a completely new universe filled with completely new creatures that have nothing in common with all the familiar things, you may want to **build your own exception structure**.
+
+You can start building it by **defining a general exception as a new base class** for any other specialized exception. We've done it in the following way:
+
+```python
+class PizzaError(Exception):
+    def __init__(self, pizza, message):
+        Exception.__init__(self, message)
+        self.pizza = pizza
+```
+
+Note: we're going to collect more specific information here than a regular Exception does, so our constructor will take two arguments:
+
+- one specifying a pizza as a subject of the process,
+- and one containing a more or less precise description of the problem.
+
+As you can see, we pass the second parameter to the superclass constructor, and save the first inside our own property.
+
+A more specific problem (like an excess of cheese) can require a more specific exception. It's possible to derive the new class from the already defined `PizzaError` class, like we've done here:
+
+```python
+class TooMuchCheeseError(PizzaError):
+    def __init__(self, pizza, cheese, message):
+        PizzaError._init__(self, pizza, message)
+        self.cheese = cheese
+```
+
+The `TooMuchCheeseError` exception needs more information than the regular `PizzaError` exception, so we add it to the constructor – the name `cheese` is then stored for further processing.
