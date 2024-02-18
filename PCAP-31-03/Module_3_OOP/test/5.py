@@ -4,6 +4,7 @@ class Vegetable:
 class Potato (Vegetable) :
     pass
 
+
 print(isinstance(Potato,Vegetable)) # Line 7
 potato=Potato()
 print(isinstance(potato, Potato)) # Line 9
