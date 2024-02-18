@@ -9,7 +9,7 @@ class Onion (Vegetable) :
         super().__init__(weight,price, origin)
 
 
-onion=Onion (1.99,2.50, 'Ireland')
+onion1=Onion (1.99,2.50, 'Ireland')
 print(onion1.__name__)      #Line 15
 print(Onion.__name__)       #Line 16
 print(onion1.__module__)    #Line 17
