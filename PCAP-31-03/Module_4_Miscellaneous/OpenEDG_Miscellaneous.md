@@ -254,3 +254,35 @@ fib_sequence = list(fibonacci_sequence(n))
 print(fib_sequence)
 
 ```
+
+## List comprehension
+
+```python
+
+list_1 = []
+
+for ex in range(6):
+    list_1.append(10 ** ex)
+
+list_2 = [10 ** ex for ex in range(6)]
+
+print(list_1) # [1, 10, 100, 1000, 10000, 100000]
+print(list_2) # [1, 10, 100, 1000, 10000, 100000]
+```
+
+### Ternary expression
+
+It's a conditional expression - a way of selecting one of two different values based on the result of a Boolean expression.
+
+```python
+x if condition else y
+```
+
+```python
+the_list = []
+
+for x in range(10):
+    the_list.append(1 if x % 2 == 0 else 0)
+
+print(the_list) # [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+```
