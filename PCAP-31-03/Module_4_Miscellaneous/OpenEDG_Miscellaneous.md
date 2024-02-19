@@ -179,4 +179,78 @@ The invocation will **return the object's identifier**, not the series we expect
 
 Due to the same reasons, the previous function (the one with the `return` statement) may only be invoked explicitly, and must not be used as a generator.
 
+<br><br>
+### How to build a generator
 
+```python
+def fun(n):
+    for i in range(n):
+        yield i
+
+for v in fun(5):
+    print(v)
+```
+
+### How to build your own generator
+
+What if you need a **generator to produce the first n powers of 2**?
+
+Nothing easier. Just look at the code below:
+
+```python
+def powers_of_2(n):
+    power = 1
+    for i in range(n):
+        yield power
+        power *= 2
+
+for i in powers_of_2(5) #1, 2, 4, 8, 16
+
+# List comprehension
+t = [x for x in powers_of_2(5)]
+print(t) # [1, 2, 4, 8, 16]
+
+# list()
+l = list(powers_of_2(3))
+print(l) # 1, 2, 4
+
+# in operator
+for i in range(20):
+    if i in powers_of_2(4):
+        print(i)    # 1, 2, 4, 8
+```
+
+<br><br>
+**Fibanacci number generator**
+Now let's see a **Fibonacci number generator**, and ensure that it looks much better than the objective version based on the direct iterator protocol implementation.
+
+Here it is:
+```python
+def fibonacci(n):
+    p = pp = 1
+    for i in range(n):
+        if i in [0, 1]:
+            yield 1
+        else:
+            n = p + pp
+            pp, p = p, n
+            yield n
+
+fibs = list(fibonacci(10))
+print(fibs) # [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+
+
+
+# Alternative
+def fibonacci_sequence(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
+
+# Example: Generate the first 10 Fibonacci numbers
+n = 10
+fib_sequence = list(fibonacci_sequence(n))
+print(fib_sequence)
+
+```
