@@ -4,7 +4,7 @@
 
 ### Generators (Iterators)
 A Python generator is a **piece of specialized code able to produce a series of values, and to control the iteration process**. This is why generators are very often called **iterators**, and although some may find a very subtle distinction between these two, we'll treat them as one.
-
+<br><br>
 ### `range()`
 
 The `range()` function is a generator, which is an iterator.
@@ -133,7 +133,7 @@ Class iter
 21
 ```
 
-
+<br><br>
 ### The `yield` statement
 
 The iterator protocol isn't particularly difficult to understand and use, but it is also indisputable that the protocol is rather inconvenient.
