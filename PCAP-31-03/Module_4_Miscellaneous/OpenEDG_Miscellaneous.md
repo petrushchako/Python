@@ -377,3 +377,45 @@ Output:
 ### How to use lambdas and what for?
 
 The most interesting part of using lambdas appears when you can use them in their pure form - **as anonymous parts of code intended to evaluate a result**.
+
+Imagine that we need a function (we'll name it `print_function`) which prints the values of a given (other) function for a set of selected arguments.
+
+We want `print_function` to be universal - it should accept a set of arguments put in a list and a function to be evaluated, both as arguments - we don't want to hardcode anything.
+
+
+<br>
+
+```python
+def print_function(args, fun):
+    for x in args:
+        print('f(', x,')=', fun(x), sep='')
+
+def poly(x):
+    return 2 * x**2 - 4 * x + 2
+
+print_function([x for x in range(-2, 3)], poly)
+```
+
+Let's analyze it. The print_function() function takes two parameters:
+
+- the first, a list of arguments for which we want to print the results;
+- the second, a function which should be invoked as many times as the number of values that are collected inside the first parameter.
+- 
+Note: we've also defined a function named poly() - this is the function whose values we're going to print. The calculation the function performs isn't very sophisticated - it's the polynomial (hence its name) of a form:
+
+> f(x) = 2x2 - 4x + 2
+
+The name of the function is then passed to the `print_function()` along with a set of five different arguments - the set is built with a list comprehension clause.
+
+The code prints the following lines:
+```python
+f(-2)=18
+f(-1)=8
+f(0)=2
+f(1)=0
+f(2)=2
+```
+
+Can we avoid defining the poly() function, as we're not going to use it more than once? Yes, we can - this is the benefit a lambda can bring.
+
+Look at the example below. Can you see the difference?
