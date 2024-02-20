@@ -338,3 +338,38 @@ Note: the same appearance of the output doesn't mean that both loops work in the
 
 In the second loop, there is no list at all - there are only subsequent values produced by the generator, one by one.
 
+<br><br><br>
+## The lambda function
+Programmers use the `lambda` function to simplify the code, to make it clearer and easier to understand.
+
+A `lambda` function is a function without a name (you can also call it **an anonymous function**). Of course, such a statement immediately raises the question: how do you use anything that cannot be identified?
+
+Fortunately, it's not a problem, as you can name such a function if you really need, but, in fact, in many cases the `lambda` function can exist and work while remaining fully incognito.
+
+The declaration of the `lambda` function doesn't resemble a normal function declaration in any way - see for yourself:
+
+```python
+lambda parameters: expression
+```
+Such a clause r**eturns the value of the expression when taking into account the current value of the current** `lambda` **argument**.
+
+As usual, an example will be helpful. Our example uses three `lambda` functions, but gives them names. Look at it carefully:
+
+```python
+two = lambda: 2
+sqr = lambda x: x * x
+pwr = lambda x, y: x ** y
+
+for a in range(-2, 3):
+    print(sqr(a), end=" ")
+    print(pwr(a, two()))
+```
+Output:
+```python
+4 4
+1 1
+0 0
+1 1
+4 4
+```
+
