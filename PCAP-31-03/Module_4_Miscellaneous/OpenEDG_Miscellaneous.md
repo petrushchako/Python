@@ -443,3 +443,21 @@ takes two arguments:
 The above description is extremely simplified, as:
 - the second `map()` argument may be any entity that can be iterated (e.g., a tuple, or just a generator)
 - `map()` can accept more than two arguments.
+
+
+The `map()` **function applies the function passed by its first argument to all its second argument's elements, and returns an iterator delivering all subsequent function results**.
+
+```python
+list_1 = [x for x in range(5)]
+list_2 = list(map(lambda x: 2 ** x, list_1))
+print(list_2)
+
+for x in map(lambda x: x * x, list_2):
+    print(x, end=' ')
+print()
+```
+Output:
+```python
+[1, 2, 4, 8, 16]
+1 4 16 64 256
+```
