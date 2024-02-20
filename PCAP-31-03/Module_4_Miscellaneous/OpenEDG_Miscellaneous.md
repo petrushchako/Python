@@ -418,4 +418,12 @@ f(2)=2
 
 Can we avoid defining the poly() function, as we're not going to use it more than once? Yes, we can - this is the benefit a lambda can bring.
 
-Look at the example below. Can you see the difference?
+**Lambda example**
+
+```python
+def print_function(args, fun):
+    for x in args:
+        print('f(', x,')=', fun(x), sep='')
+
+print_function([x for x in range(-2, 3)], lambda x: 2 * x**2 - 4 * x + 2)
+```
