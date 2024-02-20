@@ -286,3 +286,55 @@ for x in range(10):
 
 print(the_list) # [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
 ```
+
+<br><br>
+### List comprehension vs generators
+
+Just one change can **turn any list comprehension into a generator**.
+
+```python
+the_list = [1 if x % 2 == 0 else 0 for x in range(10)]
+the_generator = (1 if x % 2 == 0 else 0 for x in range(10))
+
+for v in the_list:
+    print(v, end=" ")
+print()
+
+for v in the_generator:
+    print(v, end=" ")
+print()
+```
+It's the **parentheses**. The brackets make a comprehension, the parentheses make a generator.
+
+The code, however, when run, produces two identical lines:
+
+```python
+1 0 1 0 1 0 1 0 1 0
+1 0 1 0 1 0 1 0 1 0
+```
+
+How can you know that the second assignment creates a generator, not a list?
+
+There is some proof we can show you. Apply the `len()` function to both these entities.
+
+`len(the_list)` will evaluate to `10`. Clear and predictable. `len(the_generator)` will raise an exception, and you will see the following message:
+
+`TypeError: object of type 'generator' has no len()`
+
+
+Of course, saving either the list or the generator is not necessary - you can create them exactly in the place where you need them - just like here:
+
+```python
+for v in [1 if x % 2 == 0 else 0 for x in range(10)]:
+    print(v, end=" ")
+print()
+
+for v in (1 if x % 2 == 0 else 0 for x in range(10)):
+    print(v, end=" ")
+print()
+```
+
+Note: the same appearance of the output doesn't mean that both loops work in the same way. In the first loop, the list is created (and iterated through) as a whole - it actually exists when the loop is being executed.
+
+In the second loop, there is no list at all - there are only subsequent values produced by the generator, one by one.
+
