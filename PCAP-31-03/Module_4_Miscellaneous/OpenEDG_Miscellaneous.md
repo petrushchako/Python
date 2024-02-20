@@ -373,3 +373,7 @@ Output:
 4 4
 ```
 
+<br><br>
+### How to use lambdas and what for?
+
+The most interesting part of using lambdas appears when you can use them in their pure form - **as anonymous parts of code intended to evaluate a result**.
