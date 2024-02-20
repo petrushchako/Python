@@ -427,3 +427,19 @@ def print_function(args, fun):
 
 print_function([x for x in range(-2, 3)], lambda x: 2 * x**2 - 4 * x + 2)
 ```
+
+<br>
+
+### Lambdas and the `map()` function
+
+In the simplest of all possible cases, the map() function:
+
+> `map(function, list)`
+
+takes two arguments:
+- a function;
+- a list.
+
+The above description is extremely simplified, as:
+- the second `map()` argument may be any entity that can be iterated (e.g., a tuple, or just a generator)
+- `map()` can accept more than two arguments.
