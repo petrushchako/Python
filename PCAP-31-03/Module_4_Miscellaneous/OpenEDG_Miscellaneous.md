@@ -488,3 +488,21 @@ Output:
 [2, 3, -9, -2, 6]
 [2, 6]
 ```
+
+<br><br>
+
+## Closures
+
+Let's start with a definition: **closure is a technique which allows the storing of values in spite of the fact that the context in which they have been created does not exist anymore**. Intricate? A bit.
+
+Let's analyze a simple example:
+```python
+def outer(par):
+    loc = par
+
+var = 1
+outer(var)
+
+print(par)
+print(loc)
+```
