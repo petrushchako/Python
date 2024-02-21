@@ -461,3 +461,30 @@ Output:
 [1, 2, 4, 8, 16]
 1 4 16 64 256
 ```
+
+<br>
+
+
+### Lambdas and the `filter()` function
+
+Another Python function which can be significantly beautified by the application of a lambda is `filter()`.
+
+It expects the same kind of arguments as `map()`, but does something different - it **filters its second argument while being guided by directions flowing from the function specified as the first argument** (the function is invoked for each list element, just like in `map()`).
+
+The elements which return `True` from the function **pass the filter** - the others are rejected.
+```python
+from random import seed, randint
+
+seed(0)
+data = [randint(-10,10) for x in range(5)]
+filtered = list(filter(lambda x: x > 0 and x % 2 == 0, data))
+
+print(data)
+print(filtered)
+```
+
+Output:
+```python
+[2, 3, -9, -2, 6]
+[2, 6]
+```
