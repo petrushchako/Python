@@ -682,6 +682,8 @@ class TrackedVehicle(LandVehicle):
     pass
 ```
 
+
+<br><br>
 - `issubclass()`
 
   Python offers a function which is able to **identify a relationship between two classes**, and although its diagnosis isn't complex, 
@@ -719,7 +721,7 @@ class TrackedVehicle(LandVehicle):
 
   > There is one important observation to make: **each class is considered to be a subclass of itself.**
 
-
+<br><br>
 - `isinstance()`
   As you already know, **an object is an incarnation of a class**. This means that the object is like a cake baked using a recipe which is included inside the class.
   
@@ -756,9 +758,50 @@ class TrackedVehicle(LandVehicle):
   True	True	False	
   True	True	True
   ```
+<br><br>
+- `is`
+  
+  - The `is` operator checks whether two variables (`object_one` and `object_two` here) refer to the same object.
+
+  ```python
+    object_one is object_two
+  ```
+  - Don't forget that variables don't store the objects themselves, but only the handles pointing to the internal Python memory.
+  
+    ```python
+    class SampleClass:
+    def __init__(self, val):
+        self.val = val
+
+    object_1 = SampleClass(0)
+    object_2 = SampleClass(2)
+    object_3 = object_1
+    object_3.val += 1
+
+    print(object_1 is object_2)
+    print(object_2 is object_3)
+    print(object_3 is object_1)
+    print(object_1.val, object_2.val, object_3.val)
+
+    string_1 = "Mary had a little "
+    string_2 = "Mary had a little lamb"
+    string_1 += "lamb"
+
+    print(string_1 == string_2, string_1 is string_2)
+    ```
+    Output:
+    ```python
+    False
+    False
+    True
+    1 2 1
+    True False
+    ```
 
 
 
+
+<br><br>
 - `__str__`
   
   When Python needs any class/object to be presented as a string (putting an object as an argument in the print() function invocation fits this condition) it tries to invoke a method named __str__() from the object and to use the string it returns.
@@ -784,18 +827,533 @@ class TrackedVehicle(LandVehicle):
   ```
 
 
+<br><br><br>
+### How Python finds properties and methods
+
+Now we're going to look at how Python deals with inheriting methods.
+
+Take a look at the example in the editor. Let's analyze it:
+
+- there is a class named `Super`, which defines its own constructor used to assign the object's property, named `name`.
+- the class defines the `__str__()` method, too, which makes the class able to present its identity in clear text form.
+- the class is next used as a base to create a subclass named `Sub`. The `Sub` class defines its own constructor, which invokes the one from the superclass. Note how we've done it: `Super.__init__(self, name)`.
+- we've explicitly named the superclass, and pointed to the method to invoke `__init__()`, providing all needed arguments.
+- we've instantiated one object of class `Sub` and printed it.
+```python
+class Super:
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f"My name is {self.name}"
+
+class Sub(Super):
+    def __init__(self, name):
+        Super.__init__(self, name)
+
+obj1 = Sub("Andy")
+print(obj1)
+```
+
+The code outputs:
+```python 
+My name is Andy.
+
+```
+
+- `super()`
+
+    In the last example, we explicitly named the superclass. In this example, we make use of the `super()` function, which **accesses the superclass without needing to know its name**:
+    ```python
+    class Sub(Super):
+        def __init__(self,name):
+            super().__init__(name)
+
+    ```
+    The `super()` function creates a context in which you don't have to (moreover, you mustn't) pass the self argument to the method being invoked - this is why it's possible to activate the superclass constructor using only one argument.
+
+    Note: you can use this mechanism not only to **invoke the superclass constructor, but also to get access to any of the resources available inside the superclass**.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    - Propagating varaible values via superclass:
   
+        ```python
+        class Super:
+            def __init__(self):
+                self.supVar = 11
+
+        class Sub(Super):
+            def __init__(self):
+                super().__init__()
+                self.subVar = 12
+
+        obj = Sub()
+        print(obj.subVar) # 12
+        print(obj.supVar) # 11
+        ```
+
+    - **Property and methoda resolution sequence in Python**
+        - It's now possible to formulate a general statement describing Python's behavior.
+
+        - When you try to access any object's entity, Python will try to (in this order):
+            - find it **inside the object itself**;
+            - find it **in all classes** involved in the object's inheritance line from bottom to top;
+            - If both of the above fail, an **exception (`AttributeError`) is raised**.
+
+        ```python
+        class Level1:
+            variable_1 = 100
+            def __init__(self):
+                self.var_1 = 101
+
+            def fun_1(self):
+                return 102
+
+
+        class Level2(Level1):
+            variable_2 = 200
+            def __init__(self):
+                super().__init__()
+                self.var_2 = 201
+            
+            def fun_2(self):
+                return 202
+
+
+        class Level3(Level2):
+            variable_3 = 300
+            def __init__(self):
+                super().__init__()
+                self.var_3 = 301
+
+            def fun_3(self):
+                return 302
+
+
+        obj = Level3()
+
+        print(obj.variable_1, obj.var_1, obj.fun_1())
+        print(obj.variable_2, obj.var_2, obj.fun_2())
+        print(obj.variable_3, obj.var_3, obj.fun_3())
+        ```
+
+- **Inheritance with duplication**
+
+    - **Three-level inheritance**
+      ```python
+      class Level1:
+          var = 100
+          def fun(self):
+              return 101
+
+      class Level2(Level1):
+          var = 200
+          def fun(self):
+              return 201
+
+      class Level3(Level2):
+          pass
+
+      obj = Level3()
+      print(obj.var, obj.fun())
+      ```
+
+
+      Both, `Level1` and `Level2` classes define a method named `fun()` and a property named `var`. Does this mean that the `Level3` class object will be able to access two copies of each entity? **Not at all**.
+
+      **The entity defined later (in the inheritance sense) overrides the same entity defined earlier**. 
+      
+      This is why the code produces the following output:
+      `200 201`   
+
+    - **Multi inheritance**
+
+        ```python
+        class Left:
+            var = "L"
+            var_left = "LL"
+            def fun(self):
+                return "Left"
+
+        class Right:
+            var = "R"
+            var_right = "RR"
+            def fun(self):
+                return "Right"
+
+        class Sub(Left, Right):
+            pass
+
+        obj = Sub()
+        print(obj.var, obj.var_left, obj.var_right, obj.fun())
+        ```
+
+        Python looks for object components in the following order:
+        - **inside the object** itself;
+        - **in its superclasses**, from bottom to top;
+        - if there is more than one class on a particular inheritance path, Python scans them from left to right.
+
+        So the output will be the following:
+
+       - `class Sub(Left, Right):`- >**L LL RR Left**
+       - `class Sub(Right, Left):` -> **R LL RR Right**
+
+
+### Composition
+
+Inheritance is not the only way of constructing adaptable classes. You can achieve the same goals (not always, but very often) by using a technique named composition.
+
+**Composition is the process of composing an object using other different objects**. The objects used in the composition deliver a set of desired traits (properties and/or methods) so we can say that they act like blocks used to build a more complicated structure.
+
+It can be said that:
+- **inheritance extends a class's capabilities** by adding new components and modifying existing ones; in other words, the complete recipe is contained inside the class itself and all its ancestors; the object takes all the class's belongings and makes use of them;
+- **composition projects a class as a container** able to store and use other objects (derived from other classes) where each of the objects implements a part of a desired class's behavior.
+
+The class - like in the previous example - is aware of how to turn the vehicle, but the actual turn is done by a specialized object stored in a property named `controller`. The `controller` is able to control the vehicle by manipulating the relevant vehicle's parts.
+
+```python
+import time
+
+class Tracks:
+    def change_direction(self, left, on):
+        print("tracks: ", left, on)
+
+class Wheels:
+    def change_direction(self, left, on):
+        print("wheels: ", left, on)
+
+class Vehicle:
+    def __init__(self, controller):
+        self.controller = controller
+
+    def turn(self, left):
+        self.controller.change_direction(left, True)
+        time.sleep(0.25)
+        self.controller.change_direction(left, False)
+
+wheeled = Vehicle(Wheels())
+tracked = Vehicle(Tracks())
+
+wheeled.turn(True)
+tracked.turn(False)
+```
+
+This program dumps all predefined exception classes in the form of a tree-like printout.
+
+Output:
+```python
+wheels:  True True
+wheels:  True False
+tracks:  False True
+tracks:  False False
+```
+
+There are two classes named `Tracks` and `Wheels` - they know how to control the vehicle's direction. There is also a class named `Vehicle` which can use any of the available controllers (the two already defined, or any other defined in the future) - the `controller` itself is passed to the class during initialization.
+
+In this way, the vehicle's ability to turn is composed using an external object, not implemented inside the `Vehicle` class.
+
+
+
+<br><br><br>
+## Exceptions
+
+Discussing object programming offers a very good opportunity to return to exceptions. The object-oriented nature of Python's exceptions makes them a very flexible tool, able to fit to specific needs, even those you don't yet know about.
+
+Before we dive into the **objective face of exceptions**, we want to show you some syntactical and semantic aspects of how Python treats the try-except block, as it offers a little more than what we have presented so far.
+
+```python
+def reciprocal(n):
+    try:
+        n = 1 / n
+    except ZeroDivisionError:
+        print("Division failed")
+        return None
+    else:
+        print("Everything went fine")
+        return n
+    finally:
+        print("It's time to say goodbye")
+        return n
+
+print(reciprocal(2))
+print(reciprocal(0))
+```
+
+Output:
+```python
+Everything went fine
+It's time to say good bye
+0.5
+Division failed
+It's time to say good bye
+None
+```
+
+<br><br>
+**Exceptions are classes**
+
+You probably won't be surprised to learn that **exceptions are classes**. Furthermore, when an exception is raised, an object of the class is instantiated, and goes through all levels of program execution, looking for the except branch that is prepared to deal with it.
+
+```python
+try:
+    i = int("Hello!")
+except Exception as e:
+    print(e)
+    print(e.__str__())
+```
+
+Output:
+```python
+invalid literal for int() with base 10: 'Hello!'
+invalid literal for int() with base 10: 'Hello!'
+```
+
+As you can see, the `except` statement is extended, and contains an additional phrase starting with the `as` keyword, followed by an identifier. The identifier is designed to catch the exception object so you can analyze its nature and draw proper conclusions.
+
+The example presents a very simple way of utilizing the received object - just print it out (as you can see, the output is produced by the object's `__str__()` method) and it contains a brief message describing the reason.
+
+```python
+def print_exception_tree(thisclass, nest = 0):
+    if nest > 1:
+        print("   |" * (nest - 1), end="")
+    if nest > 0:
+        print("   +---", end="")
+
+    print(thisclass.__name__)
+    for subclass in thisclass.__subclasses__():
+        print_exception_tree(subclass, nest + 1)
+
+print_exception_tree(BaseException)
+```
+Output:
+```python
+BaseException
+   +---Exception
+   |   +---TypeError
+   |   +---StopAsyncIteration
+   |   +---StopIteration
+   |   +---ImportError
+   |   |   +---ModuleNotFoundError
+   |   |   +---ZipImportError
+   |   +---OSError
+   |   |   +---ConnectionError
+   |   |   |   +---BrokenPipeError
+   |   |   |   +---ConnectionAbortedError
+   |   |   |   +---ConnectionRefusedError
+   |   |   |   +---ConnectionResetError
+   |   |   +---BlockingIOError
+   |   |   +---ChildProcessError
+   |   |   +---FileExistsError
+   |   |   +---FileNotFoundError
+   |   |   +---IsADirectoryError
+   |   |   +---NotADirectoryError
+   |   |   +---InterruptedError
+   |   |   +---PermissionError
+   |   |   +---ProcessLookupError
+   |   |   +---TimeoutError
+   |   |   +---UnsupportedOperation
+   |   |   +---ItimerError
+   |   +---EOFError
+   |   +---RuntimeError
+   |   |   +---RecursionError
+   |   |   +---NotImplementedError
+   |   |   +---_DeadlockError
+   |   +---NameError
+   |   |   +---UnboundLocalError
+   |   +---AttributeError
+   |   +---SyntaxError
+   |   |   +---IndentationError
+   |   |   |   +---TabError
+   |   +---LookupError
+   |   |   +---IndexError
+   |   |   +---KeyError
+   |   |   +---CodecRegistryError
+   |   +---ValueError
+   |   |   +---UnicodeError
+   |   |   |   +---UnicodeEncodeError
+   |   |   |   +---UnicodeDecodeError
+   |   |   |   +---UnicodeTranslateError
+   |   |   +---UnsupportedOperation
+   |   +---AssertionError
+   |   +---ArithmeticError
+   |   |   +---FloatingPointError
+   |   |   +---OverflowError
+   |   |   +---ZeroDivisionError
+   |   +---SystemError
+   |   |   +---CodecRegistryError
+   |   +---ReferenceError
+   |   +---MemoryError
+   |   +---BufferError
+   |   +---Warning
+   |   |   +---UserWarning
+   |   |   +---DeprecationWarning
+   |   |   +---PendingDeprecationWarning
+   |   |   +---SyntaxWarning
+   |   |   +---RuntimeWarning
+   |   |   +---FutureWarning
+   |   |   +---ImportWarning
+   |   |   +---UnicodeWarning
+   |   |   +---BytesWarning
+   |   |   +---ResourceWarning
+   |   +---Error
+   +---GeneratorExit
+   +---SystemExit
+   +---KeyboardInterrupt
+
+```
+
+<br><br>
+
+The `BaseException` class introduces a property named `args`. It's a **tuple designed to gather all arguments passed to the class constructor**. It is empty if the construct has been invoked without any arguments, or contains just one element when the constructor gets one argument (we don't count the self argument here), and so on.
+
+```python
+def print_args(args):
+    lng = len(args)
+    if lng == 0:
+        print("")
+    elif lng == 1:
+        print(args[0])
+    else:
+        print(str(args))
+
+try:
+    raise Exception
+except Exception as e:
+    print(e, e.__str__(), sep=' : ' ,end=' : ')
+    print_args(e.args)
+
+try:
+    raise Exception("my exception")
+except Exception as e:
+    print(e, e.__str__(), sep=' : ', end=' : ')
+    print_args(e.args)
+
+try:
+    raise Exception("my", "exception")
+except Exception as e:
+    print(e, e.__str__(), sep=' : ', end=' : ')
+    print_args(e.args)
+```
+
+Output:
+
+```python
+ :  :
+my exception : my exception : my exception
+('my', 'exception') : ('my', 'exception') : ('my', 'exception')
+```
+<br><br>
+### How to create your own Exception
+
+The exceptions hierarchy is neither closed nor finished, and you can always extend it if you want or need to create your own world populated with your own exceptions.
+
+It may be useful when you create a complex module which detects errors and raises exceptions, and you want the exceptions to be easily distinguishable from any others brought by Python.
+
+This is done by **defining your own, new exceptions as subclasses derived from predefined ones**.
+
+```python
+class MyZeroDivisionError(ZeroDivisionError):	
+    pass
+
+def do_the_division(mine):
+    if mine:
+        raise MyZeroDivisionError("1: ","MyZeroDivisionError","some worse news")
+    else:		
+        raise ZeroDivisionError("2: ","some bad news")
+
+for mode in [False, True]:
+    try:
+        do_the_division(mode)
+    except ZeroDivisionError as e:
+        print("3: ","MyZeroDivisionError",'Division by zero', e.args)
+
+for mode in [False, True]:
+    try:
+        do_the_division(mode)
+    except MyZeroDivisionError as e:
+        print("4: ",'My division by zero', e.args)
+    except ZeroDivisionError as e:
+        print("5: ",'Original division by zero', e.args)
+```
+
+Output:
+```python
+3:  MyZeroDivisionError Division by zero ('2: ', 'some bad news')
+3:  MyZeroDivisionError Division by zero ('1: ', 'MyZeroDivisionError', 'some worse news')
+5:  Original division by zero ('2: ', 'some bad news')
+4:  My division by zero ('1: ', 'MyZeroDivisionError', 'some worse news')
+```
+
+  - We've defined our own exception, named `MyZeroDivisionError`, derived from the built-in `ZeroDivisionError`. As you can see, we've decided not to add any new components to the class.
+
+  - In effect, an exception of this class can be - depending on the desired point of view - treated like a plain ZeroDivisionError, or considered separately.
+
+  - The `do_the_division()` function raises either a `MyZeroDivisionError` or `ZeroDivisionError` exception, depending on the argument's value.
+
+The function is invoked four times in total, while the first two invocations are handled using only one `except` branch (the more general one) and the last two ones with two different branches, able to distinguish the exceptions (don't forget: the order of the branches makes a fundamental difference!)
+
+<br><br>
+
+When you're going to build a completely new universe filled with completely new creatures that have nothing in common with all the familiar things, you may want to **build your own exception structure**.
+
+You can start building it by **defining a general exception as a new base class** for any other specialized exception. We've done it in the following way:
+
+```python
+class PizzaError(Exception):
+    def __init__(self, pizza, message):
+        Exception.__init__(self, message)
+        self.pizza = pizza
+```
+
+Note: we're going to collect more specific information here than a regular Exception does, so our constructor will take two arguments:
+
+- one specifying a pizza as a subject of the process,
+- and one containing a more or less precise description of the problem.
+
+As you can see, we pass the second parameter to the superclass constructor, and save the first inside our own property.
+
+A more specific problem (like an excess of cheese) can require a more specific exception. It's possible to derive the new class from the already defined `PizzaError` class, like we've done here:
+
+```python
+class TooMuchCheeseError(PizzaError):
+    def __init__(self, pizza, cheese, message):
+        PizzaError._init__(self, pizza, message)
+        self.cheese = cheese
+```
+
+The `TooMuchCheeseError` exception needs more information than the regular `PizzaError` exception, so we add it to the constructor – the name `cheese` is then stored for further processing.
+
+```python
+class PizzaError(Exception):
+    def __init__(self, pizza, message):
+        Exception.__init__(self, message)
+        self.pizza = pizza
+
+class TooMuchCheeseError(PizzaError):
+    def __init__(self, pizza, cheese, message):
+        PizzaError.__init__(self, pizza, message)
+        self.cheese = cheese
+
+def make_pizza(pizza, cheese):
+    if pizza not in ['margherita', 'capricciosa', 'calzone']:
+        raise PizzaError(pizza, "no such pizza on the menu")
+    if cheese > 100:
+        raise TooMuchCheeseError(pizza, cheese, "too much cheese")
+    print("Pizza ready!")
+
+for (pz,ch) in [('calzone',0), ('margherita',110), ('mafia',20)]:
+    try:
+        make_pizza(pz, ch)
+    except TooMuchCheeseError as tmce:
+        print(tmce, ':', tmce.cheese)
+    except PizzaError as pe:
+        print(pe, ':', pe.pizza)
+```
+
+Output:
+
+```python
+Pizza ready!
+too much cheese : 110
+no such pizza on the menu : mafia
+```
