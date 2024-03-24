@@ -12,7 +12,7 @@ print(increment_fn2) # <function <lambda> at 0x10c1b99d0>
 print("Invoke Lambda function: increment_fn2(2) -> ", increment_fn2(2))
 
 
-print("-"* 60,"\n\nRedefine functions functions lambda:\n")
+print("-"* 60,"\nRedefine functions functions lambda:\n")
 
 # def square (number):
 #     return number ** 2
@@ -34,10 +34,18 @@ cube_root = lambda number: number ** (1/3)
 #     return number ** n
 raise_to_number = lambda number, n: number ** n
 
-print("square : ", square(3))
-print("cube : ", cube(2))
-print("square_root : ", square_root(9))
-print("cube_root : ", cube_root(27))
-print("raise_to_number : ", raise_to_number(5,2))
+print("square : ", "\t"*3, square(3))
+print("cube : ", "\t"*3, cube(2))
+print("square_root : " ,"\t"*3, square_root(9))
+print("cube_root : ", "\t"*3, cube_root(27))
+print("raise_to_number : ", "\t"*2, raise_to_number(5,2))
 
-print("-"* 60,"\n\n    \n")
+
+create_list_fn = lambda item, times: [item for _ in range(times)]
+print("create_list_fn(\"Huray!\", 3) : \t", create_list_fn("Huray!", 3))
+
+
+print("(lambda x : x*10)(33) : \t",(lambda x : x*10)(33))
+print("(lambda x,y: x*y)(33, 10) : \t",(lambda x,y: x*y)(33, 10))
+
+print("-"* 60,"\n    \n")
