@@ -27,7 +27,7 @@ print(next(gen))
 
 
 
-print()
+print("\nFibonacci numbers:")
 
 def fibonacci_gen():
     # Initial Fibonacci squence
@@ -42,4 +42,36 @@ fib_gen = fibonacci_gen()
 for _ in range(30):
     print(next(fib_gen), end=" ")
 
-print()
+
+# Use following syntax to prevent StopIterration exception
+#fib_gen = fibonacci_gen()
+#while True:
+#    print(next(fib_gen, "Generator exhausted"))
+
+
+
+print("\nCubes generator:")
+def gen_cubes():
+    for i in range(10):
+        yield i ** 3
+
+for i in gen_cubes():
+    print(i, end=" ")
+
+
+print("\nYou can also use tuple() to record all values in tuple format:\n" , tuple(gen_cubes()))
+print(tuple(gen_cubes()))
+
+
+
+# Interesting usage of yiled keyword example:
+print("\nMessage receiver example:")
+def message_receiver():
+    while True:
+        value = yield
+        print(f"Received this message: {value}")
+
+print(message_receiver)
+receiver = message_receiver()
+receiver.send(None)
+receiver.send("Hello generator!")
