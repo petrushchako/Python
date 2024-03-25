@@ -27,3 +27,19 @@ print(next(gen))
 
 
 
+print()
+
+def fibonacci_gen():
+    # Initial Fibonacci squence
+    a,b = 0, 1 
+
+    while True:
+        yield a             #Return current Fibonacci number
+        a, b = b, a + b     #Prep next Fibonacci number
+
+fib_gen = fibonacci_gen()
+
+for _ in range(30):
+    print(next(fib_gen), end=" ")
+
+print()
