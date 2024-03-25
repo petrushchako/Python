@@ -72,3 +72,30 @@ value1 = create_student_record_fn(name = "Svitlana", year = 1970)
 print(type(value1), " : ", value1)
 value2 = create_student_record_fn(name = "Volodimir", year = 1970, location = "Poland")
 print(type(value2), " : ", value2)
+
+
+
+
+
+
+
+
+print("\n\nUsing Filter and Map Functions with Lambda in Python\n")
+
+numbers = [2, -34, 56, 52, -4, -99, 33]
+print(f"numbers : \t\t{numbers}")
+
+positive_numbers = filter(lambda x: x > 0, numbers)
+print(f"positive_numbers : \t{list(positive_numbers)}")
+
+increased_by_one = map(lambda x: x + 1, numbers)
+print(f"increased_by_one : \t{list(increased_by_one)}")
+
+
+sales_map = [
+    {"country":"Canada", "sales":234.56},
+    {"country":"Mexico", "sales":123.45},
+    {"country":"USA", "sales":345.67}
+]
+
+print(list(map(lambda x: x["country"], sales_map)))
