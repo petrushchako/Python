@@ -34,3 +34,21 @@ dev = add_employee_to_department("Development")
 support("Brian")
 dev("John")
 dev("Mike")
+
+
+# Example 3
+print()
+
+def formal_greeting():
+    greeting = "How are you doing?"
+
+    def informal_greeting():
+        nonlocal greeting #Will override variable from outer function
+        greeting = "Hi there!"
+
+        print(f"Greetingin the inner function: {greeting}")
+
+    informal_greeting()
+    print(f"Greeting in outer function: {greeting}")
+
+formal_greeting()
