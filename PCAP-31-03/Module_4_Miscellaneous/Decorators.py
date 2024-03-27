@@ -14,3 +14,30 @@ def compute_rectangle_area(length, breadth):
 
 print(compute_rectangle_area(3,4))
 print(compute_rectangle_area(-3,4)) # Will raise ValueError from line 7
+
+
+#Building decorator
+#Step 1
+
+def display_interesting_msg():
+    print("Interesting message")
+
+def display_borring_msg():
+    print("Borring message")
+
+def highlight_msg(func):
+    print("*"*30)
+    func()
+    print("*"*30)
+
+highlight_msg(display_borring_msg)
+highlight_msg(display_interesting_msg)
+
+# Output:
+# ******************************
+# Borring message
+# ******************************
+# ******************************
+# Interesting message
+# ******************************
+
