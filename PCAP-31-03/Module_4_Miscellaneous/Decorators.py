@@ -41,3 +41,27 @@ highlight_msg(display_interesting_msg)
 # Interesting message
 # ******************************
 
+
+# Step 2
+
+# Decorator function
+def highlight(func):
+    def highlight_msg():
+        print("*"*30)
+        func()
+        print("*"*30)
+    return highlight_msg
+    
+def display_interesting_msg():
+    print("Interesting message")
+
+def display_borring_msg():
+    print("Borring message")
+    
+emphasize1=highlight(display_borring_msg) 
+emphasize1()
+emphasize2=highlight(display_interesting_msg) 
+emphasize2()
+
+
+
