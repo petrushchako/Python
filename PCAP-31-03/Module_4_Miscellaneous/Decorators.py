@@ -43,8 +43,7 @@ highlight_msg(display_interesting_msg)
 
 
 # Step 2
-
-# Decorator function
+# Introduce closures
 def highlight(func):
     def highlight_msg():
         print("*"*30)
@@ -63,5 +62,25 @@ emphasize1()
 emphasize2=highlight(display_interesting_msg) 
 emphasize2()
 
+# Step 3
+# Instead of you initiating and calling clusre manually you can use @<closure outer function name> decorators to replace lines 61-62 and 63-64
+def highlight(func):
+    def highlight_msg():
+        print("*"*30)
+        func()
+        print("*"*30)
+    return highlight_msg
 
+# When using @decorator, Python will create a closure installation call with the decorated function as input and then will execute the closure
+
+@highlight
+def display_interesting_msg():
+    print("Interesting message")
+
+@highlight
+def display_borring_msg():
+    print("Borring message")
+
+display_interesting_msg()
+display_borring_msg()
 
