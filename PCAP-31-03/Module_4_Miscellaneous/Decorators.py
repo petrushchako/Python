@@ -84,3 +84,19 @@ def display_borring_msg():
 display_interesting_msg()
 display_borring_msg()
 
+
+
+########################################################################################
+# Input validation with decorators
+import math
+
+def check_numbers(fn):
+    def check_for_negative(arg):
+        if arg < 0:
+            raise ValueError("Negative number provided")
+        return fn(arg)
+    return check_for_negative
+
+@check_numbers
+def compute_circle_area(radius):
+    return math.pi * (radius**2)
