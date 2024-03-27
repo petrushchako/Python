@@ -90,13 +90,25 @@ display_borring_msg()
 # Input validation with decorators
 import math
 
-def check_numbers(fn):
-    def check_for_negative(arg):
-        if arg < 0:
-            raise ValueError("Negative number provided")
-        return fn(arg)
-    return check_for_negative
+# following closure works only for functions with one parameter. To avoid TypeError exception create input validation for 1+n input parameters
+# def check_numbers(fn):
+#     def check_for_negative(arg):
+#         if arg < 0:
+#             raise ValueError("Negative number provided")
+#         return fn(arg)
+#     return check_for_negative
 
+# Following decorator is more robust as it can handle 1-n input parameters for validation
+def check_numbers(fn):
+    def check_for_negative(*args):
+        for arg in args:
+            if arg < 0:
+                raise ValueError("Negative number provided")
+        return fn(*args)
+    return check_for_negative
+    
 @check_numbers
 def compute_circle_area(radius):
     return math.pi * (radius**2)
+
+
