@@ -19,3 +19,13 @@ even_numbers = [num for num in numbers if num%2==0]
 
 print("Odd numbers (with lambda check): ", odd_numbers)
 print("Even numbers:", even_numbers)
+
+square_num = [num * num for num in numbers]
+square_num2 = [(lambda x:x*x)(x) for x in numbers]
+
+print("square_num: ",square_num)
+print("square_num2: ",square_num2)
+
+words_list = ["Hi", "there", "how", "are", "you"]
+upper_words_list = [word.upper()[:2] for word in words_list]
+print(f"{words_list} \n{upper_words_list}")
