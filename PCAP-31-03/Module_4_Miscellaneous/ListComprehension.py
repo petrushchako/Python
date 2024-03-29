@@ -60,3 +60,25 @@ for i, letter in enumerate(filtered_alphabet):
     if i%5 == 0 and i != 0:
         print()
     print(letter, end = " ")
+
+
+##############################################
+print("\n"*2)
+shapes = ["square", "circle", "triangle"]
+colors = ["green", "white", "orange"]
+combined = [(color,shape) for color in colors for shape in shapes]
+print(combined)
+
+print()
+combined = [f"{color} {shape}" for shape, color in zip(shapes, colors)]
+print(zip(colors, shapes))
+print(combined)
+
+
+#############################################
+numbers =1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26
+number_list = [x for x in range(200) if x%7 ==0 if x%13==0]
+print(number_list)
+
+num_tuples = [(i, "Even") if i%2==0 else (i, "Odd") for i in range(1,6)]
+print(num_tuples)
