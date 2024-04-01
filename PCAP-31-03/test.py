@@ -110,4 +110,38 @@ print(issubclass(A,C)) # Class A is not a subclass of C, it is the other way aro
 
 
 
-# 
+# 3
+class A:
+    def __init__(self, v):
+        self.v = v
+    def set(self,v=1):
+        self.v += v 
+        return self.v
+a = A()
+b = a
+b.set()
+print(a.v)
+
+
+
+# .pyc
+# The compiled Python bytecode is stored in files which have their names ending with .pyc
+
+
+
+# Will cause an error due to \"
+x = "\\\"
+print(len(x))
+
+
+
+# r
+print(chr(ord('p') + 2))
+
+
+
+#1.3
+print(float("1.3"))
+
+
+
