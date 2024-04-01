@@ -86,3 +86,28 @@ print(hasattr(a, 'A'))
 # If `s` is a stream opened in read mode, the following
 q = s.read(1) # One character from the stream
 
+
+
+
+# 11:27:22
+# When you subtract one datetime object from another in Python, you get a timedelta object representing the difference between the two datetime objects.
+
+from datetime import datetime
+datetime_1 = datetime(2019, 11, 27, 11, 27, 22)
+datetime_2 = datetime(2019, 11, 27, 0, 0, 0)
+print(datetime_1 - datetime_2)
+
+
+
+# False
+class A:
+    pass
+class B(A):
+    pass
+class C(B):
+    pass
+print(issubclass(A,C)) # Class A is not a subclass of C, it is the other way around
+
+
+
+# 
