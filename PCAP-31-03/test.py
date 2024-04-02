@@ -74,7 +74,7 @@ print(__name__)
 
 
 
-# return False?
+# TypeError: __init__() takes 1 positional argument but 2 were given
 class A:
     def __init__(self):
         pass
@@ -145,3 +145,73 @@ print(float("1.3"))
 
 
 
+# The code will raise an `AttributeError` exception
+class A:
+    def __init__(self, v):
+        self.__a = v + 1
+a = A(0)
+print(a.__a)
+
+
+
+# Base_Exception
+try:
+    raise Exception
+except BaseException:
+    print("Base_Exception")
+except Exception:
+    print("Exception")
+except:
+    print("except block")
+
+
+
+# This code will read the file line by line
+for x in open('file', 'rt'):
+    print(x)
+
+
+
+
+# 5 80 0
+a = random.randint(0,100)
+b = random.randrange(10, 100, 3)
+c = random.choice((0, 100, 3))
+
+
+# pip uninstall command
+# pip unisntall package_name
+
+
+
+# False
+class A:
+    A = 1
+    def __init__(self):
+        self.a = 0
+
+print(hasattr(A, 'a'))
+
+
+
+# sys.stderr strem is normally associated with `the screen`
+
+
+
+# The code will cause a syntax error
+try:
+    raise Exception
+except:
+    print('cdef')
+except BaseException:
+    print('abcd')
+except Exception:
+    print('bcde')
+
+
+
+# 3 
+try:
+    raise Exception(1,2,3)
+except Exception as e:
+    print(len(e.args))
