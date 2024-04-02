@@ -174,6 +174,8 @@ for x in open('file', 'rt'):
 
 
 # 5 80 0
+from random import *
+
 a = random.randint(0,100)
 b = random.randrange(10, 100, 3)
 c = random.choice((0, 100, 3))
