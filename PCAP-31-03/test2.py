@@ -72,3 +72,49 @@ else:
 # Follwoing methods may raise exceptions
 # invoking int()
 # indexing a list
+    
+
+# -1
+x,y=3.0,0.0
+try:
+    z = x/y
+except ArithmeticError:
+    z = -1
+except:
+    z = -2
+print(z)
+
+# following two methods will return sorded letters string
+letters = 'zyx'
+tmp = list(letters)
+tmp.sort()
+new_string = ''.join(tmp)
+
+new_string2 = ''.join(sorted(letters))
+
+
+# Both expression evalue to True
+chr(ord('k') + 2) == 'm'
+ord('x') - ord('X') == ord(' ')
+
+#following code will fail due to syntax error
+plane = "Blackbird"
+counter = 0
+for i in plane + 2: # You cannot concatenate string with integer within loop 
+    print(i)
+    counter += 1
+print(counter)
+
+
+# Following expression return True
+" " * 0 < 1 * " "
+'Analog' < 'analog'
+'' in 'abc'
+#False
+str(None) != 'None'
+str(None) == None
+
+
+#True
+foo = "Mary had 21 little sheep"
+print(foo.split()[2].isdigit())
