@@ -206,3 +206,36 @@ average.value == 2
 tall.say() == 2
 isinstance(average, Bottom)
 
+
+# Following are true
+# stdin, stdout, and stderr are the names of pre-opened streams.
+# The print() function writes its output to the stdout stream.
+#False
+#The second argument of the open () function is an integer value.
+# The open() function returns False when its operation fails.
+
+
+# "Jane Doe"
+def quote (quo):
+    def embed (str):
+        return quo + str + quo
+    return embed
+
+dbla = quote ('"')
+print(dbla('Jane Doe'))
+
+
+# B
+vect = ["alpha", "bravo", "charlie"]
+new_vect = map(lambda: s[0].upper(), vect)
+print(list(new_vect)[1])
+
+
+# The following code will print the number of lines contained inside the file.
+try:
+    f = open("existing text file", "rt")
+    spam = f.readlines())
+    print(len(spam))
+    f.close()
+except IOError:
+    print (-1)
