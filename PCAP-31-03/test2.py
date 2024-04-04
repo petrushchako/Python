@@ -118,3 +118,91 @@ str(None) == None
 #True
 foo = "Mary had 21 little sheep"
 print(foo.split()[2].isdigit())
+
+
+#Capacitors;Transistors;
+class Package:
+    spam = ""
+    def __init__(self, content) :
+        Package.spam += content +
+
+envelope_1 = Package ("Capacitors")
+envelope_2 = Package ("Transistors")
+print(envelope_2.spam)
+
+
+# Following expresssion will evalue to True
+class Collection:
+    stamps = 2
+    def __init__(self, stuff):
+        self. stuff =stuff
+    def dispose(self) :
+        del self.stuff
+binder = Collection (1)
+binder.dispose()
+#True 
+'stamps' in Collection.__dict__
+len(binder.__dict__) != len(Collection.__dict__)
+# False
+'stuff' in binder.__dict__
+len(binder.__dict__)> 0
+
+
+# product._BluePrint__action()
+class BluePrint():
+    __element = 1
+    def __init__(self) -> None:
+        self.component = 1
+    def __action(self):
+        pass
+product = BluePrint()
+product._BluePrint__action()
+
+
+
+# 
+class Alpha:
+    value = "Alpha"
+    def say (self):
+        return self.value.lower()
+class Beta(Alpha) :
+    value = "Beta"
+class Gamma(Alpha):
+    def say (self) :
+        return self.value.upper ()
+class Delta(Gamma, Beta) :
+    pass
+d = Delta()
+b = Beta()
+
+# True
+d.say() == "BETA"
+isinstance(d, Beta)
+#False
+Alpha in Delta.__bases__
+d.value == "Alpha"
+
+
+# __bases__  is a tuple, which contains information about the direct superclasses of the class
+
+# 
+class Top:
+    value = 3
+    def say(self):
+        return self.value
+class Middle(Top):
+    value = 2
+class Bottom(Middle):
+    def say(self):
+        return -self.value
+    
+short = Bottom()
+tall = Top()
+average = Middle()
+#True
+short.value == 2
+average.value == 2
+#False
+tall.say() == 2
+isinstance(average, Bottom)
+
