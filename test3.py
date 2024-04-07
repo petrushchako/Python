@@ -97,3 +97,83 @@ creature = Tiger()
 print(hasattr(creature, "Species"), hasattr(Cat, "set species"))
 
 
+
+
+
+#Increment __b with fucntions:
+# object._A__b += 1
+# A._A__B += 1
+class A:
+    __b= 1
+    def __init__(self):
+        self.c = 1
+def __action(self) :
+    pass
+
+object = A()
+
+
+
+
+
+# TRUE
+# isinstance(start, Button)
+# selection.my_ID == 2
+# FALSE
+# selection is element
+# start.my_ID ==-2
+class Control:
+    my_ID = 1
+def say (self) :
+    return self.my_ID
+class Button(Control):
+    my_ID = 2
+class Radio(Button):
+    def say(self):
+        return -self. my_ID
+selection = Radio()
+element = Control()
+start = Button()
+
+
+
+
+#
+class Diamond:
+    pass
+class Adamant(Diamond):
+    pass
+class Gem(Diamond):
+    pass
+
+# No exception:
+class Jewel(Adamant, Diamond):
+    pass
+class Jewel(Adamant,Gem):
+    pass
+# Raise exception
+class Jewel(Diamond, Diamond):
+    pass
+class Jewel(Diamond, Adamant):
+    pass
+
+
+
+
+# True no exception
+#len(edition.__dict__ ! = len (Volume.__dict__)
+# Volume.__dict__['chapter'] != None
+
+# Fail or False
+# 'paragraph' in Volume.__dict__
+# paragraph' in edition.__dict__
+
+class Volume:
+    chapter = 1
+    def __init__(self, paragraph):
+        self.paragraph = paragraph
+        Volume.chapter += 1
+    def remove(self) :
+        del self.paragraph
+edition = Volume(1)
+edition.remove()
