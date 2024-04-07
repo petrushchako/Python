@@ -177,3 +177,90 @@ class Volume:
         del self.paragraph
 edition = Volume(1)
 edition.remove()
+
+
+
+
+# Soution below
+class Un:
+    value = "Ein"
+    def say (self):
+        return self.value.upper()
+class Deux(Un):
+    value = "Zwei"
+class Troi(Un):
+    def say(self):
+        return self.value.lower()
+class Quatre (Troi, Deux):
+    pass
+d = Quatre()
+b = Deux()
+
+#Solution
+print(isinstance(d, Un)) # True
+print(Troi in Quatre.__bases__) # True
+# print(d.say("ZWEI")) # TypeError: say() takes 1 positional argument but 2 were given
+print(d.say() == "ZWEI") # False
+#print(q.value() =="uno") # NameError:name ' q'is not defined
+
+
+#Valid Lambda
+lambda a,b: a if a < b else b
+lambda a,b: True
+#Invalid lambda
+# lambda a, b = a if a < b else b
+# lambda (a, b) : return a if a < b else b
+
+
+# The `errno.ENOENT`` symbol refers to an error described as:
+# No such file or directory
+
+
+# Prins 1 from array below
+# [0, 1, 2, 4]
+source = [1,2, 4, 8,16]
+target = [x//2 for x in source if x < 10]
+print(target[1])
+
+
+# 1
+pairs = [[2, 1], [-2, -1]]
+new_pairs = map(lambda p: sorted(p) , pairs)
+print(list(new_pairs)[0][0])
+
+
+
+#TRUE
+# There are three pre-opened file streams.
+# The input() function reads data from the stdin stream.
+# False
+# The readlines() function returns a string.
+# The first argument of the open() function is an integer value.
+
+
+
+
+
+# Error will occure due to b(b)
+def f(a, b):
+    return b(b)
+print(f(lambda x: x + 1, 0))
+
+
+
+
+#True
+def boolean(op):
+    return op(False, True)
+print(boolean(lambda x,y: x if x else y))
+
+
+
+
+# 8 
+def power(a):
+    def internal(x):
+        return x ** a;
+    return internal
+cube = power(3) # internal() with a==3
+print(cube(2)) # 2 ** 3 == 8
