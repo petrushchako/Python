@@ -41,3 +41,59 @@ except:
 else:
     x = -1
 print (x)
+
+
+
+# e == 2
+s = 'three'
+e = 0
+try:
+    e = int(s)  # Value Error
+except ArithmeticError:
+    e = 1
+except: 
+    e = 2
+else:
+    e = 3
+print(e)
+
+
+
+
+
+# 0 
+header = 2 *'+-' + '+'
+plus = 0
+for x in header:
+    if not x in header:
+        plus += 1
+print (plus)
+
+
+
+
+# TRUE
+# Python accepts UTF-8 encoded source files.
+# ASCII is a subset of UNICODE.
+# FALSE
+# In ASCII, Latin upper-case letter codepoints are greater than their lower-case counterparts.
+# "/n" can be used to encode a new-line character.
+
+
+# True False
+class Cat:
+    species = 1
+    def get_species(self):
+        return 'kitty'
+    
+class Tiger (Cat):
+    def get_species(self):
+        return 'tiggy'
+    
+def set_species(self):
+    pass
+
+creature = Tiger()
+print(hasattr(creature, "Species"), hasattr(Cat, "set species"))
+
+
