@@ -62,10 +62,10 @@ print(e)
 
 
 # 0 
-header = 2 *'+-' + '+'
+header = 2 *'+-' + '+' # +-+-+
 plus = 0
-for x in header:
-    if not x in header:
+for x in header: # The for loop iterates over each character in header. In this case, it iterates over each character in '+-+-+'.
+    if not x in header: # Inside the loop, there is an if statement: if not x in header:. This condition checks if the current character x is not in the header. However, since x is always a character from header (due to the loop iterating over header itself), this condition will never be true.
         plus += 1
 print (plus)
 
