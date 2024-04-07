@@ -152,9 +152,9 @@ class Jewel(Adamant, Diamond):
 class Jewel(Adamant,Gem):
     pass
 # Raise exception
-class Jewel(Diamond, Diamond):
+class Jewel(Diamond, Diamond): # Jewel is attempting to inherit from Diamond twice. This will raise an exception because in Python, multiple inheritance doesn't allow duplicate base classes.
     pass
-class Jewel(Diamond, Adamant):
+class Jewel(Diamond, Adamant): #  Similarly, attempting to inherit from Diamond and Adamant (which is already a subclass of Diamond) will raise an exception due to duplicate base classes.
     pass
 
 
