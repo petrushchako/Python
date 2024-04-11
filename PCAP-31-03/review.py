@@ -12,6 +12,9 @@ assert add_func(2,3)== add_lambda(2,3)
 print("Lambda example :" , add_lambda(2,3))
 
 
+
+
+
 ##############################################
 # Collection functions
 ##############################################
@@ -31,4 +34,31 @@ sentence = ["Boss", "a", "Alfred", "fig", "Daemon", "dig"]
 print("\n\nSorting by default")
 print(f"Original list:\n{sentence}")
 print(f"sorted() default:\n{sorted(sentence)}")
-print(f"sorted() with key\n{sorted(sentence, key=lambda x: x.lower())}")
+print(f"sorted() with key:\n{sorted(sentence, key=lambda x: x.lower())}")
+
+sentence.sort(key=str.lower, reverse=True)
+print(f"Sorting with method and reverse:\n{sentence}")
+
+
+
+
+
+##############################################
+# Closures
+##############################################
+
+print("\n\nClosure examples:")
+
+def message(msg):
+    def name(name):
+        return f"{msg} {name}"
+    return name
+
+closure_call = message("Hello")
+print(closure_call('World'))
+
+
+
+
+
+
