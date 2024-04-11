@@ -1,3 +1,14 @@
+# Using VS Code To Complete the Lab
+
+# You can also access the lab using VS Code in the browser. If you'd like to go this route, then follow the steps below:
+
+# Navigate to the public IP address of the workstation server (provided in your lab credentials) on port 8080, using http (e.g., http://PUBLIC_IP:8080).
+# If you receive a notification indicating the connection is not secure, click Advanced. Then, proceed to the server.
+# Use the password provided in your lab credentials.
+
+
+
+
 # 1) Sort the `people` list of dictionaries alphabetically based on the
 # 'name' key from each dictionary using the `sorted` function and store
 # the new list as `sorted_by_name`
