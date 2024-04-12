@@ -41,4 +41,4 @@ print(message)
 #         print(f"{letter} is a consonant")
 
 for letter in name:
-    print(f"{letter} {"is a vowel" if letter.lower() in ["a", "e", "i", "o", "u"] else "is a constant"}")
+    print(f"{letter} {'is a vowel' if letter.lower() in ['a', 'e', 'i', 'o', 'u'] else 'is a constant'}")
