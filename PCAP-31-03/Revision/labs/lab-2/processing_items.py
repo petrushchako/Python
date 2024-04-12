@@ -34,8 +34,11 @@ message = ("The first letter in your name is among the file most common"
 print(message)
 
 # 3) Change the string passed to the `print` function using a conditional expression
+# for letter in name:
+#     if letter.lower() in ["a", "e", "i", "o", "u"]:
+#         print(f"{letter} is a vowel")
+#     else:
+#         print(f"{letter} is a consonant")
+
 for letter in name:
-    if letter.lower() in ["a", "e", "i", "o", "u"]:
-        print(f"{letter} is a vowel")
-    else:
-        print(f"{letter} is a consonant")
+    print(f"{letter} {"is a vowel" if letter.lower() in ["a", "e", "i", "o", "u"] else "is a constant"}")
