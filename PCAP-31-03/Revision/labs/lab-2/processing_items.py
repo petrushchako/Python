@@ -10,10 +10,16 @@
 name = input("What is your first name? ")
 
 # 1) Call `print` with a different string using a single conditional expression
-if len(name) >= 6:
-    print("Your name is as long or longer than the average first name in the United States")
-else:
-    print("Your name is shorter than the average first name in the United States")
+# if len(name) >= 6:
+#     print("Your name is as long or longer than the average first name in the United States")
+# else:
+#     print("Your name is shorter than the average first name in the United States")
+
+print(
+    "Your name is as long or longer than the average first name in the United States"
+) if len(name) >= 6 else print (
+    "Your name is shorter than the average first name in the United States"
+)
 
 # 2) Set `message` using a single conditional expression
 if name[0].lower() in ["a", "j", "m", "e", "l"]:
