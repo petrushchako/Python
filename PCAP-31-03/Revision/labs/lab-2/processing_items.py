@@ -22,10 +22,14 @@ print(
 )
 
 # 2) Set `message` using a single conditional expression
-if name[0].lower() in ["a", "j", "m", "e", "l"]:
-    message = "The first letter in your name is among the five most common"
-else:
-    message = "The first letter of your name is not among the five most common"
+# if name[0].lower() in ["a", "j", "m", "e", "l"]:
+#     message = "The first letter in your name is among the five most common"
+# else:
+#     message = "The first letter of your name is not among the five most common"
+
+message = ("The first letter in your name is among the file most common" 
+           if name[0].lower() in ["a", "j", "m", "e", "l"] 
+           else "The first letter of your name is not among the five most common")
 
 print(message)
 
