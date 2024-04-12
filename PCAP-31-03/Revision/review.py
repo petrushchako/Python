@@ -58,7 +58,22 @@ closure_call = message("Hello")
 print(closure_call('World'))
 
 
+##############################################
+# The 'if' operator
+##############################################
+print("\nif/if-else")
+
+x = 1
+y = 2
+
+if x<y:
+    print(f"y == {y}")
+elif x>y:
+    print(f"x == {x}")
+else:
+    print("Values are the same")
 
 
+print(f"x == {x}" if x>y else f"y == {y}" if y>x else "Values are the same")
 
-
+print(f"x == {x}") if x>y else print(f"y == {y}")
