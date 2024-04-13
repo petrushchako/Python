@@ -77,3 +77,10 @@ else:
 print(f"x == {x}" if x>y else f"y == {y}" if y>x else "Values are the same")
 
 print(f"x == {x}") if x>y else print(f"y == {y}")
+
+
+
+##############################################
+# Creating and using modules
+##############################################
+
