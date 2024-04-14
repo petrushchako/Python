@@ -83,4 +83,6 @@ print(f"x == {x}") if x>y else print(f"y == {y}")
 ##############################################
 # Creating and using modules
 ##############################################
+from using_modules import helpers
 
+print(''.join(helpers.extract_upper("New York")))
