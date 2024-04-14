@@ -86,3 +86,14 @@ print(f"x == {x}") if x>y else print(f"y == {y}")
 from using_modules import helpers
 
 print(''.join(helpers.extract_upper("New York")))
+
+
+
+
+##############################################
+# docstrings
+##############################################
+
+# Add docstrings and docstring test inside of the docstring.
+# execute docstring with the following command:
+# python -m doctest using_packages.heplers.strings.py --verbose
