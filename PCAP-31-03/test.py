@@ -205,9 +205,9 @@ try:
     raise Exception
 except:
     print('cdef')
-except BaseException:
+except BaseException: # type: ignore
     print('abcd')
-except Exception:
+except Exception:     # type: ignore
     print('bcde')
 
 
