@@ -97,3 +97,55 @@ print(''.join(helpers.extract_upper("New York")))
 # Add docstrings and docstring test inside of the docstring.
 # execute docstring with the following command:
 # python -m doctest using_packages.heplers.strings.py --verbose
+
+
+##############################################
+# math and random
+##############################################
+
+# math(trigonometry): sin, cos, tan and hypot
+# math(rounding): floor, ceil, trunc
+# math(extras): sqrt, factorial, etc
+
+# random
+import random
+print(random.randint(1,10)) # return 1-10 including
+
+
+# choice()
+# Define a list of fruits
+fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+
+# Choose a random fruit from the list
+random_fruit = random.choice(fruits)
+print("Random fruit chosen:", random_fruit)
+
+
+# sample()
+# Define a list of numbers
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Choose 3 unique random numbers from the list
+random_numbers = random.sample(numbers, 3)
+print("Random numbers chosen:", random_numbers)
+
+
+# shuffle()
+random.shuffle(numbers)
+print("Shuffled numbers:", numbers)
+
+
+
+
+##############################################
+# platform
+##############################################
+import platform
+
+print(platform.machine()) #x86_64
+print(platform.platform()) #macOS-12.7.4-x86_64-i386-64bit
+print(platform.processor()) #i386
+print(platform.release()) #21.6.0
+print(platform.python_version()) #3.12.1
+print(platform.node()) #Oleksandrs-MBP.station
+print(platform.uname()) #uname_result(system='Darwin', node='Oleksandrs-MBP.station', release='21.6.0', version='Darwin Kernel Version 21.6.0: Mon Feb 19 20:24:34 PST 2024; root:xnu-8020.240.18.707.4~1/RELEASE_X86_64', machine='x86_64')
