@@ -163,3 +163,107 @@ print('City:', city)
 ```
 
 This approach allows you to handle any JSON structure returned by an API effectively.
+
+
+
+
+
+
+<br><br><hr><br>
+
+
+
+
+
+When making requests to APIs that require authentication, you often need to provide credentials or tokens. The GitHub API, for example, allows authenticated requests using a personal access token. This method is preferred because it provides better security and access control compared to using a username and password.
+
+### Steps to Authenticate with GitHub API Using a Personal Access Token
+
+1. **Generate a Personal Access Token**:
+   - Go to your GitHub account settings.
+   - Navigate to **Developer settings** > **Personal access tokens** > **Tokens (classic)**.
+   - Click **Generate new token**.
+   - Select the scopes or permissions you need, and then click **Generate token**.
+   - Copy the token; you won't be able to see it again.
+
+2. **Use the Personal Access Token in Your Python Script**:
+   - You can authenticate your requests by including the token in the headers.
+
+Here’s a working example:
+
+### Example: Authenticating with GitHub API
+
+```python
+import requests
+
+# Your GitHub personal access token (keep this secure and private)
+token = 'your_personal_access_token_here'
+
+# GitHub API endpoint for user information
+url = 'https://api.github.com/user'
+
+# Set up the headers with the authorization token
+headers = {
+    'Authorization': f'token {token}'
+}
+
+# Make the GET request to the GitHub API
+response = requests.get(url, headers=headers)
+
+# Check if the request was successful (status code 200)
+if response.status_code == 200:
+    # Parse the JSON response
+    user_data = response.json()
+
+    # Access specific data from the JSON
+    username = user_data.get('login')
+    name = user_data.get('name')
+    public_repos = user_data.get('public_repos')
+
+    # Print the extracted data
+    print('Username:', username)
+    print('Name:', name)
+    print('Public Repositories:', public_repos)
+else:
+    print('Failed to retrieve data:', response.status_code)
+```
+
+### Explanation:
+
+1. **Personal Access Token**:
+   - Replace `'your_personal_access_token_here'` with your actual GitHub token.
+
+2. **API Endpoint**:
+   - The example uses the `/user` endpoint, which returns information about the authenticated user.
+
+3. **Headers**:
+   - The `Authorization` header is set to `token your_personal_access_token_here`. This is how GitHub expects the token to be passed.
+
+4. **Making the Request**:
+   - The request is made using `requests.get(url, headers=headers)`.
+
+5. **Handling the Response**:
+   - If the response status is `200`, the data is parsed using `response.json()`, and specific fields like the username, name, and number of public repositories are extracted.
+
+6. **Error Handling**:
+   - If the request fails (e.g., due to an invalid token or insufficient permissions), an error message is printed with the status code.
+
+### Example Output:
+
+If successful, the output might look something like this:
+
+```python
+Username: johndoe
+Name: John Doe
+Public Repositories: 42
+```
+
+### Additional Notes:
+
+- **Scopes and Permissions**: When generating your personal access token, be mindful of the scopes you select. For example, to list your repositories, you need the `repo` scope. If you only need to read public data, no additional scopes are required.
+  
+- **Rate Limiting**: Authenticated requests to GitHub's API get a higher rate limit than unauthenticated requests. This is important if you are making many requests or are accessing the API frequently.
+
+- **Security**: Never hardcode your tokens in your scripts or share them publicly. Store them securely and use environment variables if possible.
+
+This method of authentication is commonly used with many APIs that require secure access.
