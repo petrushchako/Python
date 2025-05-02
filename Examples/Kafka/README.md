@@ -27,3 +27,16 @@
 
 - Start Kafka:
     `docker-compose up -d`
+
+<br><br><br>
+
+## Step 2: Set up a Python Project and Install the Kafka Library
+- Create a Python project:
+    ```sh
+    mkdir kafka-python-example
+    cd kafka-python-example
+    python3 -m venv venv # Create a virtual environment
+    source venv/bin/activate # Activate the virtual environment
+    ```
+- Install the kafka-python library:
+    `pip install kafka-python`
