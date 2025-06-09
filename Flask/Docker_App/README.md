@@ -32,6 +32,9 @@
         pip install Flask
         ```
 - PyCharm vs. VSCode
+  |Visual Studio Code | PyCharm|
+  |---|---|
+  |Open Source<br>Written using Electron<br>Small Memory Footprint<br>Extensible to program in many languages<br>Code Editor|Commercial<br>Written in Java<br>Larger Memory Footprint|Designed specifically for Python<br>Fully Python IDE|
 - Python Flask app
 - Overview of Dockerfiles
 - Containerize (or Dockerize) your app
