@@ -37,3 +37,18 @@ def post_product():
     # Append the new product to the products dict
     products.append(new_product)
     return jsonify(new_product), 201
+
+
+# curl --header "Content-Type: application/json" --request PUT --data '{"name": "Updated Product 2"}' -v http://localhost:500/product/2
+@app.route('/product/<int:id>', methods=['PUT'])
+def put_product(id):
+    # Get the request body
+    updated_product = request.json
+    # Find and update product with specified id
+    for product in products:
+        if product['id'] == id:
+            product['name'] = updated_product['name']
+            return jsonify(products), 200
+        
+    return f"Product with id {id} not found", 404
+
