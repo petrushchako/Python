@@ -19,3 +19,21 @@ def get_product(id):
     if len(product_list)==0:
         return f'Product with id {id} not found', 404
     return jsonify(product_list[0])
+
+# curl --header "Content-Type: application/json" --request POST --data '{"name": "Product 3"}' -v http://localhost:5000/product
+app.route('/product', methods=['POST'])
+def post_product():
+    # Retrieve the product from the request body
+    request_product = request.json
+    # Create an ID for the product
+    new_id = max([product['id'] for product in products]) + 1
+
+    # Create a new product
+    new_product = {
+        'id': new_id,
+        'name': request_product['name']
+    }
+
+    # Append the new product to the products dict
+    products.append(new_product)
+    return jsonify(new_product), 201
