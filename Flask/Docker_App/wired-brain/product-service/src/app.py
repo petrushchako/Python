@@ -65,4 +65,8 @@ def delete_product(id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    # Default port is 5000, so it does not have to be provided in run() method
+    # debug=True will reload application if we make any code changes
+    # host 0.0.0.0 exposes application externally, not required for local host testing(default) but mandatory to host app from within docker container
+    app.run(debug=True, host='0.0.0.0', port='5000')
+    
