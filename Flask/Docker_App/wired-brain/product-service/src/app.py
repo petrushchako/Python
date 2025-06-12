@@ -56,7 +56,7 @@ def put_product(id):
 # curl --header "Content-Type: application/json" --request DELETE -v http://localhost/product/2
 @app.route('/product/<int:id>', methods=['DELETE'])
 def delete_product(id):
-    product_list = [product for product in products if products['id']==id]
+    product_list = [product for product in products if product['id']==id]
     if len(product_list) == 1:
         products.remove(product_list[0])
         return f"Product with id {id} deleted", 200
@@ -69,4 +69,3 @@ if __name__ == '__main__':
     # debug=True will reload application if we make any code changes
     # host 0.0.0.0 exposes application externally, not required for local host testing(default) but mandatory to host app from within docker container
     app.run(debug=True, host='0.0.0.0', port='5000')
-    
