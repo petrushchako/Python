@@ -50,6 +50,88 @@
   - `POST` `/product{id}`
   - `DELETE` `/product/{id}`
 
+<br><br><br>
+
+
+## Testing Flask API Using curl
+### Setup
+* **Navigate to your project directory**
+* **Activate virtual environment**:
+  * macOS/Linux: `source venv/bin/activate`
+  * Windows: `venv\Scripts\activate.bat`
+* **Start Flask app**:
+  ```bash
+  python source/app.py
+  ```
+* App runs in **debug mode** on `0.0.0.0:5000`
+
+<br>
+
+### Using curl to Test Endpoints
+#### 1. **GET /products**
+```bash
+curl http://localhost:5000/products
+```
+
+* Returns the list of all products
+* Use `-v` to see HTTP headers:
+  ```bash
+  curl -v http://localhost:5000/products
+  ```
+
+#### 2. **GET /product/<id>**
+```bash
+curl -v http://localhost:5000/product/1
+```
+
+* Returns a product with ID 1
+* Invalid ID returns:
+  * `404 NOT FOUND`
+  * Error message
+
+#### 3. **POST /product** (Add product)
+```bash
+curl --header "Content-Type: application/json" \
+     --request POST \
+     --data '{"name": "Product 3"}' \
+     -v http://localhost:5000/product
+```
+
+* Adds a new product
+* Returns:
+  * `201 CREATED`
+  * JSON with generated product ID
+
+#### 4. **PUT /product/<id>** (Update product)
+```bash
+curl --header "Content-Type: application/json" \
+     --request PUT \
+     --data '{"name": "Updated Product 2"}' \
+     -v http://localhost:5000/product/2
+```
+
+* Updates product with ID 2
+* Invalid ID (e.g., `/product/5`) returns:
+  * `404 NOT FOUND`
+
+#### 5. **DELETE /product/<id>**
+```bash
+curl --request DELETE \
+     -v http://localhost:5000/product/2
+```
+
+* Deletes product with ID 2
+* Invalid ID deletion returns:
+  * `404 NOT FOUND`
+
+<br>
+
+### Summary
+* All endpoints (`GET`, `POST`, `PUT`, `DELETE`) function as expected.
+* Proper HTTP status codes are returned:
+  * `200 OK`, `201 CREATED`, `404 NOT FOUND`
+* curl is a reliable tool to simulate API interactions without a browser.
+
 
 ## Overview of Dockerfiles
 ## Containerize (or Dockerize) your app
