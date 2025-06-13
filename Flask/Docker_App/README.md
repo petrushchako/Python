@@ -133,6 +133,64 @@ curl --request DELETE \
 * curl is a reliable tool to simulate API interactions without a browser.
 
 
-## Overview of Dockerfiles
+## Dockerizing Flask Application
+### **Dockerfile**
+* A text document containing **step-by-step commands** to build a Docker image.
+* Represents all instructions that Docker executes to assemble an image.
+
+### **Docker image**
+* A **read-only template** with instructions for creating a container.
+* The output of building a Dockerfile.
+* Can be stored locally or pushed to a **Docker registry** (e.g., Docker Hub).
+
+#### **Docker container**
+* A **runtime instance** of a Docker image (like creating an object from a class).
+
+<br>
+
+### Lifecycle Flow
+1. **Write a Dockerfile**
+2. **Build the Dockerfile → Docker image**
+3. **Run the Docker image → Docker container**
+
+<br>
+
+### Example: Minimal Debian Dockerfile
+```Dockerfile
+FROM scratch
+ADD file.tar.xz /
+CMD ["bash"]
+```
+
+* `FROM scratch`: Start with an empty image.
+* `ADD file.tar.xz /`: Upload & decompress Debian OS to root.
+* `CMD ["bash"]`: Start a Bash shell by default.
+
+<br>
+
+### Docker Hub
+* [Docker Hub](https://hub.docker.com) is the largest repository of Docker images.
+* Images can be:
+  * **Official**: Curated, regularly updated (e.g., Python, MySQL, NGINX).
+  * **Unofficial**: Community or individual contributions; fine for experimentation.
+
+> **Tip:** For production apps, prefer official images for security and stability.
+
+<br>
+
+### Python Docker Image
+* Official Python image: [`_/python`](https://hub.docker.com/_/python)
+* Popular tag example: `3.9.2-buster`
+* Provides pre-installed Python, ready for app deployment.
+
+<br>
+
+### Analogy
+* Dockerfile = Python class definition
+* Docker image = Compiled class structure
+* Docker container = Instance (object) created from the class
+
+
+
 ## Containerize (or Dockerize) your app
 
