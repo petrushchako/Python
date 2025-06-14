@@ -211,4 +211,13 @@ A Docker image consists of read-only layers each of which represents a Dockerfil
     docker build -t <name>:<tag> .
     docker build -d flask-app:1.0 .
     ```
-    
+
+- **Run container from the built image**:
+  
+    ```sh
+    # Start container
+    docker run -d -p 5000:5000 flask-app:laters
+
+    # Check running container(s)
+    docker ps | grep -E 'flask|CONTAINER`
+    ```
