@@ -192,5 +192,23 @@ CMD ["bash"]
 
 
 
-## Containerize (or Dockerize) your app
+## Creating a Dockerfile and Running a Container
+### Docker Image Layers
+A Docker image consists of read-only layers each of which represents a Dockerfile instruction. The layers are stacked and each one is a delta of the changes from the previous layer.
 
+- **Create a `Dockerfile` descriptor that will contain the following Docker image build instructions**:
+  - Start from the Python Official Image
+  - Set the current working directory to `/code`
+  - Copy the `requirements.txt` file to the working directory
+  - Run `pip install` to install our dependencies (Flask)
+  - Copy our source code to `/code/src/`
+  - Run `python ./app.py`
+
+
+- **Build a Docker Image**:<br>Docker images are built using the docker build command, specifying a tag (`-t` or `--tag`) and providing a name and optionally a tag, and the path that contains a Dockerfile<br>If you want to name your Dockerfile anything other than `Dockerfile`, you can specify the filename using the `-f` argument:
+
+    ```sh
+    docker build -t <name>:<tag> .
+    docker build -d flask-app:1.0 .
+    ```
+    
