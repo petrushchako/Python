@@ -219,5 +219,21 @@ A Docker image consists of read-only layers each of which represents a Dockerfil
     docker run -d -p 5000:5000 flask-app:laters
 
     # Check running container(s)
-    docker ps | grep -E 'flask|CONTAINER`
+    docker ps | grep -E "flask|CONTAINER"
+
+    # Trigger the endpoint
+    curl http://localhost:5000/products
+
+    # Open container terminal
+    docker exec -it <container_id> bash
+    
+    # List content of container and exit
+    ls -l && exit
+
+    docker stop <container_id>
     ```
+
+<br><br><br>
+
+
+
