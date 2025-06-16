@@ -265,3 +265,36 @@ A Docker image consists of read-only layers each of which represents a Dockerfil
 * **Supports variables** in YAML for easy environment customization (local vs production).
 
 <br>
+
+###  **Docker Compose YAML Structure**
+#### Example:
+```yaml
+services:
+  productservice:
+    build: ./product-service
+
+  web:
+    build: ./nginx
+    ports:
+      - "80:80"
+
+  db:
+    image: mysql:latest
+    command: --init-file /data/application/init.sql --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./db:/data/application
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+```
+
+* `services`: Defines all app containers.
+* `productservice`: Built from `product-service` directory’s Dockerfile.
+* `web`: Nginx container, exposes port 80.
+* `db`: Uses official MySQL image with:
+  * **Init SQL** at `/data/application/init.sql` (mounted via volume).
+  * `MYSQL_ROOT_PASSWORD=password`.
+
+ **YAML indentation matters** — use 2 spaces for each level!
+
+<br>
+
