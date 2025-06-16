@@ -237,3 +237,31 @@ A Docker image consists of read-only layers each of which represents a Dockerfil
 
 
 
+## Running Multiple Components with Docker Compose
+#### **Module Focus**
+* Build **multi-container Docker applications** using Docker Compose.
+* Add components:
+  * **Nginx reverse proxy**: Forwards requests to product service.
+  * **MySQL**: Persists product data via **SQLAlchemy ORM**.
+* Test end-to-end: Nginx → product service → MySQL persistence.
+
+<br>
+
+### **What is Docker Compose?**
+* Tool for **defining and running multi-container Docker applications**.
+* Uses a single **YAML file** to configure all services.
+* Start everything with one command:
+
+  ```sh
+  docker-compose up
+  ```
+
+<br>
+
+### **Benefits of Docker Compose**
+* **Isolated environments** on a single host (isolated network for each app).
+* **Preserves volume data** when containers are restarted (copies volumes from old containers).
+* **Recreates only changed containers** (caches container configs for faster updates).
+* **Supports variables** in YAML for easy environment customization (local vs production).
+
+<br>
