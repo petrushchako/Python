@@ -308,3 +308,65 @@ docker-compose down      # Stop and remove containers, networks, etc.
 
 <br><br><br>
 
+## Running Product Service with Docker Compose
+### Initial Setup
+* Created `docker-compose.yml` in the `wired-brain` directory (parent of `productservice` directory).
+* Defined a single service called `productservice`.
+
+### docker-compose.yml structure
+```yaml
+services:
+  productservice:
+    build: ./productservice
+    ports:
+      - "5000:5000"
+```
+* **services**: Defines all app containers.
+* **productservice**:
+  * **build**: Builds image from `productservice` directory (contains Dockerfile).
+  * **ports**: Maps container port 5000 to local machine port 5000.
+
+### Command line steps
+1. Navigate to `wired-brain` directory:
+   ```bash
+   cd wired-brain
+   ```
+
+2. Build the service:
+   ```bash
+   docker-compose build
+   ```
+   * Builds the `productservice` image.
+   * Expected output: `Successfully built ...`
+
+3. Start the service:
+   ```bash
+   docker-compose up -d
+   ```
+   * Creates a private network: `wired-brain_default`.
+   * Starts container: `wired-brain_productservice_1`.
+
+4. View running containers:
+   ```bash
+   docker ps
+   ```
+   * Shows container with name `wired-brain_productservice_1`.
+   Alternatively:
+   ```bash
+   docker-compose ps
+   ```
+   * Displays an abbreviated list.
+
+5. Test the running app:
+   ```bash
+   curl http://localhost:5000/products
+   ```
+   * Should return the 2 default products.
+
+6. Stop and remove the service:
+   ```bash
+   docker-compose down
+   ```
+   * Stops the service.
+   * Removes the `wired-brain_default` network.
+
