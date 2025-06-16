@@ -298,3 +298,13 @@ services:
 
 <br>
 
+### **Common Docker Compose Commands**
+```bash
+docker-compose build     # Build all services (uses cache for unchanged ones)
+docker-compose up        # Start all containers
+docker-compose up -d     # Start containers in daemon/background mode
+docker-compose down      # Stop and remove containers, networks, etc.
+```
+
+<br><br><br>
+
