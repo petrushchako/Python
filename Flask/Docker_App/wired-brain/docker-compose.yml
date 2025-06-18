@@ -1,5 +1,11 @@
 services:
   productservice:
     build: ./product-service
+# Not required since Flask application will be exposed to web via Nginx:80
     ports:
       - "5000:5000"
+
+  web:
+    build: ./nginx
+    ports:
+      - "80:80"
