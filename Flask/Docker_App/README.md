@@ -370,3 +370,100 @@ services:
    * Stops the service.
    * Removes the `wired-brain_default` network.
 
+
+<br><br><br>
+
+
+## Adding Nginx to the Application
+### Purpose of Nginx
+* Nginx acts as a **reverse proxy** that receives HTTP requests and forwards them to the backend `productservice`.
+* Helps with **abstraction**, **routing**, and **load balancing** in containerized environments.
+* Works using **service names** (not IPs) in Docker Compose's internal network.
+
+<br>
+
+### Nginx Configuration (`nginx.conf`)
+* Located in `wired-brain/nginx/nginx.conf`:
+
+```nginx
+http {
+  server {
+    listen 80;
+    location / {
+      proxy_pass http://productservice:5000;
+    }
+  }
+}
+```
+
+* Listens on port 80.
+* Proxies all `/` path requests to `productservice:5000`.
+
+<br>
+
+### Nginx Dockerfile (`wired-brain/nginx/Dockerfile`)
+```dockerfile
+FROM nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+```
+
+* Uses official Nginx image.
+* Copies the config file into the image.
+
+<br>
+
+### Updated `docker-compose.yml`
+```yaml
+services:
+  productservice:
+    build: ./productservice
+
+  web:
+    build: ./nginx
+    ports:
+      - "80:80"
+```
+
+* **Removed** the `ports` mapping from `productservice` (no longer directly exposed).
+* **Added** a `web` service (Nginx):
+  * Builds from `nginx/` directory.
+  * Exposes container port 80 to local machine on port 80.
+
+<br>
+
+### Running the Setup
+1. **Build containers**:
+   ```bash
+   docker-compose build
+   ```
+   * Builds both `productservice` and `web`.
+
+2. **Start containers**:
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Verify containers are running**:
+   ```bash
+   docker ps
+   ```
+   * Should show: `wired-brain_productservice` and `wired-brain_web`.
+
+4. **Test via Nginx**:
+   ```bash
+   curl http://localhost/products
+   ```
+   * Confirms that Nginx successfully proxies to `productservice`.
+
+5. **Stop containers**:
+   ```bash
+   docker-compose down
+   ```
+   * Stops and removes both containers and the shared Docker network.
+
+<br>
+
+### Key Points
+* Docker Compose allows services to communicate by **service name**.
+* Nginx acts as a gateway to the internal service, which is no longer exposed to the host.
+* Configuration separation improves modularity and control over routing.
