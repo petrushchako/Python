@@ -529,3 +529,43 @@ services:
   db.session.add(self)
   db.session.commit()
   ```
+
+<br>
+
+### MySQL Container Setup in `docker-compose.yml`
+```yaml
+services:
+  db:
+    image: mysql:latest
+    command: [
+      '--init-file=/data/application/init.sql',
+      '--default-authentication-plugin=mysql_native_password'
+    ]
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./db/init.sql:/data/application/init.sql
+```
+
+* Uses official MySQL image.
+* Initializes using `init.sql`.
+* Authentication plugin set for compatibility.
+
+<br>
+
+### `init.sql` File Contents
+```sql
+CREATE DATABASE IF NOT EXISTS products;
+USE products;
+CREATE TABLE IF NOT EXISTS products (
+    id INT PRIMARY KEY,
+    name VARCHAR(128)
+);
+```
+
+* Creates the `products` database and table with structure matching the ORM model.
+
+
+<br><br><br>
+
+
