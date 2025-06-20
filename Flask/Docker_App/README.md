@@ -467,3 +467,65 @@ services:
 * Docker Compose allows services to communicate by **service name**.
 * Nginx acts as a gateway to the internal service, which is no longer exposed to the host.
 * Configuration separation improves modularity and control over routing.
+
+
+<br><br><br>
+
+
+
+## Introduction to SQL Alchemy
+### What is SQLAlchemy?
+* SQLAlchemy is a Python SQL toolkit and Object Relational Mapper (ORM).
+* It simplifies persisting Python objects to relational databases.
+* Useful for handling complex relationships like many-to-many (e.g., `products` ↔ `orders`).
+
+### Why Use an ORM?
+* Manual SQL for complex relationships requires boilerplate code (e.g., join tables).
+* ORMs like SQLAlchemy handle this logic efficiently.
+* Offers production-level flexibility for relational database integration.
+
+<br>
+
+### Flask-SQLAlchemy Integration Steps
+1. **Install Flask-SQLAlchemy**
+   * Use the extension to simplify SQLAlchemy usage with Flask.
+2. **Create `db.py`**
+   * Imports and initializes SQLAlchemy:
+     ```python
+     from flask_sqlalchemy import SQLAlchemy
+     db = SQLAlchemy()
+     ```
+3. **Configure in `app.py`**
+   * Set up the Flask app to use the database:
+     ```python
+     from db import db
+     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@db/products'
+     db.init_app(app)
+     ```
+
+<br>
+
+### Define the `Product` Model
+* Create a class that extends `db.Model`:
+  ```python
+  class Product(db.Model):
+      __tablename__ = 'products'
+      id = db.Column(db.Integer, primary_key=True)
+      name = db.Column(db.String(128))
+  ```
+
+* Includes ORM mappings between class attributes and database columns.
+
+<br>
+
+### Model Methods
+* `@classmethod find_by_id(cls, id)`:
+  ```python
+  return cls.query.get(id)
+  ```
+
+* `save_to_db(self)`:
+  ```python
+  db.session.add(self)
+  db.session.commit()
+  ```
