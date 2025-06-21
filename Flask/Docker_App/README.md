@@ -569,3 +569,77 @@ CREATE TABLE IF NOT EXISTS products (
 <br><br><br>
 
 
+
+## Testing the Application with Postman
+### What Is Postman?
+* Postman is a free API client that allows you to:
+  * Send requests (GET, POST, PUT, DELETE)
+  * Inspect responses
+  * Write test scripts
+  * Chain requests by passing data between them
+
+### Setup
+* Download from [postman.com/product/api-client](https://postman.com/product/api-client)
+* Create a new **Collection** (e.g., `Product Service`)
+* Add requests for each endpoint
+
+<br>
+
+### Request Collection:
+1. **GET `/products`**
+   * **Method:** `GET`
+   * **URL:** `http://localhost/products`
+   * **Response:** `[]`, `200 OK` (empty list if no products)
+
+2. **POST `/product`**
+   * **Method:** `POST`
+   * **URL:** `http://localhost/product`
+   * **Headers:**
+     * `Content-Type: application/json`
+   * **Body (raw JSON):**
+     ```json
+     {
+       "name": "Product 1"
+     }
+     ```
+   * **Response:** Created product with ID, `201 CREATED`
+
+3. **GET `/products`**
+   * Should now return the list of products
+
+4. **GET `/product/1`**
+   * **Method:** `GET`
+   * **URL:** `http://localhost/product/1`
+   * **Response:** Product 1 details, `200 OK`
+
+5. **PUT `/product/1`**
+   * **Method:** `PUT`
+   * **URL:** `http://localhost/product/1`
+   * **Headers:**
+
+     * `Content-Type: application/json`
+   * **Body:**
+
+     ```json
+     {
+       "name": "Updated Product 1"
+     }
+     ```
+   * **Response:** Updated product details
+
+6. **DELETE `/product/1`**
+   * **Method:** `DELETE`
+   * **URL:** `http://localhost/product/1`
+   * **Response:** Confirmation message, `200 OK`
+
+7. **Error Checks**
+   * **GET `/product/1`** → `404 NOT FOUND`
+   * **DELETE `/product/1` again** → `404 NOT FOUND`
+
+<br>
+
+### Stop Services
+To stop the containers:
+```bash
+docker compose down
+```
