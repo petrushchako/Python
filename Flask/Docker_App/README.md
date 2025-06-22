@@ -569,7 +569,6 @@ CREATE TABLE IF NOT EXISTS products (
 <br><br><br>
 
 
-
 ## Testing the Application with Postman
 ### What Is Postman?
 * Postman is a free API client that allows you to:
@@ -643,3 +642,54 @@ To stop the containers:
 ```bash
 docker compose down
 ```
+
+<br><br><br>
+
+
+
+## Making Your Application Production-ready
+This module enhances the application to meet **production-readiness standards** by:
+* Adding **Python logging** for troubleshooting
+* Managing **configuration** with `configparser`
+* Securing sensitive data using **Docker Compose secrets**
+* Creating **named Docker volumes** for persistent database storage
+* Hardening **networking** in Docker Compose
+* Aligning with the **Twelve-Factor App methodology**
+
+<br>
+
+### Twelve-Factor App Methodology (Highlights)
+[Learn more at 12factor.net](https://12factor.net)
+
+#### Why It's Useful:
+* Easy for **new developers** to join
+* Deployable across **cloud environments**
+* Reduces differences between **dev and prod**
+* Scalable with **minimal architectural changes**
+
+#### Relevant Factors Applied:
+1. **Logs as event streams**
+   * Log to `stdout` (console), not to files
+   * Allows aggregation and central review via tools like **RSYSLOG**, **Splunk**, etc.
+   * Persistent even when containers restart (via external logging tools)
+2. **Config in the environment**
+   * Store config **outside the Dockerfile**
+   * Use:
+     * Environment variables
+     * Mounted config files (e.g., via `docker-compose.yml`)
+   * Enables same image to work across **dev, staging, and prod** with only config changes
+
+<br>
+
+### Features Being Added in This Module
+
+|**Feature**|**Benefit**|
+|---|---|
+| `logging` module | Enables centralized and scalable log management|
+| `configparser` module | Cleanly manages configuration settings |
+| **Docker secrets** | Securely store database credentials |
+| Named volumes | Ensure persistent data across container restarts |
+| Docker Compose networking | Restrict container-to-container communication |
+
+<br><br><br>
+
