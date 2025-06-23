@@ -4,7 +4,7 @@ Python has several libraries and tools available for logging, ranging from the b
 
 <br>
 
-## **Built-in Logging Library**
+### **Built-in Logging Library**
 1. `logging` (Standard Library)
    * Included in the Python standard library.
    * Thread-safe and highly configurable.
@@ -13,8 +13,8 @@ Python has several libraries and tools available for logging, ranging from the b
 
 
 
-## **Third-Party Logging Libraries**
-2. **Loguru**
+### **Third-Party Logging Libraries**
+2. `Loguru`
    * Very user-friendly with a cleaner API.
    * No boilerplate setup—ready to use out of the box.
    * Built-in rotation, formatting, and exception logging.
@@ -31,7 +31,7 @@ Python has several libraries and tools available for logging, ranging from the b
 
 <br>
 
-3. **structlog**
+3. `structlog`
    * Designed for structured (key-value) logging.
    * Excellent for JSON logging, especially in microservices or distributed systems.
    * Can be combined with standard `logging` for backend integration.
@@ -48,7 +48,7 @@ Python has several libraries and tools available for logging, ranging from the b
 
 <br>
 
-4. **logbook**
+4. `logbook`
    * Easier alternative to `logging` with better defaults.
    * Designed by Armin Ronacher (creator of Flask).
    * Offers similar features to `logging` but more Pythonic.
@@ -65,7 +65,7 @@ Python has several libraries and tools available for logging, ranging from the b
 
 <br>
 
-5. **logging-tree**
+5. `logging-tree`
    * Diagnostic tool—not a logging system itself.
    * Visualizes your current logging hierarchy.
    * Helps debug complex logging configurations.
@@ -81,7 +81,7 @@ Python has several libraries and tools available for logging, ranging from the b
 
 <br>
 
-6. **sentry-sdk**
+6. `sentry-sdk`
    * Sends error and exception logs to [Sentry](https://sentry.io/).
    * Great for production observability and real-time error tracking.
 
@@ -96,7 +96,7 @@ Python has several libraries and tools available for logging, ranging from the b
 
 <br>
 
-7. **watchtower**
+7. `watchtower`
    * Logging handler for Amazon CloudWatch.
    * Useful when deploying to AWS.
 
@@ -114,7 +114,7 @@ Python has several libraries and tools available for logging, ranging from the b
 
 <br>
 
-8. **graypy**
+8. `graypy`
    * Sends logs to Graylog over GELF (Graylog Extended Log Format).
    * Useful in centralized logging setups.
 
@@ -124,7 +124,7 @@ Python has several libraries and tools available for logging, ranging from the b
 
 <br>
 
-9. **python-json-logger**
+9. `python-json-logger`
    * JSON formatter for standard `logging` module.
    * Helps produce structured logs for ELK/EFK stacks.
 
@@ -132,10 +132,11 @@ Python has several libraries and tools available for logging, ranging from the b
    pip install python-json-logger
    ```
 
+<br>
 
-## When to Use What?
+### When to Use What?
 
-| **Use Case**                   | **Suggested Library **               |
+| **Use Case**                   | **Suggested Library**                |
 | ------------------------------ | ------------------------------------ |
 | Simple, standard logging       | `logging`                            |
 | Minimal setup and elegance     | `Loguru`                             |
