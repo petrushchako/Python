@@ -728,3 +728,53 @@ This module enhances the application to meet **production-readiness standards** 
 | `dictConfig`  | Configure from a Python dictionary or JSON file   |
 
 <br>
+
+### Basic Example
+```python
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+logging.debug("Debug message")
+logging.info("Info message")
+logging.warning("Warning message")
+logging.error("Error message")
+logging.critical("Critical message")
+```
+
+* **Default level** is `WARNING`, so debug/info are skipped unless level is changed.
+
+<br>
+
+### Better Logger Naming
+```python
+logger = logging.getLogger(__name__)  # Shows module name like __main__
+```
+
+<br>
+
+### Custom Formatter
+```python
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s %(levelname)-8s %(name)-10s: %(message)s'
+)
+```
+
+* `%` syntax defines layout: `asctime`, `levelname`, `name`, `message`.
+
+<br>
+
+### Manual Logger Construction
+```python
+handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(name)-10s: %(message)s')
+handler.setFormatter(formatter)
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger.addHandler(handler)
+
+logger.info("Hello from manual logger")
+```
+
+<br>
