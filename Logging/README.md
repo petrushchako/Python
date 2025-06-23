@@ -45,3 +45,69 @@ Python has several libraries and tools available for logging, ranging from the b
     log = structlog.get_logger()
     log.info("event", user="alice", action="login")
     ```
+
+<br>
+
+4. **logbook**
+   * Easier alternative to `logging` with better defaults.
+   * Designed by Armin Ronacher (creator of Flask).
+   * Offers similar features to `logging` but more Pythonic.
+
+    ```bash
+    pip install logbook
+    ```
+
+    ```python
+    import logbook
+    log = logbook.Logger('MyApp')
+    log.info('Info message from Logbook')
+    ```
+
+<br>
+
+5. **logging-tree**
+   * Diagnostic tool—not a logging system itself.
+   * Visualizes your current logging hierarchy.
+   * Helps debug complex logging configurations.
+
+   ```bash
+   pip install logging-tree
+   ```
+
+   ```python
+   import logging_tree
+   print(logging_tree.format.build_description())
+   ```
+
+<br>
+
+6. **sentry-sdk**
+   * Sends error and exception logs to [Sentry](https://sentry.io/).
+   * Great for production observability and real-time error tracking.
+
+   ```bash
+   pip install sentry-sdk
+   ```
+
+   ```python
+   import sentry_sdk
+   sentry_sdk.init("your-dsn-url")
+   ```
+
+<br>
+
+7. **watchtower**
+   * Logging handler for Amazon CloudWatch.
+   * Useful when deploying to AWS.
+
+   ```bash
+   pip install watchtower
+   ```
+
+   ```python
+   import logging
+   import watchtower
+
+   logger = logging.getLogger(__name__)
+   logger.addHandler(watchtower.CloudWatchLogHandler())
+   ```
