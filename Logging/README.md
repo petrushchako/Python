@@ -111,3 +111,35 @@ Python has several libraries and tools available for logging, ranging from the b
    logger = logging.getLogger(__name__)
    logger.addHandler(watchtower.CloudWatchLogHandler())
    ```
+
+<br>
+
+8. **graypy**
+   * Sends logs to Graylog over GELF (Graylog Extended Log Format).
+   * Useful in centralized logging setups.
+
+   ```bash
+   pip install graypy
+   ```
+
+<br>
+
+9. **python-json-logger**
+   * JSON formatter for standard `logging` module.
+   * Helps produce structured logs for ELK/EFK stacks.
+
+   ```bash
+   pip install python-json-logger
+   ```
+
+
+## When to Use What?
+
+| **Use Case**                   | **Suggested Library **               |
+| ------------------------------ | ------------------------------------ |
+| Simple, standard logging       | `logging`                            |
+| Minimal setup and elegance     | `Loguru`                             |
+| Structured logging (JSON, ELK) | `structlog`, `python-json-logger`    |
+| Centralized cloud logging      | `watchtower`, `graypy`, `sentry-sdk` |
+| Better config visualization    | `logging-tree`                       |
+| Replacing standard logging     | `logbook`                            |
