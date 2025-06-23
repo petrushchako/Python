@@ -778,3 +778,45 @@ logger.info("Hello from manual logger")
 ```
 
 <br>
+
+### Logging Configuration via INI File (`logging.ini`)
+#### INI Structure:
+
+```ini
+[loggers]
+keys=root
+
+[handlers]
+keys=consoleHandler
+
+[formatters]
+keys=simpleFormatter
+
+[logger_root]
+level=DEBUG
+handlers=consoleHandler
+
+[handler_consoleHandler]
+class=StreamHandler
+formatter=simpleFormatter
+
+[formatter_simpleFormatter]
+format=%(asctime)s %(levelname)-8s %(name)-10s: %(message)s
+```
+
+#### Usage:
+```python
+import logging.config
+
+logging.config.fileConfig('logging.ini', disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+logger.debug("Debug from INI config")
+```
+
+<br>
+
+### Summary
+* Use `__name__` in `getLogger()` to maintain clarity.
+* Avoid writing logs to files inside containers—log to `stdout` instead.
+* External config (like `.ini`) is production-friendly and supports reusability.
+* Understand log level hierarchy: `DEBUG < INFO < WARNING < ERROR < CRITICAL`.
