@@ -693,3 +693,38 @@ This module enhances the application to meet **production-readiness standards** 
 
 <br><br><br>
 
+
+## Python Loggin Module
+### Why Use Python's Built-in Logging Module?
+* Standard across all Python applications and third-party modules.
+* Enables centralized logging for all components in your application.
+* Flexible: log to console, files, or remote servers.
+
+<br>
+
+### Logging Components
+1. **Loggers**
+   * Hierarchical structure: root logger at the top.
+   * Child loggers inherit config unless explicitly overridden.
+   * Example: `app.py` logger → `Product` class logger.
+
+2. **Handlers**
+   * Process log messages (e.g., console, file, remote server).
+   * Common types:
+     * `StreamHandler` (console)
+     * `FileHandler` (writes to a file)
+
+3. **Formatters**
+   * Customize message output format.
+   * Can include: timestamp, logger name, severity, message.
+
+<br>
+
+### Ways to Configure Logging
+| Method        | Description                                       |
+| ------------- | ------------------------------------------------- |
+| `basicConfig` | Quick in-code setup                               |
+| `fileConfig`  | Use `.ini` file for more structured configuration |
+| `dictConfig`  | Configure from a Python dictionary or JSON file   |
+
+<br>
