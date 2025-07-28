@@ -41,6 +41,40 @@ ftp.quit()
 - **Encryption:** Yes (via SSH)
 - **Authentication:** Username/password or SSH keys
 
+```python
+import paramiko
+
+# Define connection parameters
+hostname = 'sftp.example.com'
+port = 22
+username = 'username'
+password = 'password'
+
+# Establish a secure SSH transport session
+transport = paramiko.Transport((hostname, port))
+transport.connect(username=username, password=password)
+
+# Create an SFTP session on top of the transport
+sftp = paramiko.SFTPClient.from_transport(transport)
+
+# Upload the file to the server
+sftp.put('HelloWorld.txt', 'HelloWorld.txt')
+
+# Close connections
+sftp.close()
+transport.close()
+```
+
+### Comments:
+- **`paramiko`** is the most popular library for SSH/SFTP in Python.
+- Supports **password-based** or **key-based** authentication.
+- Use this for **secure file transfers**, especially over the internet.
+- **Alternatives**:
+  - `pysftp` (easier syntax but deprecated, relies on paramiko internally).
+  - `fabric` (higher-level SSH automation, overkill for simple uploads).
+
+<br>
+
 
 ### **FTPS (FTP Secure / FTP-SSL)**
 - **Port:** 21 (explicit) or 990 (implicit)
