@@ -1,12 +1,37 @@
 # FTP vs SFTP vs FTPS
 
 
-### **FTP (File Transfer Protocol)**
+## **FTP (File Transfer Protocol)**
 - **Port:** 21
 - **Security:** Not secure (data, including credentials, sent in plaintext)
 - **Use case:** Legacy file transfers
 - **Encryption:** None by default
 - **Authentication:** Username and password
+
+```python
+from ftplib import FTP
+
+# Connect to FTP server (plain FTP, no encryption)
+ftp = FTP('ftp.example.com')
+
+# Login with username and password
+ftp.login(user='username', passwd='password')
+
+# Open the file in binary read mode and upload it to the server
+with open('HelloWorld.txt', 'rb') as file:
+    ftp.storbinary('STOR HelloWorld.txt', file)
+
+ftp.quit()
+```
+
+### Comments:
+- **`ftplib`** is built into Python's standard library — no need to install anything.
+- Use **only** on **trusted internal networks** due to lack of encryption.
+- **Alternative**: Use `pyftpdlib` to build FTP servers, but for clients `ftplib` is enough.
+
+
+<br>
+
 
 
 ### **SFTP (SSH File Transfer Protocol)**
@@ -33,3 +58,4 @@
 | Secure?       | No        | Yes                  | Yes                       |
 | Protocol Base | FTP       | SSH                  | FTP + SSL/TLS             |
 | Auth Method   | User/pass | User/pass or SSH key | User/pass + optional cert |
+
