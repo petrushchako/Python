@@ -83,6 +83,34 @@ transport.close()
 - **Encryption:** Yes (via SSL/TLS)
 - **Authentication:** Username/password, with optional client certificate
 
+```python
+from ftplib import FTP_TLS
+
+# Connect to FTPS server (FTP over SSL/TLS)
+ftps = FTP_TLS('ftps.example.com')
+
+# Login credentials
+ftps.login(user='username', passwd='password')
+
+# Encrypt the data connection after login
+ftps.prot_p()
+
+# Upload the file securely
+with open('HelloWorld.txt', 'rb') as file:
+    ftps.storbinary('STOR HelloWorld.txt', file)
+
+ftps.quit()
+```
+
+### Comments:
+- **`FTP_TLS`** is part of Python’s standard `ftplib` (supports FTPS).
+- FTPS is often used in **enterprise environments** with compliance requirements (like HIPAA).
+- **Uses SSL/TLS** for encryption, but relies on a more complex firewall setup due to multiple data channels.
+- **Alternative libraries**: `pycurl` or external tools like `lftp` via subprocess if you need more control.
+
+
+<hr>
+
 
 ### Summary Table:
 | Feature       | FTP       | SFTP                 | FTPS                      |
