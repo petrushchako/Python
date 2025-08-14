@@ -1,219 +1,378 @@
-# Will generate [1,9]
-numbers = [i*i for i in range (5) ]
-foo = list(filter(lambda x: x % 2, numbers))
-print(foo)
+import copy
+list1 = [1, [2, 3], 4]
+list2 = copy.deepcopy(list1)
+list3 = copy.copy(list1)
+list3[1][1]='x'
+print("List 1 : ",list1, "\nList 2 : ", list2, "\nList 3 : ", list3)
 
 
 
-# Output: ++++++
-def my_fun(n):
-    s = "+"
-    for i in range(n):
-        s += s
-        yield s
-for x in my_fun(2):
-    print(x, end='')
+print("-"*30)
+
+list_num = [20, 70, 80, 50, 30, 60, 40]
+
+print(max(list_num))
+print(min(list_num))
+print(len(list_num))
+
+list_num.sort() #Sort the origin list
+print(sorted(list_num))
+
+list_num.append(25)
+print(list_num)
+
+list_num_sorted = sorted(list_num, reverse=True)
+
+print(list_num_sorted)
+print(all([]))
+
+
+print("-"*30)
+cars= ["Audi", "BMW", "Mercedes-Benz", "Volkswagen", "Volvo"]
+print(cars)
+len(cars) # 4
+cars[4] # Volvo
+sliced_cars = cars[0:7] # ["Audi", "BMW", "Mercedes-Benz", "Volkswagen", "Volvo"]
+print(sliced_cars)
+sliced_cars = cars[0:-1:2] # ['Audi', 'Mercedes-Benz']
+sliced_cars= cars[0::2] # ['Audi', 'Mercedes-Benz', 'Volvo']
+reversed_cars=cars[6::-1]
+print(reversed_cars)
+
+
+my_car_list = ['Toyota Corolla', 'Toyota Camry', 'Nissan Altima', 'Kia Soul', 'Kia Optima', 'Honda Civic']
+my_car_list[6:-1] = ['Ford Focus', 'Dodge Charger'] #Assign values to indexes 6 and 7/-1
+print(my_car_list)
+print(my_car_list[::-1])
+
+print("Ford Focus" in my_car_list)
+print(my_car_list.pop(-2))
+print("Ford Focus" in my_car_list)
+
+
+#### String as a list of characters
+x = "World"
+print(x[::2])
+
+#x[0]="G"
+
+
+x = "Hello"
+print(x.startswith("H")) #True
+print(x.startswith("h")) #False
+
+print(x.endswith("o")) #True
+print(x.endswith("O")) #False
+
+print(x.count('l'))
+print("-"*30)
+print(x.count('l')) # 2
+print(x.find("H")) # 0
+print(x.find("h")) # -1
+print(x.index("H"))
+#print(x.index("h")) # ValueError: substring not found
 
 
 
-# This code will return function from class B, since it is the first one in the list of classes inherited
-class A:
-    def a(self):
-        print('a')
-class B:
-    def a(self):
-        print('b')
-class C(B, A):
-    def c(self):
-        self.a()
-o = C()
-o.c()
+x = "New York City"
+y = []
+z = ""
+
+if(x.count(" ")> 0):
+    y = x.split(" ")
+    z = " ".join(y)
+    print(y, "\n", z)
 
 
+x1 = x[0:3]
+print(x[1:3].islower())
 
-# Sun Mon Tue Wed Thu Fri Sat
-import calendar
-calendar.setfirstweekday(calendar.SUNDAY)
-print(calendar.weekheader(3))
+print("-"*10, "TUPLES", "-"*10)
+my_tuple = ()
+print(my_tuple) # <class 'tuple'>
 
+int_tuple = (1, 2, 3)
+str_tuple = ("Hello", "Python")
+print(int_tuple, str_tuple)
 
+combinet_tuple = int_tuple + str_tuple
+print(combinet_tuple * 2)
 
-# 28 days, 22:00:00
-from datetime import timedelta
-delta = timedelta(weeks=1, days=7, hours=11)
-print(delta*2)
+tuple1 = 1, "Hello", 3.14
+print(tuple1) # <class 'tuple'>
 
-
-
-# abc
-class I:
-    def __init__(self):
-        self.s = 'abc'
-        self.i = 0
-        def __iter__(self):
-            return self      
-    def __next__(self):
-        if self.i == len(self.s):
-            raise StopIteration
-        v = self.s[self.i]
-        self.i += 1
-        return v
-for x in I():
-    print(x, end='')
+a, b, c = tuple1
+print(a, b, c)
 
 
+print("Hello" in tuple1) #True
+print(not("hello" not in tuple1))
 
-# will print 2
-x="\\\\"
-print(len(x))
+x = (1, 2, 3, [4, 5])
+x[3][1] = 100
+
+print(x)
+
+tuple_a = (1, 2, 3, 4, 5)
+tuple_b = ( 'a', 'b', 'c' , 'd', 'e')
+
+zipped = zip(tuple_a, tuple_b)
+print(zipped) # ‹zip object at 0x10eb20b08>
+
+result = tuple(zipped)
+print(result)
+
+t1, t2 = zip(*result)
+print("t1: ", t1, "\nt2:", t2)
+
+
+a =(" John", "Charles", "Mike")
+b = ("Manager", "Supervisor", "Engineer")
+x = zip(a, b)
+
+c = dict(x)
+
+print(c)
+
+
+print("-"*50)
+
+bike_owners = {
+    "James":"Ducati Monster 1200", 
+    "Jacob":"Ducati Scrambler 1100", 
+    "William":"BMW S 1000 RR", 
+    "Aiden":"Harley Davidson"
+    }
+
+print(bike_owners)
+print(bike_owners.keys())
+print(bike_owners.values())
+
+for i in bike_owners:
+    print(f" {i} : {bike_owners[i]}")
     
+for i in bike_owners: print(i)
 
+int_dict = {
+    1 : "ONE",
+    2 : "TWO",
+    3 : "Three",
+    3 : "THREE"
+}
 
-# __main__
-print(__name__)
+print("Aiden" in bike_owners)
 
-
-
-# TypeError: __init__() takes 1 positional argument but 2 were given
-class A:
-    def __init__(self):
-        pass
-a = A(1)
-print(hasattr(a, 'A'))
-
-
-
-# If `s` is a stream opened in read mode, the following
-q = s.read(1) # One character from the stream
+bike_owners["Alex"] = "No bike"
+bike_owners["Alex"] = "Lastochka"
+print(bike_owners)
 
 
 
+fruits = {
+    'Banana': (50, 60, 40, 55),
+    'Apple': (78, 86, 80, 60),
+    'Apricot': [40, 70, 30, 55]}
 
-# 11:27:22
-# When you subtract one datetime object from another in Python, you get a timedelta object representing the difference between the two datetime objects.
+print(fruits["Banana"][3])
 
-from datetime import datetime
-datetime_1 = datetime(2019, 11, 27, 11, 27, 22)
-datetime_2 = datetime(2019, 11, 27, 0, 0, 0)
-print(datetime_1 - datetime_2)
+for i in fruits:
+    #print(i)
+    for j in range(len(fruits[i])):
+        print(fruits[i][j], end = ", ", sep = "-")
+print("\n")
+for i in fruits: 
+    fruits["Apricot"][3] = 0.5
+    
+    for j in range(len(fruits[i])):
+        print(fruits[i][j], end = ", ")
 
+print("\n")
 
+fruit_qty_consumed = {
+    "Plum" : {'Fri': 70, 'Sat': 80},
+    'Apple': {'Fri': 90, 'Sat': 95}
+}
 
-# False
-class A:
-    pass
-class B(A):
-    pass
-class C(B):
-    pass
-print(issubclass(A,C)) # Class A is not a subclass of C, it is the other way around
+print(fruit_qty_consumed["Plum"]["Fri"])
 
+print(fruit_qty_consumed.pop("Plum"))
 
+print(fruit_qty_consumed.items())
 
-# 3
-class A:
-    def __init__(self, v):
-        self.v = v
-    def set(self,v=1):
-        self.v += v 
-        return self.v
-a = A()
-b = a
-b.set()
-print(a.v)
+for i,j in fruits.items():
+    print(f"{i} : {j}")
+    
+    
+fruits = {
+    'Banana': (50, 60, 40, 55),
+    'Apple': (78, 86, 80, 60),
+    'Apricot': (40, 70, 30, 55),
+    'Orange': (70, 80, 60, 65),
+    'Avocado': (30, 50, 40, 45)}
 
+# Remove item by key. Returns the value (i.e fruits.pop("Banana") -> (50, 60, 40, 55))
+fruits.pop("Banana") 
+fruits.popitem() # Removes random value from dict
 
+# Sorting
+sorted(fruits, reverse = True) # Returns the list of sorted keys
+sorted(fruits.values()) # sort comparable values
 
-# .pyc
-# The compiled Python bytecode is stored in files which have their names ending with .pyc
+# .items()
+fruits.items() # Returns a list of tuples (key, value)
+for i,j in fruits.items():
+    print(f"{i} : {j}")
 
-
-
-# Will cause an error due to \"
-x = "\\\"
-print(len(x))
-
-
-
-# r
-print(chr(ord('p') + 2))
-
-
-
-#1.3
-print(float("1.3"))
-
-
-
-# The code will raise an `AttributeError` exception
-class A:
-    def __init__(self, v):
-        self.__a = v + 1
-a = A(0)
-print(a.__a)
+#Copy
+copy_fruits = fruits.copy()
 
 
 
-# Base_Exception
+fruits = {
+    'Banana': (50, 60, 40, 55),
+    'Avocado': (30, 50, 40, 45)
+    }
+
+# Concatenate dicts
+new_fruits = {"Cherry": (1, 2), "Banana": (1,2)}
+fruits.update(new_fruits)
+print(fruits)
+
+print("-"*50)
+
+set_string = {"Emma", "Olivia", "Ava", "Mia"}
+print(set_string)
+
+empty_set = set()
+print(f"{empty_set} of type {type(empty_set)}")
+
+
+a1 = {-1,0,1,2,3}
+a2 = {1,2,3,4}
+
+b1 = a1.intersection(a2)
+print(b1)
+b1 = a1.union(a2)
+print(b1)
+print(a1.difference(a2))
+print(a2.symmetric_difference(a1))
+
+a3 = {2,3}
+
+print(a2.issuperset(a3))
+
+set1 = {"Abc", "Bcd", "Cde"}
+
+print(min(set1)) # Abc
+print(max(set1)) # Cde
+
+
+list1 = [[1,[2.0 , 2.1]],[3,4],[5,6]]
+dict1 = dict(list1)
+
+print(dict1) # {1: [2.0, 2.1], 3: 4, 5: 6}
+
+
+
+list2 = list(dict1.items())
+print(list2)
+for i in list2:
+    print(type(i))
+
+############ Exception handling ###############
+
 try:
-    raise Exception
-except BaseException:
-    print("Base_Exception")
+    print(variable)
+
 except Exception:
-    print("Exception")
+    print("Something went wrong")
+
+except NameError:
+    print("Variable is not defined")
+
 except:
-    print("except block")
+    print("Something went wrong")
 
 
 
-# This code will read the file line by line
-for x in open('file', 'rt'):
-    print(x)
+import time, datetime
+
+# try:
+#     print(datetime.datetime.now())
+#     time.sleep(2)
+#     print(datetime.datetime.now())
+# except KeyboardInterrupt:
+#     print("Process has been manually canceled")
+
+# print(dir(time))
+
+print()
 
 
-
-
-# 5 80 0
-from random import *
-
-a = random.randint(0,100)
-b = random.randrange(10, 100, 3)
-c = random.choice((0, 100, 3))
-
-
-# pip uninstall command
-# pip unisntall package_name
-
-
-
-# False
-class A:
-    A = 1
-    def __init__(self):
-        self.a = 0
-
-print(hasattr(A, 'a'))
-
-
-
-# sys.stderr strem is normally associated with `the screen`
-
-
-
-# The code will cause a syntax error
 try:
-    raise Exception
-except:
-    print('cdef')
-except BaseException: # type: ignore
-    print('abcd')
-except Exception:     # type: ignore
-    print('bcde')
+    file = open("non_existen_file", "r")
+except OSError:
+    print("OSError occured") # Superset of FileNotFoundError
+except FileNotFoundError:
+    print("File does not exist") # Subset of OSError
 
+print()
 
-
-# 3 
 try:
-    raise Exception(1,2,3)
-except Exception as e:
-    print(len(e.args))
+    print(var)
+except NameError:
+    print("Variable with requested name does not exist")
+finally:
+    print("Gracefully exiting the try-except-finally block")
+
+var = "Hello there"
+
+try:
+    with open('../TEST/Linux/test.py', "r") as file:
+        print(file.read())
+finally:
+    print("Gracefully exiting the try-except-finally block")
+
+
+
+try:
+    file = open('../TEST/Linux/test.py', "r")
+    print(file.read())
+finally:
+    print("Closing the file")
+    file.close()
+    print(f"File closed : {file.closed}")
+
+
+import errno, os
+
+for i in dir(errno):
+    print(i)
+def check_file(filepath):
+    if not os.path.isfile(filepath):
+        raise FileNotFoundError # Not recommended
+
+try:
+    check_file('invalid.path')
+except FileNotFoundError as exception:
+    print('#1 Handled FileNotFoundError:', exception)
+
+def check_file_message(filepath):
+    if not os.path.isfile(filepath):
+            raise FileNotFoundError('"%s" not found' % filepath)
+
+try:
+    check_file_message('invalid.path')
+except FileNotFoundError as exception:
+    print('#2 Handled FileNotFoundError:', exception)
+
+def check_file_args(filename) :
+    if not os.path.isfile(filename):
+        raise FileNotFoundError(errno.ENOENT, os. strerror (errno. ENOENT), 
+                                filename, 2, 'filename2')
+
+try:
+    check_file_args('invalid.path')
+except FileNotFoundError as exception:
+    print('#3 Handled FileNotFoundError:', exception)
+    print('Arguments of exception:', exception. args)
