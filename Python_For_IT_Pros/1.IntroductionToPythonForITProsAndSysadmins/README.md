@@ -83,3 +83,20 @@ Discover the transformative potential of Python in streamlining IT operations an
   - Scalable for small-scale IT setups
   - Large enterprise environments
   - Python Scales to meet your needs
+
+
+<br>
+
+## Setting Up Python Environment
+### Install Python
+1. Go to https://www.python.org
+2. Download installer specific for your system
+3. Run installation
+4. Verify installation with `python3 --version`
+### Configure virtual environment
+1. Conritm pip installation with `pip3 --version`
+2. Once Python and pip are available install virtual environment with `pip install virtualenv` (check list of modules by running `pip list`)
+3. Create virtaul environmnet with `python3 -m venv venv`
+4. Activate **venv** with `source venv/bin/activate`
+5. Check status of virtual environment with `which python` (It should point to the Python binary inside **./venv/**)
+6. Kill virtual environment by running `deactivate` command
