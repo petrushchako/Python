@@ -7,7 +7,6 @@ Discover the transformative potential of Python in streamlining IT operations an
 - **Introduction to Python Basics**
   - Why Python for IT Pros and Sysadmins?
   - `Demo`: Setting up the Python Environment
-  - `Demo`: Python Syntax and Variables		
   - `Demo`: Control Flow Statements
   - `Demo`: Functions and Modules
   - `Demo`: Handling Exceptions
