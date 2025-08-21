@@ -95,8 +95,14 @@ Discover the transformative potential of Python in streamlining IT operations an
 4. Verify installation with `python3 --version`
 ### Configure virtual environment
 1. Conritm pip installation with `pip3 --version`
-2. Once Python and pip are available install virtual environment with `pip install virtualenv` (check list of modules by running `pip list`)
+2. Once Python and pip are available install virtual environment with `pip install virtualenv` (check list of modules by running `pip list` or `pip show virtualenv`)
 3. Create virtaul environmnet with `python3 -m venv venv`
 4. Activate **venv** with `source venv/bin/activate`
 5. Check status of virtual environment with `which python` (It should point to the Python binary inside **./venv/**)
 6. Kill virtual environment by running `deactivate` command
+
+To install specific verion of library use `pip install requests==2.31.0` (e.g. `pip show requests`)
+
+
+<br>
+
