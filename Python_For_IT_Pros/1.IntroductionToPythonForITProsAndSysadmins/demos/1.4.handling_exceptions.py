@@ -15,4 +15,15 @@ finally:
     print("Execution completed")
 
 
+def calculate_age(yob):
+    current_year = 2025
+    if yob > current_year:
+        raise ValueError("Invalid birth year")
+    return current_year - yob
 
+try: 
+    year_of_birth = int(input("Enter year of birth: "))
+    print(f"Age: {calculate_age(year_of_birth)}")
+except ValueError as ve:
+    print(f"Error: {ve}")
+    
