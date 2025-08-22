@@ -1,6 +1,6 @@
 # Output example
 output_path = "output.txt"
-message = "This is my my message in the bottle"
+message = "This is my message in the bottle\n"
 
 try:
     with open(output_path, "w") as file:
