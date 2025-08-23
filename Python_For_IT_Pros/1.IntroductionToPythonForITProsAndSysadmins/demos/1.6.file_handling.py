@@ -1,28 +1,14 @@
-# Output example
-output_path = "output.txt"
-message = "This is my message in the bottle\n"
+def writeToFile():
+    # Output example
+    message = "This is my message in the bottle\n"
 
-try:
-    with open(output_path, "w") as file:
-        file.write(message)
-    print(f"Data witten to a {output_path}")
-except Exception as e:
-    print("Error: ", e)
+    try:
+        with open(output_path, "w") as file:
+            file.write(message)
+        print(f"Data witten to a {output_path}")
+    except Exception as e:
+        print("Error: ", e)
 
-
-# Reading a file
-# If file does not exist r/r+ the FileNotFoundError exception will be rissen
-file_path = "example.txt"
-
-try:
-    with open(file_path, "r") as file:
-        content = file.read()
-        print("File content:")
-        print(content)
-except FileNotFoundError as e:
-    print("Error: ", e)
-finally:
-    print("Exiting application")
 
 
 def openFileA():
@@ -51,5 +37,47 @@ def openFileRB():
         print(file.read())
 
 
-print(openFileRB.__doc__)
-print(openFileA.__doc__)
+# Print single line dosctring
+# print(openFileA.__doc__) 
+
+# Print multi-line docstring
+# print(openFileRB.__doc__)
+
+
+def readMultiLineFile():
+    try:
+        with open(output_path, "a+") as file:
+            file.writelines(["SOS", "\n", "I'm stuck in tutorial hell :)"])
+            file.seek(0)
+            lines = file.readlines()
+        print("\nLines from the file:")
+        for line in lines:
+            print(line, end="")
+    except FileNotFoundError as fe:
+        print("Error: ", fe)
+    finally:
+        print()
+
+
+def readMissingFile():
+    # Reading a missing file
+    # If file does not exist r/r+ the FileNotFoundError exception will be rissen
+    file_path = "example.txt"
+    try:
+        with open(file_path, "r") as file:
+            content = file.read()
+            print("File content:")
+            print(content)
+    except FileNotFoundError as e:
+        print("Error: ", e)
+    finally:
+        print("Exiting application")
+
+
+
+if __name__ == "__main__":
+    output_path = "output.txt"
+    writeToFile()
+    readMultiLineFile()
+    openFileA()
+    openFileRB()
