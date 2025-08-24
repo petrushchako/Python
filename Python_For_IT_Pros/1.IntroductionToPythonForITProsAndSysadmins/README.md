@@ -105,3 +105,20 @@ To install specific verion of library use `pip install requests==2.31.0` (e.g. `
 
 <br>
 
+
+## Intro to IT Ops and Sysadmin with Python
+- **Role**: More than a language — enables automation, workflow streamlining, and efficiency improvements.
+- **Automation**: Handles repetitive tasks like provisioning, deployments, backups, monitoring.
+- **Efficiency**: Scripts simplify complex operations, reducing human intervention and saving time/resources.
+- **Problem-Solving**: Useful for troubleshooting, database optimization, security management.
+- **Custom Tools**: Build tailored utilities (e.g., network analysis, monitoring dashboards).
+
+<br>  
+
+- **Key Use Cases**:
+  - Configuration management (servers, apps, networks)
+  - Monitoring & alerts (system health, traffic, utilization)
+  - Backup & recovery (data, configs, resilience)
+  - Log analysis (errors, behavior, security)
+  - Resource provisioning & scaling (optimize cost/usage)
+  - Reporting & documentation (status, metrics, changes)
