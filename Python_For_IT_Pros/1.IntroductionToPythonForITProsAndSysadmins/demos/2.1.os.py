@@ -16,15 +16,19 @@ for x in dir_content:
 
 def makeDirectory(dir_name):
     os.mkdir(dir_name)
-    print(f"\tCreated new directory {dir_name}")
+    print(f"{getTime()}\tCreated new directory {dir_name}")
 
 def renameDirectory(current_name, new_name):
     os.rename(current_name, new_name)
-    print(f"\tDirectory {current_name} renamed to {new_name}")
+    print(f"{getTime()}\tDirectory {current_name} renamed to {new_name}")
 
 def deleteDirectory(dir_name):
     os.rmdir(dir_name)
-    print(f"\tRemoved directory {dir_name}")
+    
+    print(f"{getTime()}\tRemoved directory {dir_name}")
+    
+def getTime():
+    return datetime.datetime.now().strftime('%X:%f')
 
 if __name__ == "__main__":
     user = os.getenv("USER")
