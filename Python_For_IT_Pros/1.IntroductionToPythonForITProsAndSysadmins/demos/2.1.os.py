@@ -42,7 +42,8 @@ def listDirectoryContent(command):
 
 if __name__ == "__main__":
     user = os.getenv("USER")
-    print(f"Hi, {user}!\nStaring folder operations:")
+    SHELL = os.environ.get("SHELL")
+    print(f"Hi, {user}!\n{SHELL}\nStaring folder operations:")
     makeDirectory("new-folder")
     renameDirectory("new-folder", "new-folder1")
     for line in listDirectoryContent('ls -al').stdout.splitlines():
