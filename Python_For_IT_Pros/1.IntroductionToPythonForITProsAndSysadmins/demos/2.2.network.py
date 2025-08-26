@@ -20,8 +20,19 @@ server_socket.listen(5)
 print("Server listen on: " + server_address[0])
 
 
-while True:
-    client_socket, client_address = server_socket.accept()
-    print("Connected by ", client_address)
-    client_handler = threading.Thread(target=handle_client, args=(client_socket,))
-    client_handler.start()
+# while True:
+#     client_socket, client_address = server_socket.accept()
+#     print("Connected by ", client_address)
+#     client_handler = threading.Thread(target=handle_client, args=(client_socket,))
+#     client_handler.start()
+
+
+###########################################################################################
+
+import requests
+
+url = "http://google.com"
+res = requests.get(url)
+
+print("Response code: ", res.status_code)
+print(res.text)
