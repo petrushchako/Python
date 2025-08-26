@@ -30,11 +30,22 @@ def deleteDirectory(dir_name):
 def getTime():
     return datetime.datetime.now().strftime('%X:%f')
 
+def listDirectoryContent(command):
+    res = subprocess.run(
+        command,              # the command to execute (string or list)
+        shell=True,           # run through the shell (allows shell features like pipes, globbing)
+        text=True,            # return output/error as strings (instead of bytes)
+        capture_output=True   # capture stdout and stderr (instead of printing them directly)
+    )
+    return res
+
+
 if __name__ == "__main__":
     user = os.getenv("USER")
     print(f"Hi, {user}!\nStaring folder operations:")
     makeDirectory("new-folder")
     renameDirectory("new-folder", "new-folder1")
+    for line in listDirectoryContent('ls -al').stdout.splitlines():
+        print(f"\t {line}")
     deleteDirectory("new-folder1")
-    
 
