@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup # type: ignore
 
 """
 BeautifulSoup4 documentation https://www.crummy.com/software/BeautifulSoup/bs4/doc/#
