@@ -33,8 +33,8 @@ def insert_server(name, ip_address, os, status):
     )
     cursor.execute(insert_query, (name, ip_address, os, status))
 
-    cursor.commit()
-    cursor.close()
+    conn.commit()
+    conn.close()
 
 
 def get_server():
@@ -44,5 +44,26 @@ def get_server():
     cursor.execute(select_query)
 
     servers = cursor.fetchall()
+    for server in servers:
+        print(server)
+        
     conn.close()
     return servers
+
+
+def update_server(status, id):
+    conn = sqlite3.connect(db)
+    cursor = conn.cursor()
+    update_query = "UPDATE servers SET status = ? WHERE id = ?"
+
+    cursor.execute(update_query, (status, id))
+    print(cursor.fetchall())
+    conn.commit()
+    conn.close()
+
+
+if __name__ == "__main__":
+    # insert_server("Jenkins Server", "192.168.0.100", "RHEL", "UP")
+    get_server()
+    update_server("DOWN", 2)
+    get_server()
