@@ -1,10 +1,12 @@
 class InsufficientFundsError(Exception):
     pass
 
+
 def withdraw(balance, amount):
     if amount > balance:
         raise InsufficientFundsError("Insufficient funds")
     return balance - amount
+
 
 try:
     account_balance = 500.0

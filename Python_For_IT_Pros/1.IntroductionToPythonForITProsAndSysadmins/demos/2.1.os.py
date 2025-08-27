@@ -14,28 +14,33 @@ print(f"Content of the current working directory is:")
 for x in dir_content:
     print(f"\t{x}")
 
+
 def makeDirectory(dir_name):
     os.mkdir(dir_name)
     print(f"{getTime()}\tCreated new directory {dir_name}")
+
 
 def renameDirectory(current_name, new_name):
     os.rename(current_name, new_name)
     print(f"{getTime()}\tDirectory {current_name} renamed to {new_name}")
 
+
 def deleteDirectory(dir_name):
     os.rmdir(dir_name)
-    
+
     print(f"{getTime()}\tRemoved directory {dir_name}")
-    
+
+
 def getTime():
-    return datetime.datetime.now().strftime('%X:%f')
+    return datetime.datetime.now().strftime("%X:%f")
+
 
 def listDirectoryContent(command):
     res = subprocess.run(
-        command,              # the command to execute (string or list)
-        shell=True,           # run through the shell (allows shell features like pipes, globbing)
-        text=True,            # return output/error as strings (instead of bytes)
-        capture_output=True   # capture stdout and stderr (instead of printing them directly)
+        command,  # the command to execute (string or list)
+        shell=True,  # run through the shell (allows shell features like pipes, globbing)
+        text=True,  # return output/error as strings (instead of bytes)
+        capture_output=True,  # capture stdout and stderr (instead of printing them directly)
     )
     return res
 
@@ -46,7 +51,6 @@ if __name__ == "__main__":
     print(f"Hi, {user}!\n{SHELL}\nStaring folder operations:")
     makeDirectory("new-folder")
     renameDirectory("new-folder", "new-folder1")
-    for line in listDirectoryContent('ls -al').stdout.splitlines():
+    for line in listDirectoryContent("ls -al").stdout.splitlines():
         print(f"\t {line}")
     deleteDirectory("new-folder1")
-
