@@ -46,7 +46,7 @@ def get_server():
     servers = cursor.fetchall()
     for server in servers:
         print(server)
-        
+
     conn.close()
     return servers
 
@@ -62,8 +62,19 @@ def update_server(status, id):
     conn.close()
 
 
+def delete_server(id):
+    conn = sqlite3.connect(db)
+    cursor = conn.cursor()
+    delete_query = "DELETE FROM servers WHERE id = ?"
+
+    cursor.execute(delete_query, (id,))
+    conn.commit()
+    conn.close()
+
 if __name__ == "__main__":
-    # insert_server("Jenkins Server", "192.168.0.100", "RHEL", "UP")
+    insert_server("GitHub Actions", "192.168.0.101", "Ubuntu", "UP")
     get_server()
-    update_server("DOWN", 2)
+    update_server("UP", 2)
     get_server()
+    # delete_server(1)
+    # get_server()
