@@ -4,8 +4,8 @@ import time
 
 # Configure the producer
 producer = KafkaProducer(
-    bootstrap_servers='localhost:9092',  # Replace with your Kafka broker address
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')  # JSON encoding
+    bootstrap_servers="localhost:9092",  # Replace with your Kafka broker address
+    value_serializer=lambda v: json.dumps(v).encode("utf-8"),  # JSON encoding
 )
 
 # Function to send messages
@@ -17,13 +17,14 @@ def send_message(topic, message):
     except Exception as e:
         print(f"Failed to send message: {e}")
 
+
 # Example usage
 if __name__ == "__main__":
-    topic_name = 'my_topic'
+    topic_name = "my_topic"
 
     # Send 5 messages with a delay
     for i in range(5):
-        message = {'number': i, 'timestamp': time.time()}
+        message = {"number": i, "timestamp": time.time()}
         send_message(topic_name, message)
         time.sleep(1)  # Delay between messages
 

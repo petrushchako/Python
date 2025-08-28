@@ -1,7 +1,7 @@
 import requests
 
 # URL of the API endpoint
-url = 'https://jsonplaceholder.typicode.com/posts/1'
+url = "https://jsonplaceholder.typicode.com/posts/1"
 
 # Make a GET request to the API
 response = requests.get(url)
@@ -13,13 +13,13 @@ if response.status_code == 200:
     data = response.json()
 
     # Access specific data from the JSON
-    post_id = data.get('id')
-    title = data.get('title')
-    body = data.get('body')
+    post_id = data.get("id")
+    title = data.get("title")
+    body = data.get("body")
 
     # Print the extracted data
-    print('Post ID:', post_id)
-    print('Title:', title)
-    print('Body:', body)
+    print("Post ID:", post_id)
+    print("Title:", title)
+    print("Body:", body)
 else:
-    print('Failed to retrieve data:', response.status_code)
+    print("Failed to retrieve data:", response.status_code)

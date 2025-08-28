@@ -1,6 +1,6 @@
 import os
 
-file_path = 'testFile-TOBEDELETED.txt'
+file_path = "testFile-TOBEDELETED.txt"
 
 try:
     os.remove(file_path)
