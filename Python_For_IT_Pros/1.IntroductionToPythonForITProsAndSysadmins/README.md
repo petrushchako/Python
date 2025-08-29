@@ -122,3 +122,111 @@ To install specific verion of library use `pip install requests==2.31.0` (e.g. `
   - Log analysis (errors, behavior, security)
   - Resource provisioning & scaling (optimize cost/usage)
   - Reporting & documentation (status, metrics, changes)
+
+
+
+<br><br><br>
+
+## `Demo`: Building Automation Scripts (Log Parser)
+### How it works
+> Example Log File (`access.log`)
+
+### Step 1: Read Log File
+```python
+with open(log_file_path) as file:
+    log_lines = file.readlines()
+````
+
+Result (`log_lines` becomes a list of 3 strings):
+
+```python
+[
+ "192.168.1.100 - - [13/Aug/2023:10:00:00 +0000] \"GET /page1 HTTP/1.1\" 200 1234\n",
+ "192.168.1.101 - - [13/Aug/2023:10:01:00 +0000] \"GET /page2 HTTP/1.1\" 404 5678\n",
+ "192.168.1.102 - - [13/Aug/2023:10:02:00 +0000] \"GET /page1 HTTP/1.1\" 200 9876\n"
+]
+```
+
+<br>
+
+### Step 2: Extract IP Addresses
+```python
+ip_addresses = re.findall(ip_pattern, "".join(log_lines))
+unique_ips = set(ip_addresses)
+```
+
+* Regex pattern: `\d+\.\d+\.\d+\.\d+`
+* Matches IPs:
+  `192.168.1.100`, `192.168.1.101`, `192.168.1.102`
+
+Result:
+```python
+ip_addresses = ["192.168.1.100", "192.168.1.101", "192.168.1.102"]
+unique_ips = {"192.168.1.100", "192.168.1.101", "192.168.1.102"}
+```
+
+So, **3 unique IP addresses**.
+
+<br>
+
+### Step 3: Count Number of Requests
+```python
+num_requests = len(log_lines)
+```
+
+Since there are 3 lines:
+```python
+num_requests = 3
+```
+
+<br>
+
+### Step 4: Extract URLs
+```python
+for line in log_lines:
+    match = re.search(r'"GET (.*?) HTTP', line)
+    if match:
+        url = match.group(1)
+        url_counter[url] += 1
+```
+
+* Line 1 → URL = `/page1`
+* Line 2 → URL = `/page2`
+* Line 3 → URL = `/page1`
+
+Result (`url_counter`):
+```python
+Counter({
+    "/page1": 2,
+    "/page2": 1
+})
+```
+
+<br>
+
+### Step 5: Get Most Popular URLs
+```python
+url_counter.most_common(3)
+```
+
+Result:
+```python
+[("/page1", 2), ("/page2", 1)]
+```
+
+<br>
+
+### Step 6: Final Output
+The script prints:
+
+```sh
+Log Analysis Results:
+Number of Requests:        3
+Number of Unique IP Addresses: 3
+
+Popular URLs:
+/page1: 2 requests
+/page2: 1 requests
+```
+
+
