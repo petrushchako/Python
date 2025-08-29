@@ -26,3 +26,15 @@ def analyze_log(log_file_path):
             url_counter[url] += 1
 
     return num_requests, unique_ips, url_counter.most_common(3)
+
+
+if __name__ == "__main__":
+    num_requests, unique_ips, popular_urls = analyze_log(log_file_path)
+
+    print("Log Analysis Results:")
+    print(f"Number of Requests: \t\t{num_requests}")
+    print(f"Number of Unique IP Addresses: \t{len(unique_ips)}")
+
+    print("Popular URLs:")
+    for url, count in popular_urls:
+        print(f"{url}: {count} requests")
