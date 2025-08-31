@@ -14,3 +14,13 @@ def backup_directory_contents(source, backup):
         print(f"Backup completed: {backup_path}")
     except Exception as e:
         print(f"Backup failed: {e}")
+
+
+def recover_backup(backup_path, destination):
+    try:
+        shutil.rmtree(destination)
+        shutil.copytree(backup_directory, destination)
+        pritn(f"Backup completed: {destination}")
+    except Exception as e:
+        print(f"Backup Failed: {e}")
+
