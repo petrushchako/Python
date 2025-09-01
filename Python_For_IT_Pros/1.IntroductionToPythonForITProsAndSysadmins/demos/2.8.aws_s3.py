@@ -1,4 +1,8 @@
-import boto3    # https://pypi.org/project/boto3/
+# https://pypi.org/project/boto3/
+
+import boto3    # type: ignore
+import time
+
 
 aws_access_key = ""
 aws_secret_key = ""
@@ -30,3 +34,9 @@ def create_s3_bucket(bucket_name):
 def delete_s3_bucket(bucket_name):
     response = s3_client.delete_bucket(Bucket=bucket_name)
     print(f"S3 Bucket '{bucket_name}' deleted successfully")
+
+
+if __name__ == "__main__":
+    create_s3_bucket(bucket_name)
+    time.sleep(300)
+    delete_s3_bucket(bucket_name)
