@@ -27,3 +27,6 @@ def create_s3_bucket(bucket_name):
     print(f"S3 Bucket '{bucket_name}' created successfully")
 
 
+def delete_s3_bucket(bucket_name):
+    response = s3_client.delete_bucket(Bucket=bucket_name)
+    print(f"S3 Bucket '{bucket_name}' deleted successfully")
