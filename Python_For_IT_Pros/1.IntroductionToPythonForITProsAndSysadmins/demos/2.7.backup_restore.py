@@ -20,7 +20,7 @@ def recover_backup(backup_path, destination):
     try:
         shutil.rmtree(destination)
         shutil.copytree(backup_directory, destination)
-        pritn(f"Backup completed: {destination}")
+        print(f"Backup completed: {destination}")
     except Exception as e:
         print(f"Backup Failed: {e}")
 
