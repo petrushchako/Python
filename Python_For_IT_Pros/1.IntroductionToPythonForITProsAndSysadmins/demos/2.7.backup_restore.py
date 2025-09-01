@@ -2,8 +2,8 @@ import os
 import shutil
 import datetime
 
-source_directory = ""
-backup_directory = ""
+source_directory = "./source"
+backup_directory = "./backup"
 
 
 def backup_directory_contents(source, backup):
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         print("Available backups")
         for idx, backup in enumerate(backup_list, start=1):
             print(f"{idx}. {backup}")
-        
+
         backup_index = int(input("Enter the backup index to recover: "))
         if 0 <= backup_index < len(backup_list):
             select_backup = os.path.join(backup_directory, backup_list[backup_index])
