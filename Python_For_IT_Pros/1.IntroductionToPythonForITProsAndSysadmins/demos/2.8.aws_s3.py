@@ -1,6 +1,6 @@
 # https://pypi.org/project/boto3/
 
-import boto3    # type: ignore
+import boto3    # type: ignorexxxxx
 import time
 
 

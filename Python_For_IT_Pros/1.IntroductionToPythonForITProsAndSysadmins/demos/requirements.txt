@@ -1,0 +1,7 @@
+# Libraries for labs
+
+# 2.4
+requests==2.*
+
+# 2.8
+boto3
