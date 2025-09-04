@@ -48,3 +48,46 @@ When you're finished with this course, you'll have the skills to write simple sy
   - Creating and Reading tar Archives with Python
   - Running Python Scripts on a Schedule Using Linux Cron
 
+<br><br><br>
+
+## Level-Setting for This Course
+### What You Will Learn
+- A **high-level overview of Python** (not a deep dive or programming-focused course).  
+- How to use **Python for system administration**, with a strong focus on **Linux**.  
+- Guidance on:
+  - Setting up **Python IDEs** and environments.  
+  - Installing and using Python on Linux.  
+  - Applying Python to sysadmin tasks such as:
+    - Server health checks  
+    - User and service management  
+    - File, string, and text handling  
+    - Combining Python with other tools  
+
+> While Linux is the main focus, many of the concepts can also apply to **Windows, cloud platforms, and Kubernetes**.
+
+
+### Back Story for the Course
+- You are a **Linux administrator** in a company that has decided to **standardize on Python** for:
+  - Scripting  
+  - Web development  
+  - Automation across DevOps and SRE teams  
+- Leadership wants:
+  - Unified scripting skills across teams  
+  - Easier onboarding for new engineers with Python skills  
+  - Faster automation of Linux system administration  
+- You already have strong Linux knowledge, but need to **ramp up on Python quickly**.
+
+
+### Who This Course Is For
+- **System administrators** or **Linux administrators**  
+- **DevOps engineers**  
+- **SRE engineers**  
+
+Recommended background knowledge:
+- Basic **scripting concepts**  
+- Some programming familiarity (not necessarily deep developer experience)  
+- **System administration** skills  
+- Strong **Linux knowledge**
+
+<br><br><br>
+
