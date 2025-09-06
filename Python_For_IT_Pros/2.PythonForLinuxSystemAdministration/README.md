@@ -230,6 +230,8 @@ Recommended background knowledge:
 6. Location: local computer, server, virtual env
 7. Setup for a project i.e. mkdir foldername
 
+<br>
+
 ### Install Python packages option
 pip is the most popular tool for installing Python packages and typically comes
 included with most Python versions.
@@ -243,3 +245,11 @@ indexes.
   `pip uninstall psutil`
 - To show a list of installed Python packages<br>
   `pip list`
+
+<br>
+
+### Virtual environment setup
+Python "Virtual Environments" allow Python packages t installed in an isolated location for a particular application, rather than being installed globally.<br>
+Common tools for creating Python virtual environments: `venv` and `conda`
+- Create a virtual environment<br>
+  `python3 -m venv <DIRNAME>`
