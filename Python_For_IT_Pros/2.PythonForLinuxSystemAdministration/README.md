@@ -230,3 +230,16 @@ Recommended background knowledge:
 6. Location: local computer, server, virtual env
 7. Setup for a project i.e. mkdir foldername
 
+### Install Python packages option
+pip is the most popular tool for installing Python packages and typically comes
+included with most Python versions.
+Pip finds, downloads, & installs packages from PyPI & other Python package
+indexes.
+- To install a Python package<br>
+  `pip install psutil`
+- To upgrade a Python package<br>
+  `pip install -upgrade psutil`
+- To uninstall a Python package<br>
+  `pip uninstall psutil`
+- To show a list of installed Python packages<br>
+  `pip list`
