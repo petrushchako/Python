@@ -164,7 +164,7 @@ Recommended background knowledge:
 | **Purpose**| Interprets user commands, automates tasks in Linux.| Designed for general programming, widely used in automation & beyond.|
 | **Best For**| Small/simple scripts, Linux-specific automation.| Complex scripts, cross-platform automation, cloud & networking tasks.|
 | **Code Size**| Suitable for scripts <100 lines.| Better for tasks >100 lines or multi-system automation.|
-| **Simplicity**| Familiar to Linux admins; quick for short tasks.             | Easier for larger/more complex logic.|
+| **Simplicity**| Familiar to Linux admins; quick for short tasks.| Easier for larger/more complex logic.|
 | **Maintainability**| Harder to maintain, lacks debugging, limited error handling. | Easier to maintain, includes debugging tools, better error handling.|
 | **Availability**| Installed by default on all Linux distributions.| Installed on many distros but not all; requires modules for extra features.|
 | **Portability**| Linux-focused.| Cross-platform; works with Linux, Windows, networking devices, clouds.|
@@ -175,3 +175,25 @@ Recommended background knowledge:
 - **When to choose Bash**:<br>Simple, Linux-specific tasks requiring short scripts.
 - **When to choose Python**:<br>Larger, more complex, cross-platform, or cloud/network-related automation.
 - **Best approach**: Evaluate task complexity, scope, and platform. In many environments, admins use **both Bash and Python**, sometimes even running Bash scripts within Python.
+
+
+<br><br><br>
+
+## Common modules
+
+| **Module** | **Description** |
+|---|---|
+| `math` | Trig functions, sqrt, logarithms,exponentials|
+| `pickle` | Serialise / de-serializeobjects for persistent storage |
+| `random` | Generaterandom numbers with various distributions |
+| `string` | Comprehensive string formatting |
+| `configparser` | Configurationfile parser |
+| `bz2`, `gzip` | Read and write compressed files |
+| `tarfile` | Read and write tar archives |
+| `datetime` | Represent and manipulate dates and times |
+| `os` | Interface to operating systemservices |
+| `sys` | Accessargv, stdin, stdout, etc. |
+| `http` | Modules for clientand server side http, and cookies |
+| `shutil` | Copy / remove files and directorytrees |
+| `logging` | Logmessage generator with various backends |
+| `optparse` / `argparse`| Parse command-line arguments |
