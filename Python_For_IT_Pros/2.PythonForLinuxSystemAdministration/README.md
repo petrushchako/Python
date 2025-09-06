@@ -211,3 +211,22 @@ Recommended background knowledge:
 | Web Scraping (Scrapy, Selenium, Urllib) |
 | Desktop GUI App development (Tinter, Kivy, PyForms, PyGtk, PySide) |
 | Multi-Cloud (azure-mgmt-resource, azure-mgmt-compute, Boto3 (AWS), google-auth, google-cloud-storage) & Kubernetes (kubernetes) management |
+
+
+<br><br><br>
+
+
+## Creating a Productive Python Environment
+### General Environment Setup for Python
+1. Python install
+2. System Path
+    - Linux = `export PATH="$PATH:/usr/local/bin/python`
+    - Windows = `%path%;C: Python`
+3. The Shell (interpreter selection)
+4. IDE (Integrated Development Environment)
+5. Install Packages / Import Modules
+  - pip
+  - Import
+6. Location: local computer, server, virtual env
+7. Setup for a project i.e. mkdir foldername
+
