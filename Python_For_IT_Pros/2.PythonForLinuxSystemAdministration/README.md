@@ -197,3 +197,17 @@ Recommended background knowledge:
 | `shutil` | Copy / remove files and directorytrees |
 | `logging` | Logmessage generator with various backends |
 | `optparse` / `argparse`| Parse command-line arguments |
+
+<br>
+
+|**Uses of Python**|
+|---|
+| System administration & config management (Python, Ansible) |
+| Artificial Intelligence (Al) & Machine Learning (ML) (Pandas, scikit-learn) |
+| Web development (Django, Flask, Web2Py, CherryPy) |
+| Game development (Pyganim, Pygame, PyKyra, Panda3D) |
+| Data Science / Data analytics (NumPy, SciPy, TensorFlow, Matplotlib, StatsModels) |
+| Network Automation (Ansible, Tornado, Twisted) |
+| Web Scraping (Scrapy, Selenium, Urllib) |
+| Desktop GUI App development (Tinter, Kivy, PyForms, PyGtk, PySide) |
+| Multi-Cloud (azure-mgmt-resource, azure-mgmt-compute, Boto3 (AWS), google-auth, google-cloud-storage) & Kubernetes (kubernetes) management |
