@@ -253,3 +253,28 @@ Python "Virtual Environments" allow Python packages t installed in an isolated l
 Common tools for creating Python virtual environments: `venv` and `conda`
 - Create a virtual environment<br>
   `python3 -m venv <DIRNAME>`
+
+
+<br><br><br>
+
+
+## Python Interpreters
+### What is a Python Interpreter?
+- Converts Python code entered in the terminal into instructions the system can understand.
+- Executes code instantly in **interactive sessions** or runs scripts from `.py` files.
+- Supports pre-compiled code for full Python applications.
+- Core operation follows **REPL**:
+  - **R**ead → **E**valuate → **P**rint → **L**oop.
+- Useful for:
+  - Running quick commands in real-time.
+  - Writing and executing standalone Python scripts.
+
+### Standard Python Interpreter
+- Launched by running `python` or `python3` in the terminal.
+- Supports four basic data types: **string, integer, float, Boolean**.
+- Good for:
+  - Quick testing and real-time results.
+  - Writing standalone `.py` scripts.
+- Limitations:
+  - Minimal functionality compared to enhanced tools.
+  - No built-in shell command support.
