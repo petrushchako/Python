@@ -302,6 +302,26 @@ Common tools for creating Python virtual environments: `venv` and `conda`
 
 <br>
 
+### Libraries issue
+- Every time you run `python` (or `python3`), you’re starting a specific Python interpreter binary (e.g., `/usr/bin/python3.10` or `/usr/local/bin/python3.11`).
+- That interpreter only sees the libraries installed into its `site-packages` directory.
+- If you install libraries with `pip`, but they go to a different interpreter’s site-packages, your current Python session won’t find them.
+
+#### How to Check the Link
+- Run these commands inside your interpreter:
+
+  ```python
+  import sys
+  print(sys.executable)   # path to the current interpreter
+  print(sys.path)         # where it looks for libraries
+  ```
+- And compare with pip:
+
+  ```sh
+  $ which pip
+  $ pip --version
+  ```
+
 ### Summary of iPython
 - Highly configurable, though not a full IDE.
 - Easier navigation than the standard interpreter.
