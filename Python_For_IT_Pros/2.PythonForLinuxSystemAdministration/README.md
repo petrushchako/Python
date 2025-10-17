@@ -333,3 +333,18 @@ Common tools for creating Python virtual environments: `venv` and `conda`
 <br><br><br>
 
 
+## Pycharm
+### Features
+- Full IDE for Python
+  -  Python-aware editor
+  - Interactive REPL Python in console
+  - Supports multiple interpreters in built-in terminal (Python, iPython)
+  - Python Web frameworks support
+  - Python aware syntax check/highlighting
+  - Python code completion & inspections
+  - Python Profiler
+  - Graphical Python debugging & testing
+  - Built-in support for Python libraries: Numpy, Matplotlib, Pandas, & more
+  - Conda & Venv Integration
+
+## Interacting with the Linux System
