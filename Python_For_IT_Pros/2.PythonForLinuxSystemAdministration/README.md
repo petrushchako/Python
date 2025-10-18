@@ -359,3 +359,48 @@ Common tools for creating Python virtual environments: `venv` and `conda`
   - Dates and Times in Python
   - Creating Command-line Parsers & Arguments
   - File-like Objects and Streams
+
+<br><br><br>
+
+## Installing Python on Linux
+### Step 1: Check Version
+Go to **python.org** > Downloads > note the latest version.
+
+### Step 2: Install Python
+```bash
+sudo apt-get install python<version>
+```
+
+Example:
+```bash
+sudo apt-get install python3.12
+```
+
+> Use the right package manager for your distro (e.g., `yum`, `dnf`, `pacman`).
+
+### Step 3: Verify Installation
+```bash
+python<version> --version
+# or
+python3 --version
+```
+
+Expected output:
+```
+Python 3.12.1
+```
+
+<br>
+
+### Tip
+- Install pip too:
+  ```bash
+  sudo apt-get install python3-pip
+  ```
+
+- Check which Python is default:
+  ```bash
+  which python3
+  ```
+
+  > You can have multiple Python versions installed.
