@@ -448,3 +448,23 @@ Python 3.12.1
     * `platform.node()` → Hostname of the machine.
 
     > **Tip:** Handy for scripts that behave differently depending on the OS or architecture.
+
+<br>
+
+3. **`socket` Module** (Standard Library)
+
+    **Purpose:** Low-level networking interface — useful for server/client communication or network checks.
+
+    **Import:**
+
+    ```python
+    import socket
+    ```
+
+    Useful Examples:
+    - `socket.gethostname()` → Server name.
+    - `s = socket.socket()` → Create a socket.
+    - `s.bind(('127.0.0.1', 8080))` → Bind to IP/port.
+    - `s.listen()` → Listen for connections.
+
+    > **Tip:** `socket` can be used to build simple health checks or quick network services without extra tools.
