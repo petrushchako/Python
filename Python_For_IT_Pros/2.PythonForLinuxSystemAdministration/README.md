@@ -468,3 +468,26 @@ Python 3.12.1
     - `s.listen()` → Listen for connections.
 
     > **Tip:** `socket` can be used to build simple health checks or quick network services without extra tools.
+
+<br>
+
+4. **`psutil` Module** (External Library)
+
+    **Purpose:** Process and system information (CPU, memory, disk, uptime, etc.).
+
+    **Install:**
+    ```bash
+    sudo pip install psutil
+    ```
+
+    **Import:**
+    ```python
+    import psutil
+    ```
+
+    **Useful Methods:**
+    - `psutil.cpu_times()` → CPU usage details.
+    - `psutil.disk_usage('/')` → Disk space.
+    - `psutil.boot_time()` → Server boot time.
+
+    > **Tip:** Excellent for monitoring scripts or health checks without installing heavy tools.
