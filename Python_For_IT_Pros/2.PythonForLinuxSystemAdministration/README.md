@@ -491,3 +491,38 @@ Python 3.12.1
     - `psutil.boot_time()` → Server boot time.
 
     > **Tip:** Excellent for monitoring scripts or health checks without installing heavy tools.
+
+<br>
+
+### **Combining Modules for Server Health Scripts**
+
+Typical imports for system monitoring:
+
+```python
+import os
+import platform
+import socket
+import psutil
+from prettytable import PrettyTable
+```
+
+You can:
+
+* Collect **network**, **memory**, **disk**, and **process** info.
+* Display data in a clean table using `PrettyTable`.
+* Mix modules for richer functionality.
+
+**Quick Example:**
+
+```python
+from prettytable import PrettyTable
+import platform, socket, psutil
+
+table = PrettyTable(["Property", "Value"])
+table.add_row(["Hostname", socket.gethostname()])
+table.add_row(["OS", platform.system()])
+table.add_row(["Disk Usage", f"{psutil.disk_usage('/').percent}%"])
+print(table)
+```
+
+> **Pro Tip:** `psutil` + `PrettyTable` = simple and effective monitoring scripts without external monitoring agents.
