@@ -404,3 +404,26 @@ Python 3.12.1
   ```
 
   > You can have multiple Python versions installed.
+
+
+<br><br><br>
+
+## Core Python Modules for Linux Administration
+1. **`os` Module** (Standard Library)
+
+    **Purpose:** Interact with the operating system — directories, files, and environment.
+
+    **Import:**
+
+    ```python
+    import os
+    ```
+
+    **Useful Methods:**
+
+    * `os.getcwd()` → Get current working directory.
+    * `os.mkdir('test_dir')` → Create a directory.
+    * `os.listdir()` → List directory contents.
+    * `os.rename('file.txt', 'myfile.txt')` → Rename a file.
+
+    > **Tip:** `os` is great for quick directory and file operations, but for complex path handling, combine it with `pathlib`.
