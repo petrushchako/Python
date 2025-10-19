@@ -427,3 +427,24 @@ Python 3.12.1
     * `os.rename('file.txt', 'myfile.txt')` → Rename a file.
 
     > **Tip:** `os` is great for quick directory and file operations, but for complex path handling, combine it with `pathlib`.
+
+<br>
+
+2. **`platform` Module** (Standard Library)
+
+    **Purpose:** Get system, OS, hardware, and Python environment information.
+
+    **Import:**
+
+    ```python
+    import platform
+    ```
+
+    **Useful Methods:**
+
+    * `platform.python_version()` → Python version.
+    * `platform.machine()` → Architecture (e.g., x86_64).
+    * `platform.system()` → OS type (Linux, Windows, etc.).
+    * `platform.node()` → Hostname of the machine.
+
+    > **Tip:** Handy for scripts that behave differently depending on the OS or architecture.
