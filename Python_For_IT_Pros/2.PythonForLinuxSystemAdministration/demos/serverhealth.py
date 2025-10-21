@@ -26,7 +26,7 @@ while True:
 
     # Server OS info
     print("\n")
-    print("-------Operating System Information------")
+    print("-------Operating System Information-------")
     print("Operating System Type:", os.name)
     print("\nOperating Sysyem:", platform.system())
     print("\nOperating System Version:", platform.release())
@@ -36,3 +36,17 @@ while True:
     IPAddr = socket.gethostbyname(hostname)
     print("\nCompiter IP Address:", IPAddr)
     print("\n")
+
+    # Fetch Network Information
+    print("-------Network Status-------")
+    table = PrettyTable(["Network", "Status", "Speed"])
+    for key in psutil.net_if_stats().key():
+        name = key
+        up = "Up" if psutil.net_if_stats()[key].isup else "Down"
+        speed = psutil.net_if_stats()[key].speed
+        table.add_row([name, up, speed])
+    print(table)
+    print("\n")
+
+
+    
