@@ -61,4 +61,17 @@ while True:
     print(memory_table)
     print("\n")
 
-    #
+    # Fetch the disk information
+    print("-------Disk Usage------")
+    disk_table = PrettyTable(["Total Usage(GB)","Used(GB)","Free(GB)","Percentage"])
+    disk = psutil.disk_usage('/')
+    disk_table.add_row([
+        f"{disk.total / 1e9:.3f}",
+        f"{disk.used / 1e9:.3f}",
+        f"{disk.free / 1e9:.3f}",
+        disk.percent
+    ])
+    print(disk_table)
+    print("\n")
+
+    
