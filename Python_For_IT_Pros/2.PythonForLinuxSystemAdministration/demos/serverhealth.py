@@ -74,4 +74,45 @@ while True:
     print(disk_table)
     print("\n")
 
-    
+    # Fetch the 10 processes with highest CPU usage
+    print("----Top 10 Processes with Highest CPU Usage----")
+    process_table = PrettyTable(["PID", "PNAME", "STATUS", "CPU", "NUM THREADS", "MEMORY(GB)"])
+    proc = []
+    # get the pids
+    for pid in psutil.pids()[-200:]:
+        try:
+            p = psutil.Process(pid)
+            # trigger cpu_percent() the first time which leads to return 0.0
+            p.cpu_percent()
+            proc.append(p)
+        except Exception as e:
+            pass
+
+    # sort by cpu usage
+    top = {}
+    time.sleep(0.1)
+    for p in proc:
+        # trigger cpu_percent() the second time for measurement
+        top[p] = p.cpu_percent() / psutil.cpu_count()
+
+    top_list = sorted(top.items(), key= lambda x: x[1])
+    top10 = top_list[-10:]
+    top10.reverse()
+
+    for p, cpu_percent in top10:
+        # While fetching the process, some of the subrocesses may exist, hence try-catch is required
+        try:
+            with p.oneshot():
+                process_table.add_row([
+                    str(p.pid),
+                    p.name(),
+                    p.status(),
+                    f"{cpu_percent:.2f}%",
+                    p.num_threads(),
+                    f"{p.memory_info().rss / 1e6:.3f}"
+                ])
+        except Exception as e:
+            pass
+    print(process_table)
+
+    time.sleep(1)
