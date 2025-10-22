@@ -48,5 +48,17 @@ while True:
     print(table)
     print("\n")
 
+    # Fetch the memory information
+    print("-------Memory Usage-------")
+    memory_table = PrettyTable(["Total(GB)", "Used(GB)", "Available(GB)", "Percentage"])
+    vm = psutil.vitual_memory()
+    memory_table.add_row([
+        f"{vm.total / 1e9:.3f}",
+        f"{vm.used / 1e9:.3f}",
+        f"{vm.available / 1e9:.3f}",
+        vm.percent
+    ])
+    print(memory_table)
+    print("\n")
 
-    
+    #
