@@ -3,16 +3,25 @@ import sys
 
 
 def check_health(url):
+    # Ensure the URL has a scheme; if not, default to http://
+    if not url.startswith(("http://", "https://")):
+        request_url = "http://" + url
+    else:
+        request_url = url
+
     try:
-        response = requests.get(url, timeout=3)
-        print(f"Cheing health: {url}")
-        print(f"Status code {response.status_code}")
+        print(f"Checking health: {request_url}")
+        response = requests.get(request_url, timeout=3)
+        print(f"Status code: {response.status_code}")
+
         if response.status_code == 200:
-            print(f"Health check successful")
+            print("Health check successful")
         else:
-            print(f"Failed or Redirect")
+            print("Failed or Redirect")
+
     except requests.exceptions.RequestException as e:
         print("Not connected or request timed out" + f"{e}")
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
